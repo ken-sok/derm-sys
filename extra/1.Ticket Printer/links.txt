@@ -1,0 +1,9 @@
+1. Drivers intallation(The video is in Spanish but you can activate the autotranslate tool from youtube): https://www.youtube.com/watch?v=lUaLPehcYuY
+
+2. Extension for PHP:
+https://github.com/mike42/escpos-php
+
+C:\xampp2\htdocs\pos-english\extensions
+
+3. Sample code:
+https://parzibyte.me/blog/2017/09/10/imprimir-ticket-en-impresora-termica-php/

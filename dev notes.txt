@@ -1,0 +1,49 @@
+CRUD: 
+- meetings -> at creating sale now
+- patient info  -> doone
+- product -> done
+- remove login 
+- logos
+- add logos -> done
+- remove login -> done
+total = 12hrs
+------------------------------------------------
+-test crud sales, prod, cus 1hr
+-backup to install 
+-https://blog.templatetoaster.com/update-xampp/
+-php word tut on modify word 1hr
+-------------------------- show once -> fri -> 3.5hrs : setup, wait for new pc, the camera for skin sys cannot set up
+
+total = 17hr 21/8
+
+
+loose ends: 
+- priority: 
+	-patient: 
+		- basic info -> done
+		- add customer medical history as textbox for e.g. allergy -> done
+	        - patient picture -> need research to make picture look better
+		- radio for sex -> need research -> done
+		- delete visits column/make it work when we delete consultation
+        -consult: 
+		+ create
+		- remove prices, stock
+		- phone number search
+		- add pictures -> no idea how to make it happen
+		- line item for frequency of use in consultation -> need experiment
+		+ manage: 
+		- view one customer's history with range &/ diagnosis filter
+	-receipt: 
+		+print: 
+			- w/ price
+			- prescription only 
+		+UI: 
+			- receipt module -> make numbers changeable -> convert consult module to receipt module 
+		+LAN: 
+				- lan/ wifi -> need test & research
+	-product -> done
+	-diagnosis -> same as product, but just 1 item -> diagnosis name
+	-waiting list -> temporary customer names added -> search using phone num -> complete/delete -> delete from database
+
+3/sep: easy stuff
+4/sep: harder ones		

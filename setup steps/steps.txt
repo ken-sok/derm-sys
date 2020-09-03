@@ -1,0 +1,6 @@
+1. xampp
+2. php.ini
+3. chrome
+4. database
+5. load xampp at startup (run->shell:startup)
+6. create chrome shortcut
