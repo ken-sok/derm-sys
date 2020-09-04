@@ -232,9 +232,10 @@ class ControllerSales{
 
 			$getSale = ModelSales::mdlShowSales($table, $item, $value);
 
+			//comment out because we cannot delete all products
 			/*=============================================
 			CHECK IF THERE'S ANY EDITED SALE
-			=============================================*/
+			
 
 			if($_POST["productsList"] == ""){
 
@@ -247,6 +248,11 @@ class ControllerSales{
 				$productsList = $_POST["productsList"];
 				$productChange = true;
 			}
+			=============================================*/
+
+			
+			$productsList = $_POST["productsList"];
+			$productChange = true;
 
 			if($productChange){
 

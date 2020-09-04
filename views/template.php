@@ -146,7 +146,8 @@
             $_GET["route"] == 'edit-sale'|| 
             $_GET["route"] == 'diagnosis' ||
             $_GET["route"] == 'consultation' ||
-            $_GET["route"] == 'create-consultation'){
+            $_GET["route"] == 'create-consultation' ||
+            $_GET["route"] == 'edit-consultation'){
 
           include "modules/".$_GET["route"].".php";
 

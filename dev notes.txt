@@ -28,11 +28,17 @@ loose ends:
 		- delete visits column/make it work when we delete consultation -> delay
         -consult: 
 		+ create
-		- remove prices, stock
-		- phone number search of customers
-		- add pictures -> no idea how to make it happen
-		- line item for frequency of use in consultation -> need experiment
-		- use diagnosis id to add/edit
+		- remove prices, stock -> done
+		- phone number search of customers -> done
+		- add pictures -> no idea how to make it happen -> delay
+		- line item for frequency of use in consultation -> need experiment 
+			- pre select 
+			- notes typed -> done
+		- use diagnosis id to add/edit instead of names
+		- two different tables? -> no -> add another column for consultation only products; we have the receipt table alr
+			- make sure we add to both column in create consultation
+			- in edit; we use different columns to show added products
+		- change icons
 
 		+ manage -> delay
 		- view one customer's history with range &/ diagnosis filter
@@ -55,4 +61,4 @@ loose ends:
 4/sep: harder ones
 	-diagnosis module 30 mins -> done in 32 mins w/ udemy 
 	-receipts-> 2hr on printing, others 1hr, 1hr on wifi  
-	-consult module	-> 30 mins general, pictures -> 1hr, line item->30mins
+	-consult module	-> 30 mins general->is 1hr, line item->30mins -> this is not 30mins -> 1.5hr

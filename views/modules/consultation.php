@@ -114,7 +114,7 @@
                       </button>';
 
                        
-                         echo '<button class="btn btn-warning btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                         echo '<button class="btn btn-warning btnEditConsultation" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
 
                           <button class="btn btn-danger btnDeleteSale" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>';
                        

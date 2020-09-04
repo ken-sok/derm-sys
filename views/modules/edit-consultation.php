@@ -4,7 +4,7 @@
 
     <h1>
 
-      Add new Consultation
+      Edit Consultation
 
     </h1>
 
@@ -12,7 +12,7 @@
 
       <li><a href="create-sale"><i class="fa fa-dashboard"></i> Home</a></li>
 
-      <li class="active">Add new Consultation</li>
+      <li class="active">Edit Consultation</li>
 
     </ol>
 
@@ -37,6 +37,20 @@
                 
                 <div class="box">
 
+                  <?php
+
+                    $item = "id";
+                    $value = $_GET["idSale"];
+
+                    $sale = ControllerSales::ctrShowSales($item, $value);
+
+                    $itemCustomers = "id";
+                    $valueCustomers = $sale["idCustomer"];
+
+                    $customers = ControllerCustomers::ctrShowCustomers($itemCustomers, $valueCustomers);
+                  ?>
+
+
 
                     <!--=====================================
                     CODE INPUT
@@ -48,32 +62,8 @@
                       <div class="input-group">
                         
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                        
 
-                        <?php 
-                          $item = null;
-                          $value = null;
-
-                          $sales = ControllerSales::ctrShowSales($item, $value);
-
-                          if(!$sales){
-
-                            echo '<input type="text" class="form-control" name="newSale" id="newSale" value="10001" readonly>';
-                          }
-
-                          else{
-
-                            foreach ($sales as $key => $value) {
-                              
-                            }
-
-                            $code = $value["code"] +1;
-
-                            echo '<input type="text" class="form-control" name="newSale" id="newSale" value="'.$code.'" readonly>';
-
-                          }
-
-                        ?>
+                        <input type="text" class="form-control" id="newSale" name="editSale" value="<?php echo $sale["code"]; ?>" readonly>
 
                       </div>
 
@@ -91,9 +81,10 @@
                       <div class="input-group">
                         
                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
+
                         <select class="form-control" name="selectCustomer" id="selectCustomer" required>
                           
-                            <option value="">Select customer</option>
+                            <option value="<?php echo $customers["id"]; ?>" readonly><?php echo $customers["name"]; ?></option>
 
                             <?php 
 
@@ -102,16 +93,10 @@
 
                             $customers = ControllerCustomers::ctrShowCustomers($item, $value);
 
-                            foreach ($customers as $key => $value) {
-                              echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
-                            }
-
 
                             ?>
 
                         </select>
-
-                        <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addCustomer" data-dismiss="modal">Add Patient</button></span>
 
                       </div>
 
@@ -127,7 +112,8 @@
                         
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                        
-                        <input type="text" class="form-control" name="newDiagnosis" id="newDiagnosis" placeholder="Diagnosis" required>
+                        <input type="text" class="form-control" name="newDiagnosis" id="newDiagnosis" placeholder="Diagnosis" 
+                        value="<?php echo $sale["diagnosis"]; ?>" required>
 
                       </div>
 
@@ -142,14 +128,19 @@
                       <div class="input-group">
                         
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        
+                        <?php
+                        $itemCustomers = "id";
+                        $valueCustomers = $sale["idCustomer"];
+
+                        $customers = ControllerCustomers::ctrShowCustomers($itemCustomers, $valueCustomers);
+                        ?>
                        
-                        <input type="text" class="form-control" name="newAppDate" id="datepicker-1" placeholder="Select next appointment date"​ autocomplete = off required>
+                        <input type="text" class="form-control" name="newAppDate" id="datepicker-1" value = "<?php echo $customers["nextVisit"]; ?>"required>
 
                       </div>
 
                     </div>
-
-                    
 
                     <!--=====================================
                     =            PRODUCT INPUT           =
@@ -157,7 +148,72 @@
                   
                     
                     <div class="form-group row newProduct">
+                      <?php
 
+                        $productList = json_decode($sale["products"], true);
+
+                        foreach ($productList as $key => $value) {
+
+                          $item = "id";
+                          $valueProduct = $value["id"];
+                          $order = "id";
+
+                          $answer = ControllerProducts::ctrShowproducts($item, $valueProduct, $order);
+
+                          $lastStock = $answer["stock"] + $value["quantity"];
+                          
+                          echo '<div class="row" style="padding:5px 15px">
+                    
+                                <div class="col-xs-6" style="padding-right:0px">
+                    
+                                  <div class="input-group">
+                        
+                                    <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct="'.$value["id"].'"><i class="fa fa-times"></i></button></span>
+
+                                    <input type="text" class="form-control newProductDescription" idProduct="'.$value["id"].'" name="addProduct" value="'.$value["description"].'" readonly required>
+
+                                  </div>
+
+                                </div>
+
+                                <div class="col-xs-3">
+                      
+                                  <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" stock="'.$lastStock.'" newStock="'.$value["stock"].'" required>
+
+                                </div>
+
+                                <div class="col-xs-3 enterPrice" style="display:none;">
+
+                                  <div class="input-group">
+
+                                    <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                           
+                                    <input type="text" class="form-control newProductPrice" realPrice="'.$value["price"].'" name="newProductPrice" value="'.$value["totalPrice"].'" readonly required>
+           
+                                  </div>
+                       
+                                </div>
+
+ 
+                                <!-- product usage -->
+
+                                <div class="col-xs-3 enterUsage" style="padding-left:0px;">
+                    
+                                  <div class="input-group">
+                    
+                                    <span class="input-group-addon"><i class="fa fa-repeat"></i></span>
+                                       
+                                    <input type="text" class="form-control newProductUsage" idProduct="'.$value["id"].'" name="addProductUsage" usage="'.$value["usage"].'" value = "'.$value["usage"].'" required>
+                       
+                                  </div>
+                                   
+                                </div>
+
+                              </div>';
+                        
+
+                        }
+                        ?>
 
                     </div>
 
@@ -168,19 +224,17 @@
                     ======================================-->
                     
                     <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add Product</button>
-                    
-                   
 
                     <hr>
 
-                    <!-- product comment -->
+                     <!-- product comment -->
 
                     <div class="form-group"> 
 
                           <div class="input-group"> 
                             
                            <label for="comment">Comment:</label>
-                           <textarea class="form-control" name="comment" id="comment" rows="4" cols="100"></textarea>
+                           <textarea class="form-control" name="comment" id="comment" rows="4" value = "<?php echo $sale["comment"]; ?>"cols="100"><?php echo $sale["comment"]; ?></textarea>
 
                           </div> 
 
@@ -198,6 +252,7 @@
                           
                           <thead>
                             
+                            
                             <th>Total</th>
 
                           </thead>
@@ -206,16 +261,17 @@
                           <tbody>
                             
                             <tr>
-                              
+                            
+
                               <td style="width: 50%">
 
                                 <div class="input-group">
                                   
                                   <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                   
-                                  <input type="number" step="0.01" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" required>
+                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="<?php echo $sale["netPrice"]; ?>" value="<?php echo $sale["totalPrice"]; ?>" readonly required>
 
-                                  <input type="hidden" name="saleTotal" id="saleTotal" required>
+                                  <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $sale["totalPrice"]; ?>" required>
 
                                 </div>
 
@@ -233,20 +289,23 @@
                       
                     </div>
 
+                    <hr>
+
+                    <br>
                     
                 </div>
 
             </div>
 
             <div class="box-footer">
-              <button type="submit" class="btn btn-primary pull-right">Save consultation</button>
+              <button type="submit" class="btn btn-primary pull-right">Save changes</button>
             </div>
           </form>
 
           <?php
 
-            $saveSale = new ControllerSales();
-            $saveSale -> ctrCreateSale();
+            $editSale = new ControllerSales();
+            $editSale -> ctrEditSale();
             
           ?>
 
@@ -300,14 +359,11 @@
 </div>
 
 
-
-
-
 <!--=====================================
 MODAL ADD CUSTOMER
 ======================================-->
 
-<div id="addCustomer" class="modal fade" role="dialog">
+<div id="modalAddCustomer" class="modal fade" role="dialog">
   
   <div class="modal-dialog">
 
@@ -345,14 +401,13 @@ MODAL ADD CUSTOMER
             </div>
 
 
-
             <!-- PHONE INPUT -->
 
 
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                <input class="form-control input-lg" type="text" placeholder = "Phone" name="newPhone" data-mask="000 000 0000" required>
+                <input class="form-control input-lg" type="text" placeholder = "Phone" name="newPhone" data-mask="000 000 0000">
               </div>
             </div>
           
@@ -363,12 +418,7 @@ MODAL ADD CUSTOMER
             <div class="form-group">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-transgender"></i></span>
-                  <select class="form-control input-lg" name="newSex" id="newSex" required>
-                    <option value="">Select Sex</option>
-                    <option value="M">M</option>
-                    <option value="F">F</option>
-                    <option value="Other">Other</option>
-                  </select>
+                <input class="form-control input-lg" type="text" name="newSex" placeholder="Sex" required>
               </div>
             </div>
 
@@ -377,7 +427,7 @@ MODAL ADD CUSTOMER
 
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 <input class="form-control input-lg" type="number" name="newAge" placeholder="Age" max = "200" required>
               </div>
             </div>
@@ -392,7 +442,7 @@ MODAL ADD CUSTOMER
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save Patient</button>
+          <button type="submit" class="btn btn-primary">Save Customer</button>
         </div>
       </form>
 
@@ -405,5 +455,6 @@ MODAL ADD CUSTOMER
     </div>
 
   </div>
-
 </div>
+
+<!--====  End of module add Customer  ====-->

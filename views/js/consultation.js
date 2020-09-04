@@ -13,6 +13,10 @@ LOAD DYNAMIC PRODUCTS TABLE
 
 // })
 
+//list products for edit
+//test for delete all products
+listProducts(); 
+
 $('.consultationTable').DataTable({
 	"ajax": "ajax/datatable-consultation.ajax.php", 
 	"deferRender": true,
@@ -51,7 +55,8 @@ $(".consultationTable tbody ").on("click", "button.addProductSale", function(){
 
       	    var description = answer["description"];
           	var stock = answer["stock"];
-          	var price = answer["sellingPrice"];
+			var price = answer["sellingPrice"];
+			
 
 
           	/*=============================================
@@ -99,21 +104,35 @@ $(".consultationTable tbody ").on("click", "button.addProductSale", function(){
 	            
 	             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="'+stock+'" newStock="'+Number(stock-1)+'" required>'+
 
-	          '</div>' +
+			  '</div>' +
+			  
+			  '<!-- product usage -->'+
 
-	          '<!-- product price -->'+
-
-	          '<div class="col-xs-3 enterPrice" style="display: none;">'+
+	          '<div class="col-xs-3 enterUsage" style="padding-left:0px;">'+
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon"><i class="fa fa-repeat"></i></span>'+
 	                 
-	              '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" value="'+price+'" readonly required>'+
+	              '<input type="text" class="form-control newProductUsage" idProduct="'+idProduct+'" name="addProductUsage" usage="" required>'+
 	 
 	            '</div>'+
 	             
 	          '</div>'+
+
+	          '<!-- product price -->'+
+
+	          '<div class="col-xs-3 enterPrice" style="visibility: hidden;">'+
+
+	            '<div class="input-group">'+
+
+	              '<input type="hidden" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" value="'+price+'" readonly required>'+
+	 
+	            '</div>'+
+	             
+			  '</div>'+
+			  
+
 
 
 	        '</div>')
@@ -168,7 +187,7 @@ var idRemoveProduct = [];
 
 localStorage.removeItem("removeProduct");
 
-$(".saleForm").on("click", "button.removeProduct", function(){
+$(".consultationForm").on("click", "button.removeProduct", function(){
 
 	console.log("$(this)", $(this));
 	$(this).parent().parent().parent().parent().remove();
@@ -201,10 +220,16 @@ $(".saleForm").on("click", "button.removeProduct", function(){
 
 	if($(".newProduct").children().length == 0){
 
-		
+		 
 		$("#newSaleTotal").val(0);
 		$("#saleTotal").val(0);
 		$("#newSaleTotal").attr("totalSale",0);
+
+
+
+        // GROUP PRODUCTS IN JSON FORMAT
+
+        listProducts()
 
 
 	}else{
@@ -332,7 +357,7 @@ $(".btnAddProduct").click(function(){
 SELECT PRODUCT
 =============================================*/
 
-$(".saleForm").on("change", "select.newProductDescription", function(){
+$(".consultationForm").on("change", "select.newProductDescription", function(){
 
 	var productName = $(this).val();
 
@@ -376,7 +401,7 @@ $(".saleForm").on("change", "select.newProductDescription", function(){
 MODIFY QUANTITY
 =============================================*/
 
-$(".saleForm").on("change", "input.newProductQuantity", function(){
+$(".consultationForm").on("change", "input.newProductQuantity", function(){
 
 	var price = $(this).parent().parent().children(".enterPrice").children().children(".newProductPrice");
 
@@ -425,6 +450,22 @@ $(".saleForm").on("change", "input.newProductQuantity", function(){
 
 })
 
+
+/*=============================================
+MODIFY FREQUENCY OF USE
+=============================================*/
+
+$(".consultationForm").on("change", "input.newProductUsage", function(){
+
+	var usage = $(this).val();
+	
+	$(this).attr("usage", $(this).val()); 
+
+	listProducts();
+	
+})
+
+
 /*============================================
 PRICES ADDITION
 =============================================*/
@@ -445,6 +486,8 @@ function addingTotalPrices(){
 		return totalSale + numberArray;
 
 	}
+
+
 
 	var addingTotalPrice = arrayAdditionPrice.reduce(additionArrayPrices);
 
@@ -467,7 +510,7 @@ $("#newSaleTotal").number(true, 2);
 /*=============================================
 CASH CHANGE
 =============================================*/
-$(".saleForm").on("change", "input#newCashValue", function(){
+$(".consultationForm").on("change", "input#newCashValue", function(){
 
 	
 	var cash = $(this).val();
@@ -485,7 +528,7 @@ $(".saleForm").on("change", "input#newCashValue", function(){
 /*=============================================
 CHANGE TRANSACTION CODE
 =============================================*/
-$(".saleForm").on("change", "input#newTransactionCode", function(){
+$(".consultationForm").on("change", "input#newTransactionCode", function(){
 
 	// List method in the entry
      listMethods()
@@ -508,12 +551,15 @@ function listProducts(){
 
 	var price = $(".newProductPrice");
 
-	var note = $(".newNotes");
+	//var note = $(".newNotes");
+
+	var usage = $(".newProductUsage");
 
 	for(var i = 0; i < description.length; i++){
 
 		productsList.push({ "id" : $(description[i]).attr("idProduct"), 
 							  "description" : $(description[i]).val(),
+							  "usage" : $(usage[i]).attr("usage"),
 							  "quantity" : $(quantity[i]).val(),
 							  "stock" : $(quantity[i]).attr("newStock"),
 							  "price" : $(price[i]).attr("realPrice"),
@@ -531,11 +577,11 @@ function listProducts(){
 /*=============================================
 EDIT SALE BUTTON
 =============================================*/
-$(".tables").on("click", ".btnEditSale", function(){
+$(".tables").on("click", ".btnEditConsultation", function(){
 
 	var idSale = $(this).attr("idSale");
 
-	window.location = "index.php?route=edit-sale&idSale="+idSale;
+	window.location = "index.php?route=edit-consultation&idSale="+idSale;
 
 
 })
