@@ -143,7 +143,10 @@
             $_GET["route"] == 'customers' ||
             $_GET["route"] == 'sales' ||
             $_GET["route"] == 'create-sale' ||
-            $_GET["route"] == 'edit-sale'){
+            $_GET["route"] == 'edit-sale'|| 
+            $_GET["route"] == 'diagnosis' ||
+            $_GET["route"] == 'consultation' ||
+            $_GET["route"] == 'create-consultation'){
 
           include "modules/".$_GET["route"].".php";
 
@@ -177,6 +180,8 @@
 <script src="views/js/products.js"></script>
 <script src="views/js/customers.js"></script>
 <script src="views/js/sales.js"></script>
+<script src="views/js/diagnosis.js"></script>
+<script src="views/js/consultation.js"></script>
 
 </body>
 </html>

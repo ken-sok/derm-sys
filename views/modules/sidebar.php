@@ -10,7 +10,7 @@
 
 					<li class="active">
 
-						<a href="create-sale">
+						<a href="consultation">
 
 							<i class="fa fa-home"></i>
 
@@ -40,6 +40,22 @@
 					</li>
 				';
 
+				echo '
+					
+					<li>
+
+						<a href="diagnosis">
+
+							<i class="fa fa-eye"></i>
+
+							<span>Diagnosis</span>
+
+						</a>
+
+					</li>
+
+				';
+
 			
 
 			
@@ -67,45 +83,92 @@
 
 				<li class="treeview">
 
-				<a href="#">
+					<a href="#">
 
-					<i class="fa fa-list-ul"></i>
+						<i class="fa fa-list-ul"></i>
 
-					<span>Consultations</span>
+						<span>Receipts</span>
 
-					<span class="pull-right-container">
+						<span class="pull-right-container">
 
-						<i class="fa fa-angle-left pull-right"></i>
+							<i class="fa fa-angle-left pull-right"></i>
 
-					</span>
+						</span>
 
-				</a>
+					</a>
 
-				<ul class="treeview-menu">
+					<ul class="treeview-menu">
 
-					<li>
+						<li>
 
-						<a href="sales">
+							<a href="sales">
 
-							<i class="fa fa-circle"></i>
+								<i class="fa fa-circle"></i>
 
-							<span>Manage consultation</span>
+								<span>Manage consultation</span>
 
-						</a>
+							</a>
 
-					</li>
+						</li>
 
-					<li>
+						<li>
 
-						<a href="create-sale">
+							<a href="create-sale">
 
-							<i class="fa fa-circle"></i>
+								<i class="fa fa-circle"></i>
 
-							<span>New consultation</span>
+								<span>New consultation</span>
 
-						</a>
+							</a>
 
-					</li>';
+						</li>
+
+					</ul>
+				</li>';  
+
+				
+			echo'
+					<li class="treeview">
+	
+					<a href="#">
+	
+						<i class="fa fa-list-ul"></i>
+	
+						<span>Consultations</span>
+	
+						<span class="pull-right-container">
+	
+							<i class="fa fa-angle-left pull-right"></i>
+	
+						</span>
+	
+					</a>
+	
+					<ul class="treeview-menu">
+	
+						<li>
+	
+							<a href="consultation">
+	
+								<i class="fa fa-circle"></i>
+	
+								<span>Manage consultation</span>
+	
+							</a>
+	
+						</li>
+	
+						<li>
+	
+							<a href="create-consultation">
+	
+								<i class="fa fa-circle"></i>
+	
+								<span>New consultation</span>
+	
+							</a>
+	
+						</li>';
 
 
 				

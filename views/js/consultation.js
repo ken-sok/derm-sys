@@ -13,9 +13,8 @@ LOAD DYNAMIC PRODUCTS TABLE
 
 // })
 
-
-$('.salesTable').DataTable({
-	"ajax": "ajax/datatable-sales.ajax.php", 
+$('.consultationTable').DataTable({
+	"ajax": "ajax/datatable-consultation.ajax.php", 
 	"deferRender": true,
 	"retrieve": true,
 	"processing": true
@@ -23,12 +22,11 @@ $('.salesTable').DataTable({
 
 
 
-
 /*=============================================
 ADDING PRODUCTS TO THE SALE FROM THE TABLE
 =============================================*/
 
-$(".salesTable tbody ").on("click", "button.addProductSale", function(){
+$(".consultationTable tbody ").on("click", "button.addProductSale", function(){
 
 
 	var idProduct = $(this).attr("idProduct");
@@ -58,8 +56,9 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function(){
 
           	/*=============================================
           	AVOID ADDING THE PRODUCT WHEN ITS STOCK IS ZERO
-          	=============================================*/
+          	
 
+			
           	if(stock == 0){
 
       			swal({
@@ -73,7 +72,8 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function(){
 
 			    return;
 
-          	}
+			  }
+			  =============================================*/
 
           	$(".newProduct").append(
 
@@ -103,7 +103,7 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function(){
 
 	          '<!-- product price -->'+
 
-	          '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
+	          '<div class="col-xs-3 enterPrice" style="display: none;">'+
 
 	            '<div class="input-group">'+
 
@@ -141,7 +141,7 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function(){
 WHEN TABLE LOADS EVERYTIME THAT NAVIGATE IN IT
 =============================================*/
 
-$(".salesTable").on("draw.dt", function(){
+$(".consultationTable").on("draw.dt", function(){
 
 	if(localStorage.getItem("removeProduct") != null){
 
@@ -550,7 +550,7 @@ function removeAddProductSale(){
 	var idProducts = $(".removeProduct");
 
 	//We capture all the buttons to add that appear in the table
-	var tableButtons = $(".salesTable tbody button.addProductSale");
+	var tableButtons = $(".consultationTable tbody button.addProductSale");
 
 	//We navigate the cycle to get the different idProducts that were added to the sale
 	for(var i = 0; i < idProducts.length; i++){
@@ -577,7 +577,7 @@ function removeAddProductSale(){
 EVERY TIME THAT THE TABLE IS LOADED WHEN WE NAVIGATE THROUGH IT EXECUTES A FUNCTION
 =============================================*/
 
-$('.salesTable').on( 'draw.dt', function(){
+$('.consultationTable').on( 'draw.dt', function(){
 
 	removeAddProductSale();
 

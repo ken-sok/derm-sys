@@ -7,12 +7,12 @@ require_once "../controllers/customers.controller.php";
 require_once "../models/customers.model.php";
 
 
-class productsTableSales{
+class productsTableConsultation{
 
 	/*=============================================
  	 SHOW PRODUCTS TABLE
   	=============================================*/ 
-	public function showProductsTableSales(){
+	public function showProductsTableConsultation(){
 
 		$item = null;
 		$value = null;
@@ -41,23 +41,6 @@ class productsTableSales{
 					
 					$image = "<img src='".$products[$i]["image"]."' width='40px'>";
 
-					/*=============================================
-					Stock
-					=============================================*/
-				  	
-				  	if($products[$i]["stock"] <= 10){
-
-		  				$stock = "<button class='btn btn-danger'>".$products[$i]["stock"]."</button>";
-
-		  			}else if($products[$i]["stock"] > 11 && $products[$i]["stock"] <= 15){
-
-		  				$stock = "<button class='btn btn-warning'>".$products[$i]["stock"]."</button>";
-
-		  			}else{
-
-		  				$stock = "<button class='btn btn-success'>".$products[$i]["stock"]."</button>";
-
-		  			}
 
 		  			/*=============================================
 		 	 		ACTION BUTTONS
@@ -70,7 +53,6 @@ class productsTableSales{
 							"'.$image.'",
 							"'.$products[$i]["code"].'",
 							"'.$products[$i]["description"].'",
-							"'.$stock.'",
 							"'.$buttons.'"
 						],';
 					
@@ -89,5 +71,5 @@ class productsTableSales{
 /*=============================================
 ACTIVATE PRODUCTS TABLE
 =============================================*/ 
-$activateProductsSales = new productsTableSales();
-$activateProductsSales -> showProductsTableSales();
+$activateProductsConsultation = new productsTableConsultation();
+$activateProductsConsultation -> showProductsTableConsultation();

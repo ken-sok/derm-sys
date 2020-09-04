@@ -22,16 +22,19 @@ loose ends:
 	-patient: 
 		- basic info -> done
 		- add customer medical history as textbox for e.g. allergy -> done
-	        - patient picture -> need research to make picture look better
 		- radio for sex -> need research -> done
-		- delete visits column/make it work when we delete consultation
+
+	        - patient picture -> need research to make picture look better -> delay
+		- delete visits column/make it work when we delete consultation -> delay
         -consult: 
 		+ create
 		- remove prices, stock
-		- phone number search
+		- phone number search of customers
 		- add pictures -> no idea how to make it happen
 		- line item for frequency of use in consultation -> need experiment
-		+ manage: 
+		- use diagnosis id to add/edit
+
+		+ manage -> delay
 		- view one customer's history with range &/ diagnosis filter
 	-receipt: 
 		+print: 
@@ -39,11 +42,17 @@ loose ends:
 			- prescription only 
 		+UI: 
 			- receipt module -> make numbers changeable -> convert consult module to receipt module 
+			- where to add printing? -> in view receipts module
+			- phone number search of customers
 		+LAN: 
-				- lan/ wifi -> need test & research
+			- lan/ wifi -> need test & research
 	-product -> done
-	-diagnosis -> same as product, but just 1 item -> diagnosis name
+	-diagnosis -> same as product, but just 1 item -> diagnosis name -> stuck at showing diagnosis names
+
 	-waiting list -> temporary customer names added -> search using phone num -> complete/delete -> delete from database
 
 3/sep: easy stuff
-4/sep: harder ones		
+4/sep: harder ones
+	-diagnosis module 30 mins -> done in 32 mins w/ udemy 
+	-receipts-> 2hr on printing, others 1hr, 1hr on wifi  
+	-consult module	-> 30 mins general, pictures -> 1hr, line item->30mins
