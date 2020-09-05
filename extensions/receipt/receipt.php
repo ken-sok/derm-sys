@@ -67,11 +67,17 @@ $spreadsheet->getDefaultStyle()
 	->setName('Khmer OS')
 	->setSize(10);
 //add customer info to page
+foreach($spreadsheet->getActiveSheet()->getRowDimensions() as $rd) {  $rd->setRowHeight(-1); }
+foreach($spreadsheet->getActiveSheet()->getColumnDimensions() as $rd) {  $rd->setWidth(-1); }
+
+$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(14.29);
+$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(15.50);
+$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(10);
 
 $spreadsheet->getActiveSheet()
         ->setCellValue('B9' , $answerCustomer['name'])
-        ->setCellValue('E9' , $answerCustomer['age'])
-        ->setCellValue('J9' , $answerCustomer['sex']);
+        ->setCellValue('D9' , $answerCustomer['age'])
+        ->setCellValue('F9' , $answerCustomer['sex']);
 
 //add diagnosis
 $spreadsheet->getActiveSheet()
@@ -92,11 +98,13 @@ foreach ($products as $key => $item) {
         $i = $i + 1; 
 }
 
+$saledateDB = date_create($answerSale["saledate"]);
+$saledate = date_format($saledateDB, 'd-m-Y');
 
 //date
 
 $spreadsheet->getActiveSheet()
-->setCellValue('D24', $saledate);
+->setCellValue('D20', $saledate);
 
 //set the header first, so the result will be treated as an xlsx file.
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
