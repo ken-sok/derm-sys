@@ -5,7 +5,7 @@
 
     <h1>
 
-      Consultation management
+      Receipts management
 
     </h1>
 
@@ -55,6 +55,7 @@
              
              <th style="width:10px">#</th>
              <th>Customer</th>
+             <th>Phone Number</th>
              <th>Consultation I.D</th>
              <th>Total Price</th>
              <th>Date</th>
@@ -94,6 +95,8 @@
                   $customerAnswer = ControllerCustomers::ctrShowCustomers($itemCustomer, $valueCustomer);
 
                   echo '<td>'.$customerAnswer["name"].'</td>
+
+                  <td>'.$customerAnswer["phone"].'</td>
                   
                   <td>'.$value["code"].'</td>
     

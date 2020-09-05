@@ -95,6 +95,7 @@ class ControllerSales{
 			$data = array("idCustomer"=>$_POST["selectCustomer"],
 						   "code"=>$_POST["newSale"],
 						   "products"=>$_POST["productsList"],
+						   "receipt"=>$_POST["productsList"], 
 						   "totalPrice"=>$_POST["saleTotal"],
 						   "comment"=>$_POST["comment"],
 						   "diagnosis"=>$_POST["newDiagnosis"]	);
@@ -189,30 +190,56 @@ class ControllerSales{
 
 				*/
 
-				echo'<script>
+				if ($_POST["process"] == "consult"){
+					echo'<script>
 
-				localStorage.removeItem("range");
+					localStorage.removeItem("range");
 
-				swal({
-					  type: "success",
-					  title: "The consultation has been succesfully added",
-					  showConfirmButton: true,
-					  confirmButtonText: "Save"
-					  }).then((result) => {
-								if (result.value) {
+					swal({
+						type: "success",
+						title: "The consultation has been succesfully added",
+						showConfirmButton: true,
+						confirmButtonText: "Save"
+						}).then((result) => {
+									if (result.value) {
 
-								window.location = "sales";
+									window.location = "consultation";
 
-								}
-							})
+									}
+								})
 
-				</script>';
+					</script>';
+
+				} else {
+
+					echo'<script>
+
+					localStorage.removeItem("range");
+
+					swal({
+						type: "success",
+						title: "The receipt has been succesfully added",
+						showConfirmButton: true,
+						confirmButtonText: "Save"
+						}).then((result) => {
+									if (result.value) {
+
+									window.location = "sales";
+
+									}
+								})
+
+					</script>';
+
+			}
 
 			}
 
 		}
 
 	}
+
+	
 
 	/*=============================================
 	EDIT SALE
@@ -365,39 +392,83 @@ class ControllerSales{
 
 			}
 
+			//$getSale["receipt"];
+
 			
 			$table = "sales";
 
-			$data = array("idCustomer"=>$_POST["selectCustomer"],
-						   "code"=>$_POST["editSale"],
-						   "products"=>$productsList,
-						   "totalPrice"=>$_POST["saleTotal"],
-						   "comment"=>$_POST["comment"],
-						   "diagnosis"=>$_POST["newDiagnosis"]	);
+			if ($_POST["process"] == "consult"){
 
+			
+				$data = array("idCustomer"=>$_POST["selectCustomer"],
+							"code"=>$_POST["editSale"],
+							"products"=>$productsList,
+							"receipt"=>$getSale["receipt"],
+							"totalPrice"=>$_POST["saleTotal"],
+							"comment"=>$_POST["comment"],
+							"diagnosis"=>$_POST["editDiagnosis"]	);
+			} else {
+
+				$data = array("idCustomer"=>$_POST["selectCustomer"],
+							"code"=>$_POST["editSale"],
+							"products"=>$getSale["products"],
+							"receipt"=>$productsList,
+							"totalPrice"=>$_POST["saleTotal"],
+							"comment"=>$_POST["comment"],
+							"diagnosis"=>$_POST["editDiagnosis"]);
+
+			}
 
 			$answer = ModelSales::mdleditSale($table, $data);
 
 			if($answer == "ok"){
 
-				echo'<script>
 
-				localStorage.removeItem("range");
+				
+				if ($_POST["process"] == "consult"){
+					echo'<script>
 
-				swal({
-					  type: "success",
-					  title: "The consultation has been edited correctly",
-					  showConfirmButton: true,
-					  confirmButtonText: "Save"
-					  }).then((result) => {
-								if (result.value) {
+					localStorage.removeItem("range");
+	
+					swal({
+						  type: "success",
+						  title: "The consultation has been edited correctly",
+						  showConfirmButton: true,
+						  confirmButtonText: "Save"
+						  }).then((result) => {
+									if (result.value) {
+	
+									window.location = "consultation";
+	
+									}
+								})
+	
+					</script>';
 
-								window.location = "sales";
+				} else {
 
-								}
-							})
+					echo'<script>
 
-				</script>';
+					localStorage.removeItem("range");
+
+					swal({
+						type: "success",
+						title: "The receipt has been edited correctly",
+						showConfirmButton: true,
+						confirmButtonText: "Save"
+						}).then((result) => {
+									if (result.value) {
+
+									window.location = "sales";
+
+									}
+								})
+
+					</script>';
+
+			}
+
+				
 
 			}
 

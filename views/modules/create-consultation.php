@@ -62,12 +62,19 @@
                           }
 
                           else{
+                            $last = True;
 
                             foreach ($sales as $key => $value) {
+
+                               
+                              if ($last) {
+                                $code = $value["code"] + 1;
+                                $last = False;
+                              }
                               
                             }
 
-                            $code = $value["code"] +1;
+                            
 
                             echo '<input type="text" class="form-control" name="newSale" id="newSale" value="'.$code.'" readonly>';
 
@@ -103,7 +110,7 @@
                             $customers = ControllerCustomers::ctrShowCustomers($item, $value);
 
                             foreach ($customers as $key => $value) {
-                              echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
+                              echo '<option value="'.$value["id"].'">'.$value["name"].' '.$value["phone"].'</option>';
                             }
 
 
@@ -127,7 +134,27 @@
                         
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                        
-                        <input type="text" class="form-control" name="newDiagnosis" id="newDiagnosis" placeholder="Diagnosis" required>
+                        <select class="form-control" name="newDiagnosis" id="newDiagnosis" required>
+                          
+                          <option value="">Select diagnosis</option>
+
+                          <?php 
+
+                          $item = null;
+                          $value = null;
+
+                          $diagnosis = ControllerDiagnosis::ctrShowDiagnosis($item, $value);
+
+                          foreach ($diagnosis as $key => $value) {
+                            echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
+                          }
+
+
+                          ?>
+
+                      </select>
+
+                      <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addDiagnosis" data-dismiss="modal">Add Diagnosis</button></span>
 
                       </div>
 
@@ -186,7 +213,7 @@
 
                     </div> 
 
-                    <div class="row">
+                    <div class="row" >
 
                       <!--=====================================
                         TOTAL INPUT
@@ -196,7 +223,7 @@
 
                         <table class="table">
                           
-                          <thead>
+                          <thead style = " visibility:hidden;">
                             
                             <th>Total</th>
 
@@ -207,13 +234,13 @@
                             
                             <tr>
                               
-                              <td style="width: 50%">
+                              <td style="width: 50%; visibility:hidden;">
 
                                 <div class="input-group">
                                   
                                   <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                   
-                                  <input type="number" step="0.01" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" required>
+                                  <input type="hidden" step="0.01" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" required>
 
                                   <input type="hidden" name="saleTotal" id="saleTotal" required>
 
@@ -228,6 +255,8 @@
                         </table>
                         
                       </div>
+
+                      <input type="hidden" name="process" id="process" value="consult">
 
                       <hr>
                       
@@ -382,6 +411,18 @@ MODAL ADD CUSTOMER
               </div>
             </div>
 
+            <!-- MEDICAL HISTORY INPUT -->
+            <div class="form-group"> 
+
+              <div class="input-group"> 
+                
+              <label for="comment">General Medical History:</label>
+              <textarea class="form-control" name="newMedicalHis" id="newMedicalHis" rows="4" cols="100"></textarea>
+
+              </div> 
+
+            </div> 
+
           </div>
 
         </div>
@@ -407,3 +448,81 @@ MODAL ADD CUSTOMER
   </div>
 
 </div>
+
+<!--=====================================
+=            module add Diagnosis            =
+======================================-->
+
+<!-- Modal -->
+<div id="addDiagnosis" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+
+      <form role="form" method="POST" enctype="multipart/form-data">
+
+        <!--=====================================
+        HEADER
+        ======================================-->
+
+        <div class="modal-header" style="background: #3c8dbc; color: #fff">
+
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+          <h4 class="modal-title">Add Diagnosis</h4>
+
+        </div>
+
+        <!--=====================================
+        BODY
+        ======================================-->
+
+        <div class="modal-body">
+
+          <div class="box-body">
+
+            <!-- input Diagnosis -->
+            <div class="form-group">
+
+              <div class="input-group">
+
+                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
+
+                <input class="form-control input-lg" type="text" id="newDiagnosis" name="newDiagnosis" placeholder="Add Diagnosis" required>
+
+              </div>
+
+            </div>
+
+           
+          </div>
+
+        </div>
+
+        <!--=====================================
+        FOOTER
+        ======================================-->
+
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+
+          <button type="submit" class="btn btn-primary">Save Diagnosis</button>
+
+        </div>
+
+      </form>
+
+      <?php
+
+          $createDiagnosis = new ControllerDiagnosis();
+          $createDiagnosis -> ctrCreateDiagnosis();
+
+        ?> 
+    </div>
+
+  </div>
+
+</div>
+

@@ -13,6 +13,9 @@ LOAD DYNAMIC PRODUCTS TABLE
 
 // })
 
+//list products for edit
+//test for delete all products
+listProducts(); 
 
 $('.salesTable').DataTable({
 	"ajax": "ajax/datatable-sales.ajax.php", 
@@ -95,25 +98,41 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function(){
 
 	          '<!-- Product quantity -->'+
 
-	          '<div class="col-xs-3">'+
+	          '<div class="col-xs-3 enterQuantity">'+
 	            
 	             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="'+stock+'" newStock="'+Number(stock-1)+'" required>'+
 
-	          '</div>' +
+			  '</div>' +
+
 
 	          '<!-- product price -->'+
 
-	          '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
+	          '<div class="col-xs-3 enterPrice " style="padding-left:0px">'+
 
 	            '<div class="input-group">'+
 
 	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
 	                 
-	              '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" value="'+price+'" readonly required>'+
+	              '<input type="text" class="form-control newProductPrice" realPrice="'+price+'" name="newProductPrice" value="'+price+'" required>'+
+	 
+	            '</div>'+
+	             
+			  '</div>'+
+
+			  			  
+			  '<!-- product usage -->'+
+
+	          '<div class="col-xs-3 enterUsage" style="visibility:hidden;">'+
+
+	            '<div class="input-group">'+
+	                 
+	              '<input type="hidden" class="form-control newProductUsage" idProduct="'+idProduct+'" name="addProductUsage" usage="" required>'+
 	 
 	            '</div>'+
 	             
 	          '</div>'+
+			  
+			  
 
 
 	        '</div>')
@@ -206,6 +225,10 @@ $(".saleForm").on("click", "button.removeProduct", function(){
 		$("#saleTotal").val(0);
 		$("#newSaleTotal").attr("totalSale",0);
 
+		  // GROUP PRODUCTS IN JSON FORMAT
+
+		  listProducts()
+
 
 	}else{
 
@@ -221,111 +244,6 @@ $(".saleForm").on("click", "button.removeProduct", function(){
 
 })
 
-/*=============================================
-ADDING PRODUCT FROM A DEVICE
-=============================================*/
-
-var numProduct = 0;
-
-$(".btnAddProduct").click(function(){
-
-	numProduct ++;
-
-	var datum = new FormData();
-	datum.append("getProducts", "ok");
-
-	$.ajax({
-
-		url:"ajax/products.ajax.php",
-      	method: "POST",
-      	data: datum,
-      	cache: false,
-      	contentType: false,
-      	processData: false,
-      	dataType:"json",
-      	success:function(answer){
-      	    
-      	    	$(".newProduct").append(
-
-          	'<div class="row" style="padding:5px 15px">'+
-
-			  '<!-- Product description -->'+
-	          
-	          '<div class="col-xs-3" style="padding-right:0px">'+
-	          
-	            '<div class="input-group">'+
-	              
-	              '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct><i class="fa fa-times"></i></button></span>'+
-
-	              '<select class="form-control newProductDescription" id="product'+numProduct+'" idProduct name="newProductDescription" required>'+
-
-	              '<option>Select product</option>'+
-
-	              '</select>'+  
-
-	            '</div>'+
-
-	          '</div>'+
-
-	          '<!-- Product quantity -->'+
-
-	          '<div class="col-xs-2 enterQuantity">'+
-	            
-	             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock newStock required>'+
-
-	          '</div>' +
-
-	          '<!-- Product price -->'+
-
-	          '<div class="col-xs-2 enterPrice" style="padding-left:0px">'+
-
-	            '<div class="input-group">'+
-
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
-	                 
-	              '<input type="text" class="form-control newProductPrice" realPrice="" name="newProductPrice" readonly required>'+
-	 
-	            '</div>'+
-	             
-	          '</div>'+
-
-	          
-
-	        '</div>');
-
-
-	        // ADDING PRODUCTS TO THE SELECT
-
-	        answer.forEach(functionForEach);
-
-	         function functionForEach(item, index){
-
-	         	if(item.stock != 0){
-
-		         	$("#product"+numProduct).append(
-
-						'<option idProduct="'+item.id+'" value="'+item.description+'">'+item.description+'</option>'
-		         	)
-
-		         }
-
-	         }
-
-	         // ADDING TOTAL PRICES
-
-			addingTotalPrices()
-
-
-	        // SET FORMAT TO THE PRODUCT PRICE
-
-	        $(".newProductPrice").number(true, 2);
-
-      	}
-
-
-	})
-
-})
 
 
 /*=============================================
@@ -380,40 +298,16 @@ $(".saleForm").on("change", "input.newProductQuantity", function(){
 
 	var price = $(this).parent().parent().children(".enterPrice").children().children(".newProductPrice");
 
-	var finalPrice = $(this).val() * price.attr("realPrice");
-	
-	price.val(finalPrice);
-
-	var newStock = Number($(this).attr("stock")) - $(this).val();
-
-	$(this).attr("newStock", newStock);
-
-	console.log("$(this).attr(\"stock\")", $(this).attr("stock"));
-	if(Number($(this).val()) > Number($(this).attr("stock"))){
-
-		/*=============================================
-		IF QUANTITY IS MORE THAN THE STOCK VALUE SET INITIAL VALUES
-		=============================================*/
-
-		$(this).val(1);
-
-		var finalPrice = $(this).val() * price.attr("realPrice");
-
+	if ($(this).val() == 1){
+		price.prop('readonly', false);
+		price.val(price.attr("realPrice")); 
+		
+	} else {
+		console.log("changed quanity", price.attr("realPrice"))
+		price.prop('readonly', true); 
+		var finalPrice = $(this).val() * price.attr("realPrice"); 
 		price.val(finalPrice);
-
-		addingTotalPrices();
-
-		swal({
-	      title: "The quantity is more than your stock",
-	      text: "There's only"+$(this).attr("stock")+" units!",
-	      type: "error",
-	      confirmButtonText: "Close!"
-	    });
-
-	    return;
-
 	}
-
 	// ADDING TOTAL PRICES
 
 	addingTotalPrices()
@@ -424,6 +318,32 @@ $(".saleForm").on("change", "input.newProductQuantity", function(){
     listProducts()
 
 })
+
+/*=============================================
+MODIFY PRICE
+=============================================*/
+
+$(".saleForm").on("change", "input.newProductPrice", function(){
+
+	var newProductQuantity = $(this).parent().parent().parent().children(".enterQuantity").children(".newProductQuantity");
+	var price = $(this)
+	console.log('quanity changed in price', newProductQuantity.val());
+	if (newProductQuantity.val() == 1){
+		price.prop('readonly', false);
+		var enteredPrice = $(this).val();
+		price.attr("realPrice", enteredPrice);
+		console.log("changed price", price.attr("realPrice"))
+	}  
+
+	// ADDING TOTAL PRICES
+
+	addingTotalPrices();
+
+	listProducts(); 
+
+
+})
+
 
 /*============================================
 PRICES ADDITION
@@ -509,12 +429,15 @@ function listProducts(){
 	var price = $(".newProductPrice");
 
 	var note = $(".newNotes");
+	
+	var usage = $(".newProductUsage");
 
 	for(var i = 0; i < description.length; i++){
 
 		productsList.push({ "id" : $(description[i]).attr("idProduct"), 
 							  "description" : $(description[i]).val(),
 							  "quantity" : $(quantity[i]).val(),
+							  "usage" : $(usage[i]).attr("usage"),
 							  "stock" : $(quantity[i]).attr("newStock"),
 							  "price" : $(price[i]).attr("realPrice"),
 							  "totalPrice" : $(price[i]).val()})
@@ -593,14 +516,14 @@ $(".tables").on("click", ".btnDeleteSale", function(){
   var idSale = $(this).attr("idSale");
 
   swal({
-        title: 'Are you sure you want to delete the consultation?',
+        title: 'Are you sure you want to delete the sale?',
         text: "If you're not you can cancel!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancel',
-        confirmButtonText: 'Yes, delete consultation!'
+        confirmButtonText: 'Yes, delete sale!'
       }).then(function(result){
         if (result.value) {
           
@@ -619,7 +542,7 @@ $(".tables").on("click", ".btnPrintBill", function(){
 
 	var saleCode = $(this).attr("saleCode");
 
-	window.open("extensions/tcpdf/pdf/bill.php?code="+saleCode, "_blank");
+	window.open("extensions/receipt/receipt.php?code="+saleCode, "_blank");
 
 })
 

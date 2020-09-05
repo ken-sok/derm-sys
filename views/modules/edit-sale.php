@@ -4,7 +4,7 @@
 
     <h1>
 
-      Edit Consultation
+      Edit Receipt
 
     </h1>
 
@@ -12,7 +12,7 @@
 
       <li><a href="create-sale"><i class="fa fa-dashboard"></i> Home</a></li>
 
-      <li class="active">Edit Consultation</li>
+      <li class="active">Add Consultation</li>
 
     </ol>
 
@@ -84,7 +84,7 @@
 
                         <select class="form-control" name="selectCustomer" id="selectCustomer" required>
                           
-                            <option value="<?php echo $customers["id"]; ?>" readonly><?php echo $customers["name"]; ?></option>
+                            <option value="<?php echo $customers["id"]; ?>" readonly><?php echo $customers["name"]; echo ' '; echo $customers["phone"];  ?></option>
 
                             <?php 
 
@@ -92,6 +92,10 @@
                             $value = null;
 
                             $customers = ControllerCustomers::ctrShowCustomers($item, $value);
+
+                            foreach ($customers as $key => $value) {
+                              echo '<option value="'.$value["id"].'">'.$value["name"].' '.$value["phone"].'</option>';
+                            }
 
 
                             ?>
@@ -112,8 +116,38 @@
                         
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                        
-                        <input type="text" class="form-control" name="newDiagnosis" id="newDiagnosis" placeholder="Diagnosis" 
-                        value="<?php echo $sale["diagnosis"]; ?>" required>
+                        <select class="form-control" name="editDiagnosis" id="editDiagnosis" required>
+
+                        <?php 
+
+                          $item = 'id';
+                          $value = $sale["diagnosis"];
+
+                          $diagnosis = ControllerDiagnosis::ctrShowDiagnosis($item, $value);
+
+
+                        ?>
+
+                          <option value="<?php echo $sale["diagnosis"]; ?>"><?php echo $diagnosis["name"]; ?></option>
+
+                          <?php 
+
+                            $item = null;
+                            $value = null;
+
+                            $diagnosis = ControllerDiagnosis::ctrShowDiagnosis($item, $value);
+
+                            foreach ($diagnosis as $key => $value) {
+                              echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
+                            }
+
+
+                            ?>
+
+
+
+                        </select>
+
 
                       </div>
 
@@ -150,7 +184,7 @@
                     <div class="form-group row newProduct">
                       <?php
 
-                        $productList = json_decode($sale["products"], true);
+                        $productList = json_decode($sale["receipt"], true);
 
                         foreach ($productList as $key => $value) {
 
@@ -188,7 +222,7 @@
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                            
-                                    <input type="text" class="form-control newProductPrice" realPrice="'.$answer["sellingPrice"].'" name="newProductPrice" value="'.$value["totalPrice"].'" readonly required>
+                                    <input type="text" class="form-control newProductPrice" realPrice="'.$answer["sellingPrice"].'" name="newProductPrice" value="'.$value["totalPrice"].'" required>
            
                                   </div>
                        
@@ -269,6 +303,7 @@
                         </table>
                         
                       </div>
+                      <input type="hidden" name="process" id="process" value="sale">
 
                       <hr>
                       

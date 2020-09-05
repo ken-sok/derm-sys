@@ -4,7 +4,7 @@
 
     <h1>
 
-      Add new Consultation
+      Add new Receipt
 
     </h1>
 
@@ -49,7 +49,6 @@
                         
                         <span class="input-group-addon"><i class="fa fa-key"></i></span>
                         
-
                         <?php 
                           $item = null;
                           $value = null;
@@ -62,12 +61,17 @@
                           }
 
                           else{
+                            $last = True;
 
                             foreach ($sales as $key => $value) {
+
+                               
+                              if ($last) {
+                                $code = $value["code"] + 1;
+                                $last = False;
+                              }
                               
                             }
-
-                            $code = $value["code"] +1;
 
                             echo '<input type="text" class="form-control" name="newSale" id="newSale" value="'.$code.'" readonly>';
 
@@ -127,7 +131,26 @@
                         
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                        
-                        <input type="text" class="form-control" name="newDiagnosis" id="newDiagnosis" placeholder="Diagnosis" required>
+                        <select class="form-control" name="newDiagnosis" id="newDiagnosis" required>
+                          
+                          <option value="">Select diagnosis</option>
+
+                          <?php 
+
+                          $item = null;
+                          $value = null;
+
+                          $diagnosis = ControllerDiagnosis::ctrShowDiagnosis($item, $value);
+
+                          foreach ($diagnosis as $key => $value) {
+                            echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
+                          }
+
+
+                          ?>
+
+                      </select>
+
 
                       </div>
 
@@ -213,7 +236,7 @@
                                   
                                   <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                   
-                                  <input type="number" step="0.01" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" required>
+                                  <input type="number" step="0.01" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" readonly required>
 
                                   <input type="hidden" name="saleTotal" id="saleTotal" required>
 
@@ -228,6 +251,8 @@
                         </table>
                         
                       </div>
+
+                      <input type="hidden" name="process" id="process" value="sale">
 
                       <hr>
                       
@@ -382,6 +407,18 @@ MODAL ADD CUSTOMER
                 <input class="form-control input-lg" type="number" name="newAge" placeholder="Age" max = "200" required>
               </div>
             </div>
+
+            <!-- MEDICAL HISTORY INPUT -->
+            <div class="form-group"> 
+
+              <div class="input-group"> 
+                
+              <label for="comment">General Medical History:</label>
+              <textarea class="form-control" name="newMedicalHis" id="newMedicalHis" rows="4" cols="100"></textarea>
+
+              </div> 
+
+            </div> 
 
           </div>
 

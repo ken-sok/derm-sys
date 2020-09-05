@@ -57,6 +57,7 @@
              <th>Customer</th>
              <th>Phone Number</th>
              <th>Consultation I.D</th>
+             <th>Diagnosis</th>
              <th>Date</th>
              <th>Actions</th>
 
@@ -93,11 +94,26 @@
 
                   $customerAnswer = ControllerCustomers::ctrShowCustomers($itemCustomer, $valueCustomer);
 
+                  
+
+                  $item = 'id';
+                  $value1 = $value["diagnosis"];
+
+                  $diagnosis = ControllerDiagnosis::ctrShowDiagnosis($item, $value1);
+
+
+                
+
                   echo '<td>'.$customerAnswer["name"].'</td>
 
                   <td>'.$customerAnswer["phone"].'</td>
+
+                  
                   
                   <td>'.$value["code"].'</td>
+
+                  <td>'.$diagnosis["name"].'</td>
+                  
 
                   <td>'.$value["saledate"].'</td>
 

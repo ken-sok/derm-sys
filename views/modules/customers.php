@@ -47,7 +47,7 @@
              <th>Visits</th>
              <th>Last Visit</th>
              <th>Next Visit</th>
-             <th>Registered Date</th>
+             <th>Medical History</th>
              <th>Actions</th>
 
            </tr> 
@@ -86,7 +86,7 @@
 
                       <td>'.$value["nextVisit"].'</td>
 
-                      <td>'.$value["registerDate"].'</td>
+                      <td>'.$value["medicalHis"].'</td>
 
                       <td>
 

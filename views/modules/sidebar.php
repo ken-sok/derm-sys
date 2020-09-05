@@ -105,7 +105,7 @@
 
 								<i class="fa fa-circle"></i>
 
-								<span>Manage consultation</span>
+								<span>Manage receipt</span>
 
 							</a>
 
@@ -117,7 +117,7 @@
 
 								<i class="fa fa-circle"></i>
 
-								<span>New consultation</span>
+								<span>New receipt</span>
 
 							</a>
 

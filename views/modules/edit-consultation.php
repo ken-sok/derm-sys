@@ -84,7 +84,7 @@
 
                         <select class="form-control" name="selectCustomer" id="selectCustomer" required>
                           
-                            <option value="<?php echo $customers["id"]; ?>" readonly><?php echo $customers["name"]; ?></option>
+                            <option value="<?php echo $customers["id"]; ?>"><?php echo $customers["name"];echo ' '; echo $customers["phone"]; ?></option>
 
                             <?php 
 
@@ -93,8 +93,14 @@
 
                             $customers = ControllerCustomers::ctrShowCustomers($item, $value);
 
+                            foreach ($customers as $key => $value) {
+                              echo '<option value="'.$value["id"].'">'.$value["name"].' '.$value["phone"].'</option>';
+                            }
+
 
                             ?>
+
+                            
 
                         </select>
 
@@ -112,8 +118,37 @@
                         
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                        
-                        <input type="text" class="form-control" name="newDiagnosis" id="newDiagnosis" placeholder="Diagnosis" 
-                        value="<?php echo $sale["diagnosis"]; ?>" required>
+                        <select class="form-control" name="editDiagnosis" id="editDiagnosis" required>
+
+                        <?php 
+
+                          $item = 'id';
+                          $value = $sale["diagnosis"];
+
+                          $diagnosis = ControllerDiagnosis::ctrShowDiagnosis($item, $value);
+
+
+                        ?>
+
+                          <option value="<?php echo $sale["diagnosis"]; ?>"><?php echo $diagnosis["name"]; ?></option>
+
+                          <?php 
+
+                            $item = null;
+                            $value = null;
+
+                            $diagnosis = ControllerDiagnosis::ctrShowDiagnosis($item, $value);
+
+                            foreach ($diagnosis as $key => $value) {
+                              echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
+                            }
+
+
+                            ?>
+
+
+
+                      </select>
 
                       </div>
 
@@ -240,7 +275,7 @@
 
                     </div> 
 
-                    <div class="row">
+                    <div class="row" style="visibility:hidden;">
 
                       <!--=====================================
                         TOTAL INPUT
@@ -284,6 +319,8 @@
                         </table>
                         
                       </div>
+
+                      <input type="hidden" name="process" id="process" value="consult">
 
                       <hr>
                       

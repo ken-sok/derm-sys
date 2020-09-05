@@ -13,7 +13,7 @@ class ModelSales{
 
 		if($item != null){
 
-			$stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id ASC");
+			$stmt = Connection::connect()->prepare("SELECT * FROM $table WHERE $item = :$item ORDER BY id DESC");
 
 			$stmt -> bindParam(":".$item, $value, PDO::PARAM_STR);
 
@@ -23,7 +23,7 @@ class ModelSales{
 
 		}else{
 
-			$stmt = Connection::connect()->prepare("SELECT * FROM $table ORDER BY id ASC");
+			$stmt = Connection::connect()->prepare("SELECT * FROM $table ORDER BY id DESC");
 
 			$stmt -> execute();
 
@@ -43,11 +43,12 @@ class ModelSales{
 
 	static public function mdlAddSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, products, totalPrice, comment, diagnosis) VALUES (:code, :idCustomer, :products, :totalPrice, :comment, :diagnosis)");
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, products, receipt, totalPrice, comment, diagnosis) VALUES (:code, :idCustomer, :products, :receipt, :totalPrice, :comment, :diagnosis)");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
 		$stmt->bindParam(":products", $data["products"], PDO::PARAM_STR);
+		$stmt->bindParam(":receipt", $data["receipt"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":comment", $data["comment"], PDO::PARAM_STR);
 		$stmt->bindParam(":diagnosis", $data["diagnosis"], PDO::PARAM_STR);
@@ -75,11 +76,12 @@ class ModelSales{
 
 	static public function mdlEditSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("UPDATE $table SET  idCustomer = :idCustomer, products = :products, totalPrice= :totalPrice, comment = :comment, diagnosis = :diagnosis WHERE code = :code");
+		$stmt = Connection::connect()->prepare("UPDATE $table SET  idCustomer = :idCustomer, products = :products, receipt =:receipt, totalPrice= :totalPrice, comment = :comment, diagnosis = :diagnosis WHERE code = :code");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
 		$stmt->bindParam(":products", $data["products"], PDO::PARAM_STR);
+		$stmt->bindParam(":receipt", $data["receipt"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":comment", $data["comment"], PDO::PARAM_STR);
 		$stmt->bindParam(":diagnosis", $data["diagnosis"], PDO::PARAM_STR);
@@ -133,7 +135,7 @@ class ModelSales{
 
 		if($initialDate == null){
 
-			$stmt = Connection::connect()->prepare("SELECT * FROM $table ORDER BY id ASC");
+			$stmt = Connection::connect()->prepare("SELECT * FROM $table ORDER BY id DESC");
 
 			$stmt -> execute();
 

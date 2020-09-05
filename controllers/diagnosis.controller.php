@@ -24,13 +24,13 @@ class ControllerDiagnosis{
 
 					swal({
 						  type: "success",
-						  title: "The diagnosis has been saved",
+						  title: "The Diagnosis has been saved",
 						  showConfirmButton: true,
 						  confirmButtonText: "Save"
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "create-sale";
+									window.location = "create-consultation";
 
 									}
 								})
@@ -45,7 +45,7 @@ class ControllerDiagnosis{
 
 					swal({
 						  type: "error",
-						  title: "diagnosis information cannot be blank or special characters!",
+						  title: "Diagnosis information cannot be blank or special characters!",
 						  showConfirmButton: true,
 						  confirmButtonText: "Close"
 						  }).then(function(result){
@@ -102,7 +102,7 @@ class ControllerDiagnosis{
 
 					swal({
 						  type: "success",
-						  title: "The diagnosis has been edited",
+						  title: "The Diagnosis has been edited",
 						  showConfirmButton: true,
 						  confirmButtonText: "Close"
 						  }).then(function(result){
@@ -123,7 +123,7 @@ class ControllerDiagnosis{
 
 					swal({
 						  type: "error",
-						  title: "diagnosis cannot be blank or special characters",
+						  title: "Diagnosis cannot be blank or special characters",
 						  showConfirmButton: true,
 						  confirmButtonText: "Close"
 						  }).then(function(result){
@@ -163,7 +163,7 @@ class ControllerDiagnosis{
 
 				swal({
 					  type: "success",
-					  title: "The diagnosis has been deleted",
+					  title: "The Diagnosis has been deleted",
 					  showConfirmButton: true,
 					  confirmButtonText: "Close"
 					  }).then(function(result){
