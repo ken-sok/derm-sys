@@ -134,7 +134,7 @@
                         
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                        
-                        <select class="form-control" name="newDiagnosis" id="newDiagnosis" required>
+                        <select class="form-control" name="newDiagnosis" required>
                           
                           <option value="">Select diagnosis</option>
 
@@ -213,17 +213,17 @@
 
                     </div> 
 
-            <!-- input image -->
-                    <div class="form-group">
+                    <!-- input image -->
 
-                      <div class="panel">Upload image</div>
+                    <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" id = "addConsultImg">Add New Image</button></span>
+                    
+                    <div class="form-group newConsultImg">
 
-                      <input id="newConsultPhoto" type="file" class="newPhoto" name="newConsultPhoto">
+       
 
-                      <p class="help-block">Maximum size 2Mb</p>
 
-                      <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
                     </div>
+                    <input type="hidden" name="consultImgList" id="consultImgList">
 
                     <div class="row" >
 

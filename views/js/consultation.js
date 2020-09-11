@@ -16,6 +16,7 @@ LOAD DYNAMIC PRODUCTS TABLE
 //list products for edit
 //test for delete all products
 listProducts(); 
+//listConsultImg();
 
 $('.consultationTable').DataTable({
 	"ajax": "ajax/datatable-consultation.ajax.php", 
@@ -132,9 +133,6 @@ $(".consultationTable tbody ").on("click", "button.addProductSale", function(){
 	             
 			  '</div>'+
 			  
-
-
-
 	        '</div>')
 
 	        // ADDING TOTAL PRICES
@@ -464,7 +462,7 @@ function listProducts(){
 
 	$("#productsList").val(JSON.stringify(productsList)); 
 
-	console.log("products list", productsList)
+	//console.log("products list", productsList)
 
 }
 
@@ -682,13 +680,41 @@ $(function() {
 });
 
 /*=============================================
-UPLOAD CONSULTATION IMAGE
+list all consultation imgs
+=============================================*/
+var numConsultPhoto = 0; 
+function listConsultImg(){
+
+	var consultImgList = [];
+	var images = $(".newPhoto"); 
+	for(var i = 0; i < numConsultPhoto; i++){
+		var photoname = "photo".concat(i); 
+
+		//var imgData = new FileReader;
+		//imgData.readAsDataURL($(images[i]));
+
+		//console.log(photoname);
+		console.log('image', $(images)[i]); 
+		
+		consultImgList.push({photoname : $(images[i]).val()});
+	}
+
+	$("#consultImgList").val(JSON.stringify(consultImgList)); 
+
+	console.log("img list", consultImgList)
+
+}
+
+
+/*=============================================
+UPLOAD CONSULTATION IMAGEs
 =============================================*/
 
-$(".newPhoto").change(function(){
+$(".newConsultImg").on("change", ".newPhoto", function(){
 
 	var newImage = this.files[0];
 
+	console.log(newImage);
 	/*===============================================
 	=            validating image format            =
 	===============================================*/
@@ -726,12 +752,39 @@ $(".newPhoto").change(function(){
 			
 			var routeImg = event.target.result;
 
-			$(".preview").attr("src", routeImg);
+			var imagePreview = $(".preview");
 
+			$(imagePreview[numConsultPhoto]).attr("src", routeImg);
+			
+			//count number of uploaded pic
+			numConsultPhoto = numConsultPhoto + 1;  
+			
+			//put in json format
+			listConsultImg();
+
+		
 		});
 
+
 	}
-		
-	/*=====  End of validating image format  ======*/
 	
+	
+	/*=====  End of validating image format  ======*/
+
 })
+
+/*=====  add image input  ======*/
+$("#addConsultImg").on("click", function(){
+
+	$(".newConsultImg").append(
+
+		'<div class="panel">Upload new image</div>' +
+
+		'<input type="file" class="newPhoto" name="newConsultPhoto">' +
+		
+		'<img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">' 
+	); 
+}); 
+
+
+

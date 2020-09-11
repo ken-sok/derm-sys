@@ -86,73 +86,7 @@ class ControllerSales{
 
 			$customerNextVisit = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1c, $value1c, $valueCustomer);
 
-			/*=============================================
-				VALIDATE IMAGE
-			=============================================*/
-
-			$route = "views/img/products/default/anonymous.png";
-
-			if(isset($_FILES["newConsultPhoto"]["tmp_name"])){
-
-				list($width, $height) = getimagesize($_FILES["newConsultPhoto"]["tmp_name"]);
-
-				$newWidth = 500;
-				$newHeight = 500;
-
-				/*=============================================
-				we create the folder to save the picture
-				=============================================*/
-
-				$folder = "views/img/products/".$_POST["newSale"];
-
-				mkdir($folder, 0755);
-
-				/*=============================================
-				WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
-				=============================================*/
-
-				if($_FILES["newConsultPhoto"]["type"] == "image/jpeg"){
-
-					/*=============================================
-					WE SAVE THE IMAGE IN THE FOLDER
-					=============================================*/
-
-					$random = mt_rand(100,999);
-
-					$route = "views/img/products/".$_POST["newSale"]."/".$random.".jpg";
-
-					$origin = imagecreatefromjpeg($_FILES["newConsultPhoto"]["tmp_name"]);						
-
-					$destiny = imagecreatetruecolor($newWidth, $newHeight);
-
-					imagecopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-					imagejpeg($destiny, $route);
-
-				}
-
-				if($_FILES["newConsultPhoto"]["type"] == "image/png"){
-
-					/*=============================================
-					WE SAVE THE IMAGE IN THE FOLDER
-					=============================================*/
-
-					$random = mt_rand(100,999);
-
-					$route = "views/img/products/".$_POST["newSale"]."/".$random.".png";
-
-					$origin = imagecreatefrompng($_FILES["newConsultPhoto"]["tmp_name"]);						
-
-					$destiny = imagecreatetruecolor($newWidth, $newHeight);
-
-					imagecopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-					imagepng($destiny, $route);
-
-				}
-
-			}
-
+		
 
 			/*=============================================
 			SAVE THE SALE

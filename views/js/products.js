@@ -166,9 +166,13 @@ $(".newImage").change(function(){
 
   			var imagePath = event.target.result;
 
-  			$(".preview").attr("src", imagePath);
+			  $(".preview").attr("src", imagePath);
+			  
+			  //console.log(imagePath);
 
-  		})
+		  })
+		  
+		  
 
   	}
 })
