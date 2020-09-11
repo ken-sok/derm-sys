@@ -70,14 +70,15 @@ $spreadsheet->getDefaultStyle()
 foreach($spreadsheet->getActiveSheet()->getRowDimensions() as $rd) {  $rd->setRowHeight(-1); }
 foreach($spreadsheet->getActiveSheet()->getColumnDimensions() as $rd) {  $rd->setWidth(-1); }
 
-$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(14.29);
-$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(15.50);
-$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(15);
+$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(16);
+$spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(13.71);
+$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(13);
 
 $spreadsheet->getActiveSheet()
         ->setCellValue('B9' , $answerCustomer['name'])
-        ->setCellValue('D9' , $answerCustomer['age'])
-        ->setCellValue('F9' , $answerCustomer['sex']);
+        ->setCellValue('C9' , 'អាយុ '.$answerCustomer['age'].'ឆ្នាំ')
+        ->setCellValue('D9' , 'ភេទ '.$answerCustomer['sex']);
 
 //add diagnosis
 $spreadsheet->getActiveSheet()
@@ -104,7 +105,7 @@ $saledate = date_format($saledateDB, 'd-m-Y');
 //date
 
 $spreadsheet->getActiveSheet()
-->setCellValue('D20', $saledate);
+->setCellValue('C20', $saledate);
 
 //set the header first, so the result will be treated as an xlsx file.
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

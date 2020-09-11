@@ -24,38 +24,55 @@ loose ends:
 		- add customer medical history as textbox for e.g. allergy -> done
 		- radio for sex -> need research -> done
 
-	        - patient picture -> need research to make picture look better -> delay
+-----------------------------
+	        - patient picture -> need research to make picture look better -> doing
 		- delete visits column/make it work when we delete consultation -> delay
+-----------------------------
+
         -consult: 
 		+ create
 		- remove prices, stock -> done
 		- phone number search of customers -> done
-		- add pictures -> no idea how to make it happen -> delay
+
+-----------------------------
+		- add pictures -> no idea how to make it happen -> doing
 		- line item for frequency of use in consultation -> need experiment 
-			- pre select -> if have time
+			- pre select -> delay
+-----------------------------
+
 			- notes typed -> done
 		- use diagnosis id to add/edit instead of names -> done
-		- two different tables? -> no -> add another column for consultation only products; we have the receipt table alr
-			- make sure we add to both column in create consultation
-			- in edit; we use different columns to show added products
-		- change icons
+		- two different tables? -> no -> add another column for consultation only products; we have the receipt table alr -> done
+			- make sure we add to both column in create consultation -> done
+			- in edit; we use different columns to show added products -> done
 
-		+ manage -> delay
+-----------------------------
+		- change icons -> doing
+
+
+		+ manage -> doing
 		- view one customer's history with range &/ diagnosis filter
+-----------------------------
 	-receipt: 
 		+print: 
 			- w/ price -> delay
-			- prescription only 
+			- prescription only -> template done
+----------------------------
 		+UI: 
-			- receipt module -> make numbers changeable -> convert consult module to receipt module 
-			- where to add printing? -> in view receipts module
-			- phone number search of customers
+			- receipt module -> make numbers changeable -> convert consult module to receipt module -> done
+			- where to add printing? -> in view receipts module -> done
+			- phone number search of customers -> done
 		+LAN: 
-			- lan/ wifi -> need test & research
+			- lan/ wifi -> need test & research -> use online instead
 	-product -> done
 	-diagnosis -> same as product, but just 1 item -> diagnosis name -> stuck at showing diagnosis names -> done
-
+-----------------------------
 	-waiting list -> temporary customer names added -> search using phone num -> complete/delete -> delete from database -> delay
+
+	-login & use online domain for demos: -> delay
+		- js login -> hash 
+		- prevent xss, admin or "1" == "1"
+-----------------------------
 
 3/sep: easy stuff
 4/sep: harder ones
@@ -70,5 +87,19 @@ loose ends:
 - sales UI
 	- consult no touch stock quantity -> delay
 	- check edit consult items vs sell items -> done
-- print consultation
-- change logo
+- print consultation -> done
+
+11/sep
+- change logo -> done
+- add visits picture -> 1hr
+	- add more than 1
+	- display picture in modal better
+- search filters
+
+12/sep
+- test
+
+questions: 
+- common freq -> not mess up 
+- domain name 
+- username & pw for login

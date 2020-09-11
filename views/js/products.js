@@ -141,9 +141,9 @@ $(".newImage").change(function(){
 
   		 swal({
 		      title: "Error uploading image",
-		      text: "¡The image should be in JPG o PNG format!",
+		      text: "The image should be in JPG o PNG format!",
 		      type: "error",
-		      confirmButtonText: "¡Close!"
+		      confirmButtonText: "Close!"
 		    });
 
   	}else if(image["size"] > 2000000){
@@ -152,9 +152,9 @@ $(".newImage").change(function(){
 
   		 swal({
 		      title: "Error uploading image",
-		      text: "¡The image shouldn't be more than 2MB!",
+		      text: "The image shouldn't be more than 2MB!",
 		      type: "error",
-		      confirmButtonText: "¡Close!"
+		      confirmButtonText: "Close!"
 		    });
 
   	}else{

@@ -85,7 +85,7 @@
 
 					<a href="#">
 
-						<i class="fa fa-list-ul"></i>
+						<i class="fa fa-cart-plus"></i>
 
 						<span>Receipts</span>
 
@@ -132,7 +132,7 @@
 	
 					<a href="#">
 	
-						<i class="fa fa-list-ul"></i>
+						<i class="fa fa-medkit"></i>
 	
 						<span>Consultations</span>
 	

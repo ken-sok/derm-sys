@@ -213,6 +213,18 @@
 
                     </div> 
 
+            <!-- input image -->
+                    <div class="form-group">
+
+                      <div class="panel">Upload image</div>
+
+                      <input id="newConsultPhoto" type="file" class="newPhoto" name="newConsultPhoto">
+
+                      <p class="help-block">Maximum size 2Mb</p>
+
+                      <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
+                    </div>
+
                     <div class="row" >
 
                       <!--=====================================
