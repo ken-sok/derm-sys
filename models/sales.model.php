@@ -43,7 +43,7 @@ class ModelSales{
 
 	static public function mdlAddSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, products, receipt, totalPrice, comment, diagnosis) VALUES (:code, :idCustomer, :products, :receipt, :totalPrice, :comment, :diagnosis)");
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, products, receipt, totalPrice, comment, diagnosis,images) VALUES (:code, :idCustomer, :products, :receipt, :totalPrice, :comment, :diagnosis, :images)");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
@@ -52,6 +52,7 @@ class ModelSales{
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":comment", $data["comment"], PDO::PARAM_STR);
 		$stmt->bindParam(":diagnosis", $data["diagnosis"], PDO::PARAM_STR);
+		$stmt->bindParam(":images", $data["images"], PDO::PARAM_STR);
 		
 		
 

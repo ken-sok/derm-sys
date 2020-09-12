@@ -1,3 +1,4 @@
+
 <div class="content-wrapper">
 
   <section class="content-header">
@@ -154,7 +155,8 @@
 
                       </select>
 
-                      <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addDiagnosis" data-dismiss="modal">Add Diagnosis</button></span>
+                      <!--<span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addDiagnosis" data-dismiss="modal">Add Diagnosis</button></span>
+                      -->
 
                       </div>
 
@@ -214,15 +216,22 @@
                     </div> 
 
                     <!-- input image -->
-
-                    <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" id = "addConsultImg">Add New Image</button></span>
-                    
                     <div class="form-group newConsultImg">
 
-       
+                        <div class="input-group"> 
+                    
+                          <div class="panel">Upload new image</div>
 
+                            <input type="file" class="newPhoto" name="newConsultPhoto" id = "inpFile" multiple> 
+                            
+                            <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px"> 
+                            
+                            <!--<button type="button" id = "btnUpload" class="btn btn-default">Upload Files</button>
+                            -->
 
+                          </div>
                     </div>
+
                     <input type="hidden" name="consultImgList" id="consultImgList">
 
                     <div class="row" >
@@ -280,7 +289,7 @@
             </div>
 
             <div class="box-footer">
-              <button type="submit" class="btn btn-primary pull-right">Save consultation</button>
+              <button type="submit" id = "submitConsult" class="btn btn-primary pull-right">Save consultation</button>
             </div>
           </form>
 
@@ -339,8 +348,6 @@
   </section>
 
 </div>
-
-
 
 
 
@@ -460,81 +467,3 @@ MODAL ADD CUSTOMER
   </div>
 
 </div>
-
-<!--=====================================
-=            module add Diagnosis            =
-======================================-->
-
-<!-- Modal -->
-<div id="addDiagnosis" class="modal fade" role="dialog">
-
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <form role="form" method="POST" enctype="multipart/form-data">
-
-        <!--=====================================
-        HEADER
-        ======================================-->
-
-        <div class="modal-header" style="background: #3c8dbc; color: #fff">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Add Diagnosis</h4>
-
-        </div>
-
-        <!--=====================================
-        BODY
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- input Diagnosis -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-
-                <input class="form-control input-lg" type="text" id="newDiagnosis" name="newDiagnosis" placeholder="Add Diagnosis" required>
-
-              </div>
-
-            </div>
-
-           
-          </div>
-
-        </div>
-
-        <!--=====================================
-        FOOTER
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-
-          <button type="submit" class="btn btn-primary">Save Diagnosis</button>
-
-        </div>
-
-      </form>
-
-      <?php
-
-          $createDiagnosis = new ControllerDiagnosis();
-          $createDiagnosis -> ctrCreateDiagnosis();
-
-        ?> 
-    </div>
-
-  </div>
-
-</div>
-

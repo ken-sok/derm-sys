@@ -1,30 +1,36 @@
 <?php
+if (isset($_FILES["ConsultPhotos"])){
+	$ConsultPhotos = $_FILES["ConsultPhotos"];
+	print_r($ConsultPhotos["tmp_name"]);
+}
 
+//var_dump($data); 
 
-
-class ControllerSales{
+class ControllerSales
+{
 
 	/*=============================================
 	SHOW SALES
 	=============================================*/
 
-	static public function ctrShowSales($item, $value){
+	static public function ctrShowSales($item, $value)
+	{
 
 		$table = "sales";
 
 		$answer = ModelSales::mdlShowSales($table, $item, $value);
 
 		return $answer;
-
 	}
 
 	/*=============================================
 	CREATE SALE
 	=============================================*/
 
-	static public function ctrCreateSale(){
+	static public function ctrCreateSale()
+	{
 
-		if(isset($_POST["newSale"])){
+		if (isset($_POST["newSale"])) {
 
 			/*=============================================
 			UPDATE CUSTOMER'S PURCHASES AND REDUCE THE STOCK AND INCREASE SALES OF THE PRODUCT
@@ -36,26 +42,25 @@ class ControllerSales{
 
 			foreach ($productsList as $key => $value) {
 
-			   array_push($totalPurchasedProducts, $value["quantity"]);
-				
-			   $tableProducts = "products";
+				array_push($totalPurchasedProducts, $value["quantity"]);
 
-			    $item = "id";
-			    $valueProductId = $value["id"];
-			    $order = "id";
+				$tableProducts = "products";
 
-			    $getProduct = ProductsModel::mdlShowProducts($tableProducts, $item, $valueProductId, $order);
+				$item = "id";
+				$valueProductId = $value["id"];
+				$order = "id";
+
+				$getProduct = ProductsModel::mdlShowProducts($tableProducts, $item, $valueProductId, $order);
 
 				$item1a = "sales";
 				$value1a = $value["quantity"] + $getProduct["sales"];
 
-			    $newSales = ProductsModel::mdlUpdateProduct($tableProducts, $item1a, $value1a, $valueProductId);
+				$newSales = ProductsModel::mdlUpdateProduct($tableProducts, $item1a, $value1a, $valueProductId);
 
 				$item1b = "stock";
 				$value1b = $value["stock"];
 
 				$newStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $valueProductId);
-
 			}
 
 			$tableCustomers = "customers";
@@ -76,7 +81,7 @@ class ControllerSales{
 
 			$date = date('Y-m-d');
 			$hour = date('H:i:s');
-			$value1b = $date.' '.$hour;
+			$value1b = $date . ' ' . $hour;
 
 			$dateCustomer = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1b, $value1b, $valueCustomer);
 
@@ -86,25 +91,107 @@ class ControllerSales{
 
 			$customerNextVisit = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1c, $value1c, $valueCustomer);
 
-		
+			$allPhotos = array();
+			/*****upload pictures ***************/
+			print_r(isset($ConsultPhotos["tmp_name"]));
+			if (isset($ConsultPhotos["tmp_name"])) {
 
+				$i = 0;
+				$allPhotos = array();
+			
+			
+			
+				/*=============================================
+				we create the folder to save the picture
+				=============================================*/
+				$folder = "views/img/consultations/".$_POST["newSale"];
+
+				mkdir($folder, 0755);
+			
+			
+				foreach ($ConsultPhotos["tmp_name"] as $key => $value) {
+					//var_dump($ConsultPhotos["tmp_name"][$i]); 
+					list($width, $height) = getimagesize($ConsultPhotos["tmp_name"][$i]);
+			
+					$newWidth = 500;
+					$newHeight = 500;
+			
+			
+					/*=============================================
+					WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
+					=============================================*/
+				
+					if ($ConsultPhotos["type"][$i] == "image/jpeg") {
+			
+						/*=============================================
+					WE SAVE THE IMAGE IN THE FOLDER
+					=============================================*/
+			
+						$random = mt_rand(100, 999);
+			
+						$route = "views/img/consultations/".$_POST["newSale"]."/".$random.".jpg";
+			
+						$origin = imagecreatefromjpeg($ConsultPhotos["tmp_name"][$i]);
+			
+						$destiny = imagecreatetruecolor($newWidth, $newHeight);
+			
+						imagecopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+			
+						imagejpeg($destiny, $route);
+			
+						array_push($allPhotos, $route);
+					}
+			
+			
+			
+					if ($ConsultPhotos["type"][$i] == "image/png") {
+			
+						/*=============================================
+					WE SAVE THE IMAGE IN THE FOLDER
+					=============================================*/
+			
+						$random = mt_rand(100, 999);
+			
+						$route = "views/img/consultations/".$_POST["newSale"]."/".$random.".png";
+			
+						$origin = imagecreatefrompng($ConsultPhotos["tmp_name"][$i]);
+			
+						$destiny = imagecreatetruecolor($newWidth, $newHeight);
+			
+						imagecopyresized($destiny, $origin, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+			
+						imagepng($destiny, $route);
+			
+						array_push($allPhotos, $route);
+					}
+			
+					
+				}
+				print_r($allPhotos);
+			}
+			
 			/*=============================================
 			SAVE THE SALE
-			=============================================*/	
+			=============================================*/
 
 			$table = "sales";
 
-			$data = array("idCustomer"=>$_POST["selectCustomer"],
-						   "code"=>$_POST["newSale"],
-						   "products"=>$_POST["productsList"],
-						   "receipt"=>$_POST["productsList"], 
-						   "totalPrice"=>$_POST["saleTotal"],
-						   "comment"=>$_POST["comment"],
-						   "diagnosis"=>$_POST["newDiagnosis"]	);
+			$allPhotos = json_encode($allPhotos);
+
+			$data = array(
+				"idCustomer" => $_POST["selectCustomer"],
+				"code" => $_POST["newSale"],
+				"products" => $_POST["productsList"],
+				"receipt" => $_POST["productsList"],
+				"totalPrice" => $_POST["saleTotal"],
+				"comment" => $_POST["comment"],
+				"images" => $allPhotos,
+				"diagnosis" => $_POST["newDiagnosis"]
+			);
 
 			$answer = ModelSales::mdlAddSale($table, $data);
 
-			if($answer == "ok"){
+			if ($answer == "ok") {
 
 				// $printer = "epson20";
 
@@ -192,8 +279,8 @@ class ControllerSales{
 
 				*/
 
-				if ($_POST["process"] == "consult"){
-					echo'<script>
+				if ($_POST["process"] == "consult") {
+					echo '<script>
 
 					localStorage.removeItem("range");
 
@@ -211,10 +298,9 @@ class ControllerSales{
 								})
 
 					</script>';
-
 				} else {
 
-					echo'<script>
+					echo '<script>
 
 					localStorage.removeItem("range");
 
@@ -232,24 +318,21 @@ class ControllerSales{
 								})
 
 					</script>';
-
+				}
 			}
-
-			}
-
 		}
-
 	}
 
-	
+
 
 	/*=============================================
 	EDIT SALE
 	=============================================*/
 
-	static public function ctrEditSale(){
+	static public function ctrEditSale()
+	{
 
-		if(isset($_POST["editSale"])){
+		if (isset($_POST["editSale"])) {
 
 			/*=============================================
 			FORMAT PRODUCTS AND CUSTOMERS TABLES
@@ -279,11 +362,11 @@ class ControllerSales{
 			}
 			=============================================*/
 
-			
+
 			$productsList = $_POST["productsList"];
 			$productChange = true;
 
-			if($productChange){
+			if ($productChange) {
 
 				$products = json_decode($getSale["products"], true);
 
@@ -294,7 +377,7 @@ class ControllerSales{
 				foreach ($products as $key => $value) {
 
 					array_push($totalPurchasedProducts, $value["quantity"]);
-					$quantity = (int) $value["quantity"]; 
+					$quantity = (int) $value["quantity"];
 
 					$tableProducts = "products";
 
@@ -314,7 +397,6 @@ class ControllerSales{
 					$value1b = $quantity + $getProduct["stock"];
 
 					$nuevoStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $value);
-
 				}
 
 				$tableCustomers = "customers";
@@ -340,7 +422,7 @@ class ControllerSales{
 				foreach ($productsList_2 as $key => $value) {
 
 					array_push($totalPurchasedProducts_2, $value["quantity"]);
-					
+
 					$tableProducts_2 = "products";
 
 					$item_2 = "id";
@@ -358,7 +440,6 @@ class ControllerSales{
 					$value1b_2 = $value["stock"];
 
 					$newStock_2 = ProductsModel::mdlUpdateProduct($tableProducts_2, $item1b_2, $value1b_2, $value_2);
-
 				}
 
 				$tableCustomers_2 = "customers";
@@ -379,56 +460,55 @@ class ControllerSales{
 
 				$date = date('Y-m-d');
 				$hour = date('H:i:s');
-				$value1b_2 = $date.' '.$hour;
+				$value1b_2 = $date . ' ' . $hour;
 
 				$dateCustomer_2 = ModelCustomers::mdlUpdateCustomer($tableCustomers_2, $item1b_2, $value1b_2, $value_2);
-				
+
 				$item1c_2 = "nextVisit";
-			
+
 				$value1c_2 = $_POST["newAppDate"];
 
 				$customerNextVisit_2 = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1c_2, $value1c_2, $valueCustomer);
-
-
-
-
 			}
 
 			//$getSale["receipt"];
 
-			
+
 			$table = "sales";
 
-			if ($_POST["process"] == "consult"){
+			if ($_POST["process"] == "consult") {
 
-			
-				$data = array("idCustomer"=>$_POST["selectCustomer"],
-							"code"=>$_POST["editSale"],
-							"products"=>$productsList,
-							"receipt"=>$getSale["receipt"],
-							"totalPrice"=>$_POST["saleTotal"],
-							"comment"=>$_POST["comment"],
-							"diagnosis"=>$_POST["editDiagnosis"]	);
+
+				$data = array(
+					"idCustomer" => $_POST["selectCustomer"],
+					"code" => $_POST["editSale"],
+					"products" => $productsList,
+					"receipt" => $getSale["receipt"],
+					"totalPrice" => $_POST["saleTotal"],
+					"comment" => $_POST["comment"],
+					"diagnosis" => $_POST["editDiagnosis"]
+				);
 			} else {
 
-				$data = array("idCustomer"=>$_POST["selectCustomer"],
-							"code"=>$_POST["editSale"],
-							"products"=>$getSale["products"],
-							"receipt"=>$productsList,
-							"totalPrice"=>$_POST["saleTotal"],
-							"comment"=>$_POST["comment"],
-							"diagnosis"=>$_POST["editDiagnosis"]);
-
+				$data = array(
+					"idCustomer" => $_POST["selectCustomer"],
+					"code" => $_POST["editSale"],
+					"products" => $getSale["products"],
+					"receipt" => $productsList,
+					"totalPrice" => $_POST["saleTotal"],
+					"comment" => $_POST["comment"],
+					"diagnosis" => $_POST["editDiagnosis"]
+				);
 			}
 
 			$answer = ModelSales::mdleditSale($table, $data);
 
-			if($answer == "ok"){
+			if ($answer == "ok") {
 
 
-				
-				if ($_POST["process"] == "consult"){
-					echo'<script>
+
+				if ($_POST["process"] == "consult") {
+					echo '<script>
 
 					localStorage.removeItem("range");
 	
@@ -446,10 +526,9 @@ class ControllerSales{
 								})
 	
 					</script>';
-
 				} else {
 
-					echo'<script>
+					echo '<script>
 
 					localStorage.removeItem("range");
 
@@ -467,24 +546,19 @@ class ControllerSales{
 								})
 
 					</script>';
-
+				}
 			}
-
-				
-
-			}
-
 		}
-
 	}
 
 	/*=============================================
 	Delete Sale
 	=============================================*/
 
-	static public function ctrDeleteSale(){
+	static public function ctrDeleteSale()
+	{
 
-		if(isset($_GET["idSale"])){
+		if (isset($_GET["idSale"])) {
 
 			$table = "sales";
 
@@ -507,44 +581,37 @@ class ControllerSales{
 			$saveDates = array();
 
 			foreach ($getSales as $key => $value) {
-				
-				if($value["idCustomer"] == $getSale["idCustomer"]){
+
+				if ($value["idCustomer"] == $getSale["idCustomer"]) {
 
 					array_push($saveDates, $value["saledate"]);
-
 				}
-
 			}
 
-			if(count($saveDates) > 1){
+			if (count($saveDates) > 1) {
 
-				if($getSale["saledate"] > $saveDates[count($saveDates)-2]){
+				if ($getSale["saledate"] > $saveDates[count($saveDates) - 2]) {
 
 					$item = "lastVisit";
-					$value = $saveDates[count($saveDates)-2];
+					$value = $saveDates[count($saveDates) - 2];
 					$valueIdCustomer = $getSale["idCustomer"];
 
 					$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item, $value, $valueIdCustomer);
-
-				}else{
+				} else {
 
 					$item = "lastVisit";
-					$value = $saveDates[count($saveDates)-1];
+					$value = $saveDates[count($saveDates) - 1];
 					$valueIdCustomer = $getSale["idCustomer"];
 
 					$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item, $value, $valueIdCustomer);
-
 				}
-
-
-			}else{
+			} else {
 
 				$item = "lastVisit";
 				$value = "0000-00-00 00:00:00";
 				$valueIdCustomer = $getSale["idCustomer"];
 
 				$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item, $value, $valueIdCustomer);
-
 			}
 
 			/*=============================================
@@ -558,7 +625,7 @@ class ControllerSales{
 			foreach ($products as $key => $value) {
 
 				array_push($totalPurchasedProducts, $value["quantity"]);
-				
+
 				$tableProducts = "products";
 
 				$item = "id";
@@ -576,7 +643,6 @@ class ControllerSales{
 				$value1b = $value["quantity"] + $getProduct["stock"];
 
 				$nuevoStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $valueProductId);
-
 			}
 
 			$tableCustomers = "customers";
@@ -587,7 +653,7 @@ class ControllerSales{
 			$getCustomer = ModelCustomers::mdlShowCustomers($tableCustomers, $itemCustomer, $valueCustomer);
 
 			$item1a = "visits";
-			$value1a = $getCustomer["visits"] - 1; 
+			$value1a = $getCustomer["visits"] - 1;
 
 			$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1a, $value1a, $valueCustomer);
 
@@ -597,9 +663,9 @@ class ControllerSales{
 
 			$answer = ModelSales::mdlDeleteSale($table, $_GET["idSale"]);
 
-			if($answer == "ok"){
+			if ($answer == "ok") {
 
-				echo'<script>
+				echo '<script>
 
 				swal({
 					  type: "success",
@@ -616,63 +682,60 @@ class ControllerSales{
 							})
 
 				</script>';
-
-			}		
+			}
 		}
-
 	}
 
 	/*=============================================
 	DATES RANGE
-	=============================================*/	
+	=============================================*/
 
-	static public function ctrSalesDatesRange($initialDate, $finalDate){
+	static public function ctrSalesDatesRange($initialDate, $finalDate)
+	{
 
 		$table = "sales";
 
 		$answer = ModelSales::mdlSalesDatesRange($table, $initialDate, $finalDate);
 
 		return $answer;
-		
 	}
 
 	/*=============================================
 	DOWNLOAD EXCEL
 	=============================================*/
 
-	public function ctrDownloadReport(){
+	public function ctrDownloadReport()
+	{
 
-		if(isset($_GET["report"])){
+		if (isset($_GET["report"])) {
 
 			$table = "sales";
 
-			if(isset($_GET["initialDate"]) && isset($_GET["finalDate"])){
+			if (isset($_GET["initialDate"]) && isset($_GET["finalDate"])) {
 
 				$sales = ModelSales::mdlSalesDatesRange($table, $_GET["initialDate"], $_GET["finalDate"]);
-
-			}else{
+			} else {
 
 				$item = null;
 				$value = null;
 
 				$sales = ModelSales::mdlShowSales($table, $item, $value);
-
 			}
 
 			/*=============================================
 			WE CREATE EXCEL FILE
 			=============================================*/
 
-			$name = $_GET["report"].'.xls';
+			$name = $_GET["report"] . '.xls';
 
 			header('Expires: 0');
 			header('Cache-control: private');
 			header("Content-type: application/vnd.ms-excel"); // Excel file
-			header("Cache-Control: cache, must-revalidate"); 
+			header("Cache-Control: cache, must-revalidate");
 			header('Content-Description: File Transfer');
-			header('Last-Modified: '.date('D, d M Y H:i:s'));
-			header("Pragma: public"); 
-			header('Content-Disposition:; filename="'.$name.'"');
+			header('Last-Modified: ' . date('D, d M Y H:i:s'));
+			header("Pragma: public");
+			header('Content-Disposition:; filename="' . $name . '"');
 			header("Content-Transfer-Encoding: binary");
 
 			echo utf8_decode("<table border='0'> 
@@ -690,47 +753,43 @@ class ControllerSales{
 					<td style='font-weight:bold; border:1px solid #eee;'>FECHA</td>		
 					</tr>");
 
-			foreach ($sales as $row => $item){
+			foreach ($sales as $row => $item) {
 
 				$customer = ControllerCustomers::ctrShowCustomers("id", $item["idCustomer"]);
 				$Seller = ControllerUsers::ctrShowUsers("id", $item["idSeller"]);
 
-			 echo utf8_decode("<tr>
-			 			<td style='border:1px solid #eee;'>".$item["code"]."</td> 
-			 			<td style='border:1px solid #eee;'>".$customer["name"]."</td>
-			 			<td style='border:1px solid #eee;'>".$Seller["name"]."</td>
+				echo utf8_decode("<tr>
+			 			<td style='border:1px solid #eee;'>" . $item["code"] . "</td> 
+			 			<td style='border:1px solid #eee;'>" . $customer["name"] . "</td>
+			 			<td style='border:1px solid #eee;'>" . $Seller["name"] . "</td>
 			 			<td style='border:1px solid #eee;'>");
 
-			 	$products =  json_decode($item["products"], true);
+				$products =  json_decode($item["products"], true);
 
-			 	foreach ($products as $key => $valueproducts) {
-			 			
-			 			echo utf8_decode($valueproducts["quantity"]."<br>");
-			 		}
+				foreach ($products as $key => $valueproducts) {
 
-			 	echo utf8_decode("</td><td style='border:1px solid #eee;'>");	
+					echo utf8_decode($valueproducts["quantity"] . "<br>");
+				}
 
-		 		foreach ($products as $key => $valueproducts) {
-			 			
-		 			echo utf8_decode($valueproducts["description"]."<br>");
-		 		
-		 		}
+				echo utf8_decode("</td><td style='border:1px solid #eee;'>");
 
-		 		echo utf8_decode("</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["tax"],2)."</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["netPrice"],2)."</td>	
-					<td style='border:1px solid #eee;'>$ ".number_format($item["totalPrice"],2)."</td>
-					<td style='border:1px solid #eee;'>".$item["paymentMethod"]."</td>
-					<td style='border:1px solid #eee;'>".substr($item["saledate"],0,10)."</td>		
+				foreach ($products as $key => $valueproducts) {
+
+					echo utf8_decode($valueproducts["description"] . "<br>");
+				}
+
+				echo utf8_decode("</td>
+					<td style='border:1px solid #eee;'>$ " . number_format($item["tax"], 2) . "</td>
+					<td style='border:1px solid #eee;'>$ " . number_format($item["netPrice"], 2) . "</td>	
+					<td style='border:1px solid #eee;'>$ " . number_format($item["totalPrice"], 2) . "</td>
+					<td style='border:1px solid #eee;'>" . $item["paymentMethod"] . "</td>
+					<td style='border:1px solid #eee;'>" . substr($item["saledate"], 0, 10) . "</td>		
 		 			</tr>");
-
 			}
 
 
 			echo "</table>";
-
 		}
-
 	}
 
 
@@ -738,23 +797,24 @@ class ControllerSales{
 	Adding TOTAL sales
 	=============================================*/
 
-	public function ctrAddingTotalSales(){
+	public function ctrAddingTotalSales()
+	{
 
 		$table = "sales";
 
 		$answer = ModelSales::mdlAddingTotalSales($table);
 
 		return $answer;
-
 	}
 
 	/*=============================================
 	DOWNLOAD XML
 	=============================================*/
 
-	static public function ctrDownloadXML(){
+	static public function ctrDownloadXML()
+	{
 
-		if(isset($_GET["xml"])){
+		if (isset($_GET["xml"])) {
 
 
 			$table = "sales";
@@ -787,14 +847,14 @@ class ControllerSales{
 
 			$objectXML = new XMLWriter();
 
-			$objectXML->openURI($_GET["xml"].".xml"); //XML file creation
+			$objectXML->openURI($_GET["xml"] . ".xml"); //XML file creation
 
 			$objectXML->setIndent(true); //gets a boolean value to stablish if the different XML node leves must be indented or not.
 
 			$objectXML->setIndentString("\t"); // caracter \t, it means to tab
 
-			$objectXML->startDocument('1.0', 'utf-8');// document start
-			
+			$objectXML->startDocument('1.0', 'utf-8'); // document start
+
 			// $objectXML->startElement("mainTag");// Beginning of root node
 
 			// $objectXML->writeAttribute("mainAttributeTag", "value main Attribute Tag"); // main Attribute Tag
@@ -804,9 +864,9 @@ class ControllerSales{
 			// 		$objectXML->writeAttribute("InternalTagAttribute", "value Internal tag attribute"); // Internal tag attribute
 
 			// 		$objectXML->text("Internal text");// Beginning of child node
-			
+
 			// 	$objectXML->endElement(); // End of child node 
-			
+
 			// $objectXML->endElement(); // End of root node
 
 
@@ -815,12 +875,11 @@ class ControllerSales{
 			$objectXML->writeRaw('<ext:UBLExtensions>');
 
 			foreach ($productsList as $key => $value) {
-				
-				$objectXML->text($value["description"].", ");
-			
+
+				$objectXML->text($value["description"] . ", ");
 			}
 
-			
+
 
 			$objectXML->writeRaw('</ext:UBLExtensions>');
 
@@ -828,9 +887,7 @@ class ControllerSales{
 
 			$objectXML->endDocument(); // End document
 
-			return true;	
+			return true;
 		}
-
 	}
-
 }

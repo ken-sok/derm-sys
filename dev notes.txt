@@ -93,7 +93,10 @@ loose ends:
 - change logo -> done
 - add visits picture -> 1hr
 	- add more than 1
+		- taking > 3hrs
+		- stuck at list names; how to change name; how to copy to new path
 	- display picture in modal better
+
 - search filters
 
 12/sep
