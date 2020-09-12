@@ -31,7 +31,7 @@
 
           <div class="box-header with-border"></div>
 
-          <form role="form" method="post" class="consultationForm">
+          <form role="form" method="post" class="consultationForm" enctype="multipart/form-data">
 
             <div class="box-body">
                 
@@ -154,7 +154,7 @@
 
                       </select>
 
-                      <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addDiagnosis" data-dismiss="modal">Add Diagnosis</button></span>
+                      
 
                       </div>
 
@@ -215,14 +215,17 @@
 
             <!-- input image -->
                     <div class="form-group">
+                    <div class="input-group">
 
                       <div class="panel">Upload image</div>
 
-                      <input id="newConsultPhoto" type="file" class="newPhoto" name="newConsultPhoto">
+                      <input type="file" class="newPhoto" name="newConsultPhoto[]" multiple>
+                       
 
                       <p class="help-block">Maximum size 2Mb</p>
 
                       <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
+                    </div>
                     </div>
 
                     <div class="row" >
@@ -342,8 +345,6 @@
 
 
 
-
-
 <!--=====================================
 MODAL ADD CUSTOMER
 ======================================-->
@@ -455,83 +456,6 @@ MODAL ADD CUSTOMER
         $createCustomer -> ctrCreateCustomer();
 
       ?>
-    </div>
-
-  </div>
-
-</div>
-
-<!--=====================================
-=            module add Diagnosis            =
-======================================-->
-
-<!-- Modal -->
-<div id="addDiagnosis" class="modal fade" role="dialog">
-
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <form role="form" method="POST" enctype="multipart/form-data">
-
-        <!--=====================================
-        HEADER
-        ======================================-->
-
-        <div class="modal-header" style="background: #3c8dbc; color: #fff">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Add Diagnosis</h4>
-
-        </div>
-
-        <!--=====================================
-        BODY
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- input Diagnosis -->
-            <div class="form-group">
-
-              <div class="input-group">
-
-                <span class="input-group-addon"><i class="fa fa-product-hunt"></i></span>
-
-                <input class="form-control input-lg" type="text" id="newDiagnosis" name="newDiagnosis" placeholder="Add Diagnosis" required>
-
-              </div>
-
-            </div>
-
-           
-          </div>
-
-        </div>
-
-        <!--=====================================
-        FOOTER
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-
-          <button type="submit" class="btn btn-primary">Save Diagnosis</button>
-
-        </div>
-
-      </form>
-
-      <?php
-
-          $createDiagnosis = new ControllerDiagnosis();
-          $createDiagnosis -> ctrCreateDiagnosis();
-
-        ?> 
     </div>
 
   </div>

@@ -445,7 +445,7 @@ function listProducts(){
 
 	$("#productsList").val(JSON.stringify(productsList)); 
 
-	console.log("products list", productsList)
+	//console.log("products list", productsList)
 
 }
 
