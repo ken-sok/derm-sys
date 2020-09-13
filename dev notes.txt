@@ -92,7 +92,7 @@ loose ends:
 11/sep
 - change logo -> done
 - add visits picture -> 1hr
-	- add more than 1
+	- add more than 1 -> only manage to add to db w/ no preview
 	- display picture in modal better
 - search filters
 
@@ -103,3 +103,4 @@ questions:
 - common freq -> not mess up 
 - domain name 
 - username & pw for login
+- pictures - how many? 
