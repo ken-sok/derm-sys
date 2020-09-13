@@ -73,6 +73,14 @@ loose ends:
 		- js login -> hash 
 		- prevent xss, admin or "1" == "1"
 -----------------------------
+No need waiting list - 50
+Comment print 
+General patient account 
+Receipt template - add headers for tnam 
+Click patient name get history 
+Wifi connct - charge
+Login module - no charge
+----------------------------------------
 
 3/sep: easy stuff
 4/sep: harder ones
