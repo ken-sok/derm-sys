@@ -11,7 +11,7 @@
 
     <ol class="breadcrumb">
 
-      <li><a href="create-sale"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="create-consultation"><i class="fa fa-dashboard"></i> Home</a></li>
 
       <li class="active">Add new consultation</li>
 
@@ -25,7 +25,7 @@
 
       <div class="box-header with-border">
 
-        <a href="create-sale">
+        <a href="create-consultation">
           <button class="btn btn-primary" >
         
             Add consultation

@@ -68,7 +68,6 @@ class productsTable{
 						"'.$image.'",
 						"'.$products[$i]["code"].'",
 						"'.$products[$i]["description"].'",
-						"'.$stock.'",
 						"$ '.$products[$i]["buyingPrice"].'",
 						"$ '.$products[$i]["sellingPrice"].'",
 						"'.$products[$i]["date"].'",

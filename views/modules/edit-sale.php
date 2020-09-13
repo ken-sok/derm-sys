@@ -10,7 +10,7 @@
 
     <ol class="breadcrumb">
 
-      <li><a href="create-sale"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="create-consultation"><i class="fa fa-dashboard"></i> Home</a></li>
 
       <li class="active">Add Consultation</li>
 
@@ -210,7 +210,7 @@
 
                                 </div>
 
-                                <div class="col-xs-3">
+                                <div class="col-xs-3 enterQuantity">
                       
                                   <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" stock="'.$lastStock.'" newStock="'.$value["stock"].'" required>
 
@@ -357,7 +357,7 @@
                      <th>Image</th>
                      <th style="width:30px">Code</th>
                      <th>Description</th>
-                     <th>Stock</th>
+                     <!--<th>Stock</th>-->
                      <th>Actions</th>
 
                    </tr> 

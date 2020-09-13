@@ -52,7 +52,7 @@ class ControllerSales{
 			    $newSales = ProductsModel::mdlUpdateProduct($tableProducts, $item1a, $value1a, $valueProductId);
 
 				$item1b = "stock";
-				$value1b = $value["stock"];
+				$value1b = $value["stock"] - $value["quantity"] + 1 ;
 
 				$newStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $valueProductId);
 
@@ -81,7 +81,6 @@ class ControllerSales{
 			$dateCustomer = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1b, $value1b, $valueCustomer);
 
 			$item1c = "nextVisit";
-			//var_dump($_POST["newAppDate"]);
 			$value1c = $_POST["newAppDate"];
 
 			$customerNextVisit = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1c, $value1c, $valueCustomer);
@@ -421,7 +420,7 @@ class ControllerSales{
 					$newSales_2 = ProductsModel::mdlUpdateProduct($tableProducts_2, $item1a_2, $value1a_2, $value_2);
 
 					$item1b_2 = "stock";
-					$value1b_2 = $value["stock"];
+					$value1b_2 = $value["stock"]; 
 
 					$newStock_2 = ProductsModel::mdlUpdateProduct($tableProducts_2, $item1b_2, $value1b_2, $value_2);
 
@@ -474,7 +473,7 @@ class ControllerSales{
 							"receipt"=>$getSale["receipt"],
 							"totalPrice"=>$_POST["saleTotal"],
 							"comment"=>$_POST["comment"],
-							"diagnosis"=>$_POST["editDiagnosis"]	);
+							"diagnosis"=>$_POST["editDiagnosis"]);
 			} else {
 
 				$data = array("idCustomer"=>$_POST["selectCustomer"],

@@ -10,7 +10,7 @@
 
     <ol class="breadcrumb">
 
-      <li><a href="create-sale"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="create-consultation"><i class="fa fa-dashboard"></i> Home</a></li>
 
       <li class="active">Add new Consultation</li>
 
@@ -107,7 +107,7 @@
                             $customers = ControllerCustomers::ctrShowCustomers($item, $value);
 
                             foreach ($customers as $key => $value) {
-                              echo '<option value="'.$value["id"].'">'.$value["name"].'</option>';
+                              echo '<option value="'.$value["id"].'">'.$value["name"].' '.$value["phone"].'</option>';
                             }
 
 
@@ -303,7 +303,7 @@
                      <th>Image</th>
                      <th style="width:30px">Code</th>
                      <th>Description</th>
-                     <th>Stock</th>
+                     <!--<th>Stock</th>-->
                      <th>Actions</th>
 
                    </tr> 

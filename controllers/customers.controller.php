@@ -36,7 +36,7 @@ class ControllerCustomers{
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "create-sale";
+									window.location = "create-consultation";
 
 									}
 								})

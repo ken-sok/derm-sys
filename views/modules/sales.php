@@ -11,7 +11,7 @@
 
     <ol class="breadcrumb">
 
-      <li><a href="create-sale"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="create-consultation"><i class="fa fa-dashboard"></i> Home</a></li>
 
       <li class="active">Add new consultation</li>
 
@@ -25,7 +25,7 @@
 
       <div class="box-header with-border">
 
-        <a href="create-sale">
+        <a href="create-consultation">
           <button class="btn btn-primary" >
         
             Add consultation
@@ -110,12 +110,13 @@
                         
                       <div class="btn-group">
 
-                        
+                      <!--
                       <button href = "#" class="btn btn-info btnPrintBill" saleCode="'.$value["code"].'">
 
                         <i class="fa fa-print"></i>
 
-                      </button>';
+                      </button>-->';
+                      
 
                        
                          echo '<button class="btn btn-warning btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>

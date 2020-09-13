@@ -10,7 +10,7 @@
 
     <ol class="breadcrumb">
 
-      <li><a href="create-sale"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="create-consultation"><i class="fa fa-dashboard"></i> Home</a></li>
 
       <li class="active">Add new consultation</li>
 
@@ -44,7 +44,6 @@
              <th>Phone</th>
              <th>Age</th>
              <th>Sex</th>
-             <th>Visits</th>
              <th>Last Visit</th>
              <th>Next Visit</th>
              <th>Medical History</th>
@@ -79,8 +78,6 @@
                       <td>'.$value["age"].'</td>
 
                       <td>'.$value["sex"].'</td>             
-
-                      <td>'.$value["visits"].'</td>
 
                       <td>'.$value["lastVisit"].'</td>
 

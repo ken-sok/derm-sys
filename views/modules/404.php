@@ -36,7 +36,7 @@
 
         <p>
 
-          Go to the sidebar en click in any button or go to <a href="home">Home page.</a>
+          Go to the sidebar en click in any button or go to <a href="create-consultation">Home page.</a>
 
         </p>
 

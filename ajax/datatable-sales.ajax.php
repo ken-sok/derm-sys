@@ -70,7 +70,6 @@ class productsTableSales{
 							"'.$image.'",
 							"'.$products[$i]["code"].'",
 							"'.$products[$i]["description"].'",
-							"'.$stock.'",
 							"'.$buttons.'"
 						],';
 					

@@ -98,9 +98,11 @@ loose ends:
 
 12/sep
 - test
+	- stock not adding up in edit and delete
 
 questions: 
 - common freq -> not mess up 
 - domain name 
 - username & pw for login
 - pictures - how many? 
+- print receipt/print consult more imp? 

@@ -314,7 +314,7 @@ $(".consultationForm").on("change", "input.newProductQuantity", function(){
 
 		/*=============================================
 		IF QUANTITY IS MORE THAN THE STOCK VALUE SET INITIAL VALUES
-		=============================================*/
+		
 
 		$(this).val(1);
 
@@ -329,11 +329,13 @@ $(".consultationForm").on("change", "input.newProductQuantity", function(){
 	      text: "There's only"+$(this).attr("stock")+" units!",
 	      type: "error",
 	      confirmButtonText: "Close!"
-	    });
+		});
+		
 
-	    return;
+		return;
+		*/
 
-	}
+	} 
 
 	// ADDING TOTAL PRICES
 

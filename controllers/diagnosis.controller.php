@@ -30,7 +30,7 @@ class ControllerDiagnosis{
 						  }).then(function(result){
 									if (result.value) {
 
-									window.location = "create-consultation";
+									window.location = "diagnosis";
 
 									}
 								})

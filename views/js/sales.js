@@ -62,7 +62,7 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function(){
           	/*=============================================
           	AVOID ADDING THE PRODUCT WHEN ITS STOCK IS ZERO
           	=============================================*/
-
+			/*
           	if(stock == 0){
 
       			swal({
@@ -76,7 +76,7 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function(){
 
 			    return;
 
-          	}
+          	}*/
 
           	$(".newProduct").append(
 
@@ -332,8 +332,9 @@ $(".saleForm").on("change", "input.newProductPrice", function(){
 		price.prop('readonly', false);
 		var enteredPrice = $(this).val();
 		price.attr("realPrice", enteredPrice);
-		console.log("changed price", price.attr("realPrice"))
+		
 	}  
+	//console.log("changed price", price.attr("realPrice"))
 
 	// ADDING TOTAL PRICES
 

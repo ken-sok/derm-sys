@@ -40,7 +40,7 @@
              <th>Image</th>
              <th>Code</th>
              <th>Description</th>
-             <th>Stock</th>
+             <!--<th>Stock</th>-->
              <th>Buying price</th>
              <th>Selling Price</th>
              <th>Date edited</th>
@@ -120,13 +120,13 @@
             </div>
 
              <!-- input Stock -->
-            <div class="form-group">
+            <div class="form-group" style = " visibility:hidden;">
 
-              <div class="input-group">
+              <div class="input-group" style = " visibility:hidden;">
 
-                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
 
-                <input class="form-control input-lg" type="number" id="newStock" name="newStock" placeholder="Add Stock" min="0" required>
+                <input style = " visibility:hidden;" class="form-control input-lg" type="number" id="newStock" name="newStock" placeholder="Add Stock" min="0" value = "0" required>
 
               </div>
 
@@ -299,7 +299,7 @@ EDIT PRODUCT
             </div>
 
              <!-- INPUT FOR THE STOCK -->
-             <div class="form-group">
+             <div class="form-group" style = " visibility:hidden;">
               
               <div class="input-group">
               
