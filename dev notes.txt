@@ -26,7 +26,7 @@ loose ends:
 
 -----------------------------
 	        - patient picture -> need research to make picture look better -> doing
-		- delete visits column/make it work when we delete consultation -> delay
+		- delete visits column/make it work when we delete consultation -> delay -> no need
 -----------------------------
 
         -consult: 
@@ -37,7 +37,7 @@ loose ends:
 -----------------------------
 		- add pictures -> no idea how to make it happen -> doing
 		- line item for frequency of use in consultation -> need experiment 
-			- pre select -> delay
+			- pre select -> delay -> no need
 -----------------------------
 
 			- notes typed -> done
@@ -47,7 +47,7 @@ loose ends:
 			- in edit; we use different columns to show added products -> done
 
 -----------------------------
-		- change icons -> doing
+		- change icons -> doing -> done
 
 
 		+ manage -> doing
@@ -63,24 +63,16 @@ loose ends:
 			- where to add printing? -> in view receipts module -> done
 			- phone number search of customers -> done
 		+LAN: 
-			- lan/ wifi -> need test & research -> use online instead
+			- lan/ wifi -> need test & research -> use online instead -> switch to wifi
 	-product -> done
 	-diagnosis -> same as product, but just 1 item -> diagnosis name -> stuck at showing diagnosis names -> done
 -----------------------------
-	-waiting list -> temporary customer names added -> search using phone num -> complete/delete -> delete from database -> delay
+	-waiting list -> temporary customer names added -> search using phone num -> complete/delete -> delete from database -> delay -> no need
 
 	-login & use online domain for demos: -> delay
 		- js login -> hash 
 		- prevent xss, admin or "1" == "1"
------------------------------
-No need waiting list - 50
-Comment print 
-General patient account 
-Receipt template - add headers for tnam 
-Click patient name get history 
-Wifi connct - charge
-Login module - no charge
-----------------------------------------
+
 
 3/sep: easy stuff
 4/sep: harder ones
@@ -109,8 +101,39 @@ Login module - no charge
 	- stock not adding up in edit and delete
 
 questions: 
-- common freq -> not mess up 
-- domain name 
 - username & pw for login
-- pictures - how many? 
-- print receipt/print consult more imp? 
+- pictures - how many? 4 
+- lock my code from being copied
+- add for the doc's desktop
+up to this -> 30 hours down -> 150$
+
+2nd demo 13/9
+-----------------------------
+No need waiting list - 50
+----------------------------------------
+
+things left to do for 21-26/9
+
+Wifi connct - charge 
+	- research 1hr -> done
+	- test 1hr -> done
+
+https://gearedpress.wordpress.com/2017/06/30/how-to-access-site-running-on-localhost-over-lan-and-wifi/
+https://www.youtube.com/watch?v=apnjySgEK1c
+
+Login module - no charge
+	- about 30 mins
+Click patient name get history -> last 
+	- think about how
+	- somehow get the name into searchbar or put data into 1 modal  2hr
+consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
+Receipt template - add headers for tnam; design better -> in pdf (1hr)
+General patient account (5 mins)
+delete visits code (30mins)
+delete stocks code (30 mins)
+longer frequency of use column (15 mins)
+view one customer's history with range &/ diagnosis filter (2hrs)
+pictures - how many? 4 (1hr)
+lock my code from being copiedadd for the doc's desktop (1hr research)
+
+total: 12hrs + 2hr buffer

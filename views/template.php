@@ -118,6 +118,8 @@
 
   <?php
 
+  if(isset($_SESSION["loggedIn"]) && $_SESSION["loggedIn"] == "ok") {
+
     
       echo '<div class="wrapper">';
 
@@ -147,7 +149,9 @@
             $_GET["route"] == 'diagnosis' ||
             $_GET["route"] == 'consultation' ||
             $_GET["route"] == 'create-consultation' ||
-            $_GET["route"] == 'edit-consultation'
+            $_GET["route"] == 'edit-consultation' ||
+            $_GET["route"] == 'logout' ||
+            $_GET["route"] == 'users'
             ){
 
           include "modules/".$_GET["route"].".php";
@@ -172,7 +176,13 @@
 
       echo '</div>';
 
-        
+    }else{
+      /*=============================================
+     =            login          =
+     =============================================*/ 
+
+     include "modules/login.php";
+   }
   ?>
 
   
@@ -184,6 +194,7 @@
 <script src="views/js/sales.js"></script>
 <script src="views/js/diagnosis.js"></script>
 <script src="views/js/consultation.js"></script>
+<script src="views/js/users.js"></script>
 
 </body>
 </html>
