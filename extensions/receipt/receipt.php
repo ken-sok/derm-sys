@@ -29,6 +29,15 @@ public $code;
 
 public function getDiagnosisSaved(){
 
+$drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+$drawing->setName('Logo');
+$drawing->setDescription('Logo');
+$drawing->setPath('whole-top.png');
+$drawing->setHeight(2.24);
+$drawing->setWidth(5.07);
+$drawing->setCoordinates('A1');
+
+
 //WE BRING THE INFORMATION OF THE SALE
 
 
@@ -61,45 +70,46 @@ $diagnosis = ControllerDiagnosis::ctrShowDiagnosis($item, $value);
 $reader = IOFactory::createReader('Xlsx');
 $spreadsheet = $reader->load("template_receipt.xlsx");
 
-//set default font	
-$spreadsheet->getDefaultStyle()
-	->getFont()
-	->setName('Khmer OS')
-        ->setSize(10);
-        
-        
+
 //add customer info to page
 foreach($spreadsheet->getActiveSheet()->getRowDimensions() as $rd) {  $rd->setRowHeight(-1); }
 foreach($spreadsheet->getActiveSheet()->getColumnDimensions() as $rd) {  $rd->setWidth(-1); }
-/*
-$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(15);
-$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(16);
-$spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(13.71);
-$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(13);
-*/
+
+$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(14);
+$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(8.43);
+$spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(8.43);
+$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(8.43);
+$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(8.43);
+$spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(8.43);
+$spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(8.43);
+
 $spreadsheet->getActiveSheet()
-        ->setCellValue('B8' , $answerCustomer['name'], '&B')
-        ->setCellValue('E8' , 'អាយុ '.$answerCustomer['age'].'ឆ្នាំ')
-        ->setCellValue('D9' , 'ភេទ '.$answerCustomer['sex']);
+        ->setCellValue('B8' , $answerCustomer['name'])
+        ->setCellValue('E8' , $answerCustomer['age'].'ឆ្នាំ')
+        ->setCellValue('G8' , $answerCustomer['sex']);
 
 //add diagnosis
 $spreadsheet->getActiveSheet()
-		->setCellValue('B10' , $diagnosis['name']);
+		->setCellValue('B9' , $diagnosis['name']);
 
 
 
 //add product
+//first index is cell row 12
 $i = 1; 
 foreach ($products as $key => $item) {
 
-	$cellNum = 10+$i; 
-    $spreadsheet->getActiveSheet()
+	$cellNum = 11+$i; 
+        $spreadsheet->getActiveSheet()
             ->setCellValue('A'.$cellNum  , $i)
             ->setCellValue('B'.$cellNum, $item['description'])
-            ->setCellValue('C'.$cellNum, $item['quantity'].'pcs')
-            ->setCellValue('D'.$cellNum , $item['usage']);
+            ->setCellValue('D'.$cellNum, $item['quantity'].'pcs')
+            ->setCellValue('E'.$cellNum , $item['usage']);
         $i = $i + 1; 
+
+        
 }
+
 
 $saledateDB = date_create($answerSale["saledate"]);
 $saledate = date_format($saledateDB, 'd-m-Y');
@@ -107,8 +117,20 @@ $saledate = date_format($saledateDB, 'd-m-Y');
 //date
 
 $spreadsheet->getActiveSheet()
-->setCellValue('C20', $saledate);
+->setCellValue('D26', $saledate);
 
+
+$spreadsheet->getActiveSheet()
+->setCellValue('B23', $answerSale["comment"]);
+
+//set default font	
+$spreadsheet->getDefaultStyle()
+	->getFont()
+	->setName('Khmer OS')
+        ->setSize(10);
+        
+        
+$drawing->setWorksheet($spreadsheet->getActiveSheet());
 //set the header first, so the result will be treated as an xlsx file.
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 

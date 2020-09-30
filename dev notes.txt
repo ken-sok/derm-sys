@@ -129,23 +129,29 @@ Click patient name get history -> last
 	- somehow get the name into searchbar or put data into 1 modal  2hr
 
 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
-	- template design done -> done
-	- test print preview 
-	- tcpdf
-Receipt template - add headers for tnam; design better -> in pdf (30mins)
-	- should be quick
+	- template design done -> done 1hr
+	- test print preview -> in 1.5hr -> done
+	- tcpdf -> thurs on
+	- print pdf function
+
+
+Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
+	- repeat consult template with few tweaks
 
 add consultation on phone (1hr)
-
-
-
 longer frequency of use column (15 mins)
-view one customer's history with range &/ diagnosis filter (2hrs) 
 pictures - how many? 4 (1hr)
+
+
+view one customer's history with range &/ diagnosis filter (2hrs) 
+
+----------------------friday
 lock my code from being copiedadd for the doc's desktop (1hr research)
 
+
+----------later
 delete visits code (30mins)
 
 delete stocks code (30 mins)
-
+---------------
 total: 12hrs + 2hr buffer
