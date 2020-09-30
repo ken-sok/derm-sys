@@ -65,19 +65,21 @@ $spreadsheet = $reader->load("template_receipt.xlsx");
 $spreadsheet->getDefaultStyle()
 	->getFont()
 	->setName('Khmer OS')
-	->setSize(10);
+        ->setSize(10);
+        
+        
 //add customer info to page
 foreach($spreadsheet->getActiveSheet()->getRowDimensions() as $rd) {  $rd->setRowHeight(-1); }
 foreach($spreadsheet->getActiveSheet()->getColumnDimensions() as $rd) {  $rd->setWidth(-1); }
-
+/*
 $spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(15);
 $spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(16);
 $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(13.71);
 $spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(13);
-
+*/
 $spreadsheet->getActiveSheet()
-        ->setCellValue('B9' , $answerCustomer['name'])
-        ->setCellValue('C9' , 'អាយុ '.$answerCustomer['age'].'ឆ្នាំ')
+        ->setCellValue('B8' , $answerCustomer['name'], '&B')
+        ->setCellValue('E8' , 'អាយុ '.$answerCustomer['age'].'ឆ្នាំ')
         ->setCellValue('D9' , 'ភេទ '.$answerCustomer['sex']);
 
 //add diagnosis

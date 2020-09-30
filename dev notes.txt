@@ -120,20 +120,32 @@ Wifi connct - charge
 
 https://gearedpress.wordpress.com/2017/06/30/how-to-access-site-running-on-localhost-over-lan-and-wifi/
 https://www.youtube.com/watch?v=apnjySgEK1c
-
+------------------------------------------------------------
 Login module - no charge
-	- about 30 mins
+	- about 30 mins -> done in 1hr10mins
+------------------------------------------------------------------
 Click patient name get history -> last 
 	- think about how
 	- somehow get the name into searchbar or put data into 1 modal  2hr
+
 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
-Receipt template - add headers for tnam; design better -> in pdf (1hr)
-General patient account (5 mins)
-delete visits code (30mins)
-delete stocks code (30 mins)
+	- template design done -> done
+	- test print preview 
+	- tcpdf
+Receipt template - add headers for tnam; design better -> in pdf (30mins)
+	- should be quick
+
+add consultation on phone (1hr)
+
+
+
 longer frequency of use column (15 mins)
-view one customer's history with range &/ diagnosis filter (2hrs)
+view one customer's history with range &/ diagnosis filter (2hrs) 
 pictures - how many? 4 (1hr)
 lock my code from being copiedadd for the doc's desktop (1hr research)
+
+delete visits code (30mins)
+
+delete stocks code (30 mins)
 
 total: 12hrs + 2hr buffer
