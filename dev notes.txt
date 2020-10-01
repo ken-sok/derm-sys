@@ -145,6 +145,7 @@ pictures - how many? 4 (1hr)
 
 view one customer's history with range &/ diagnosis filter (2hrs) 
 
+fix add diagnosis consult page
 ----------------------friday
 lock my code from being copiedadd for the doc's desktop (1hr research)
 

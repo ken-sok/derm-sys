@@ -199,7 +199,7 @@
                           
                           echo '<div class="row" style="padding:5px 15px">
                     
-                                <div class="col-xs-6" style="padding-right:0px">
+                                <div class="col-xs-8" style="padding-right:0px">
                     
                                   <div class="input-group">
                         
@@ -211,7 +211,7 @@
 
                                 </div>
 
-                                <div class="col-xs-3">
+                                <div class="col-xs-4">
                       
                                   <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" stock="'.$lastStock.'" newStock="'.$value["stock"].'" required>
 
@@ -229,10 +229,15 @@
                        
                                 </div>
 
+                               </div>
+
+                              
  
                                 <!-- product usage -->
 
-                                <div class="col-xs-3 enterUsage" style="padding-left:0px;">
+                                <div class="row" style="padding:5px 15px">
+
+                                <div class="col-xs-8 enterUsage" style="padding-right:0px;">
                     
                                   <div class="input-group">
                     
@@ -245,6 +250,8 @@
                                 </div>
 
                               </div>';
+
+
                         
 
                         }

@@ -86,7 +86,7 @@ $(".consultationTable tbody ").on("click", "button.addProductSale", function(){
 
 			  '<!-- Product description -->'+
 	          
-	          '<div class="col-xs-6" style="padding-right:0px">'+
+	          '<div class="col-xs-8" style="padding-right:0px">'+
 	          
 	            '<div class="input-group">'+
 	              
@@ -100,25 +100,13 @@ $(".consultationTable tbody ").on("click", "button.addProductSale", function(){
 
 	          '<!-- Product quantity -->'+
 
-	          '<div class="col-xs-3 enterQuantity">'+
+	          '<div class="col-xs-4 enterQuantity">'+
 	            
 	             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="'+stock+'" newStock="'+Number(stock-1)+'" required>'+
 
 			  '</div>' +
 			  
-			  '<!-- product usage -->'+
 
-	          '<div class="col-xs-3 enterUsage" style="padding-left:0px;">'+
-
-	            '<div class="input-group">'+
-
-	              '<span class="input-group-addon"><i class="fa fa-repeat"></i></span>'+
-	                 
-	              '<input type="text" class="form-control newProductUsage" idProduct="'+idProduct+'" name="addProductUsage" usage="" required>'+
-	 
-	            '</div>'+
-	             
-	          '</div>'+
 
 	          '<!-- product price -->'+
 
@@ -131,11 +119,31 @@ $(".consultationTable tbody ").on("click", "button.addProductSale", function(){
 	            '</div>'+
 	             
 			  '</div>'+
+
+			  '</div>' + 
+
+			  
+
+			  '<!-- product usage -->'+
+
+			  '<div class="row" style="padding:5px 15px">'+
+
+				'<div class="col-xs-8 enterUsage" style="padding-right:0px">'+
+
+					'<div class="input-group">'+
+
+					'<span class="input-group-addon"><i class="fa fa-repeat"></i></span>'+
+						
+					'<input type="text" class="form-control newProductUsage" idProduct="'+idProduct+'" name="addProductUsage" usage="" required>'+
+		
+					'</div>'+
+	             
+	            '</div>'+
 			  
 
 
 
-	        '</div>')
+	          '</div>')
 
 	        // ADDING TOTAL PRICES
 
@@ -190,7 +198,9 @@ localStorage.removeItem("removeProduct");
 $(".consultationForm").on("click", "button.removeProduct", function(){
 
 	console.log("$(this)", $(this));
+	$(this).parent().parent().parent().parent().siblings(".row")[0].remove();
 	$(this).parent().parent().parent().parent().remove();
+	
 
 	var idProduct = $(this).attr("idProduct");
 	console.log("idProduct", idProduct);
