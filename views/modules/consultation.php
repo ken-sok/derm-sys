@@ -123,7 +123,7 @@
                         
                       <div class="btn-group">
 
-                      <button href = "#" class="btn btn-info btnPrintBill" saleCode="'.$value["code"].'">
+                      <button href = "#" class="btn btn-info btnPrintConsult" saleCode="'.$value["code"].'">
 
                         <i class="fa fa-print"></i>
 

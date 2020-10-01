@@ -29,6 +29,7 @@ public $code;
 
 public function getDiagnosisSaved(){
 
+        /*
 $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
 $drawing->setName('Logo');
 $drawing->setDescription('Logo');
@@ -36,7 +37,7 @@ $drawing->setPath('whole-top.png');
 $drawing->setHeight(2.24);
 $drawing->setWidth(5.07);
 $drawing->setCoordinates('A1');
-
+*/
 
 //WE BRING THE INFORMATION OF THE SALE
 
@@ -130,7 +131,16 @@ $spreadsheet->getDefaultStyle()
         ->setSize(10);
         
         
-$drawing->setWorksheet($spreadsheet->getActiveSheet());
+//$drawing->setWorksheet($spreadsheet->getActiveSheet());
+
+
+
+
+
+
+
+
+/*
 //set the header first, so the result will be treated as an xlsx file.
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
@@ -141,6 +151,13 @@ header('Content-Disposition: attachment;filename="'.$valueSale.'.xlsx"');
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 //save into php output
 $writer->save('php://output');
+*/
+
+
+$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load('C:\Users\khean\Downloads\10007.xlsx');
+$writer     =\PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Tcpdf');
+$pdf_path   =$valueSale.'.pdf'; 
+$writer->save($pdf_path);
 
 }
 

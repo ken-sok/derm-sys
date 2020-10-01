@@ -559,11 +559,12 @@ $(".tables").on("click", ".btnDeleteSale", function(){
 PRINT BILL
 =============================================*/
 
-$(".tables").on("click", ".btnPrintBill", function(){
+$(".tables").on("click", ".btnPrintConsult", function(){
 
 	var saleCode = $(this).attr("saleCode");
 
 	window.open("extensions/receipt/receipt.php?code="+saleCode, "_blank");
+	//window.open("extensions/tcpdf/examples/example_001.php", "_blank");
 
 })
 
