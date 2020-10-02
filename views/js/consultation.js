@@ -537,7 +537,21 @@ $('.consultationTable').on( 'draw.dt', function(){
 
 })
 
+/*=============================================
+SEARCH CUSTOMER HISTORY SALE
+=============================================*/
 
+$(".tables").on("click", ".btnCusHistory", function(){
+
+	var cusName = $(this).attr("cusName");
+	console.log(cusName);
+
+	//put into search bar
+	document.getElementsByTagName('input')[0].value = cusName[0];
+	document.getElementsByTagName('input')[0].value = cusName;  	
+
+
+})
 
 /*=============================================
 DELETE SALE
