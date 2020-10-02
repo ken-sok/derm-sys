@@ -123,36 +123,33 @@ https://www.youtube.com/watch?v=apnjySgEK1c
 ------------------------------------------------------------
 Login module - no charge
 	- about 30 mins -> done in 1hr10mins
-------------------------------------------------------------------
-Click patient name get history -> last 
-	- think about how
-	- somehow get the name into searchbar or put data into 1 modal  2hr
 
-consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
+longer frequency of use column (15 mins) -> done in 30 mins
+------------------------------------------------------------------
+8 Click patient name get history -> last -> somehow get the name into searchbar -> js
+
+1 add consultation on phone (1hr)
+
+2 pictures - how many? 4 (1hr)
+
+3 fix add diagnosis consult page -> link to diag page
+
+4 fix date range for consult / sales -> done
+
+5 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
 	- template design done -> done 1hr
 	- test print preview -> in 1.5hr -> done
 	- tcpdf -> thurs on
-	- print pdf function
+	- print pdf function -> pivot to adding to pdf on fri
 
-
-Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
+6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks
-
-add consultation on phone (1hr)
-longer frequency of use column (15 mins)
-pictures - how many? 4 (1hr)
-
-
-view one customer's history with range &/ diagnosis filter (2hrs) 
-
-fix add diagnosis consult page
-----------------------friday
-lock my code from being copiedadd for the doc's desktop (1hr research)
-
-
-----------later
+7 lock my code from being copiedadd for the doc's desktop (1hr research)
+----------later/skip
 delete visits code (30mins)
 
 delete stocks code (30 mins)
+
+view one customer's history with range &/ diagnosis filter (2hrs) -> type in name and disease
 ---------------
 total: 12hrs + 2hr buffer

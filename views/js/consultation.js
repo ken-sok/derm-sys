@@ -583,7 +583,7 @@ $(".tables").on("click", ".btnPrintConsult", function(){
 DATES RANGE
 =============================================*/
 
-$('#daterange-btn').daterangepicker(
+$('#daterange-btn-consult').daterangepicker(
   {
     ranges   : {
       'Today'       : [moment(), moment()],
@@ -597,18 +597,19 @@ $('#daterange-btn').daterangepicker(
     endDate  : moment()
   },
   function (start, end) {
-    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+
+    $('#daterange-btn-consult span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
 
     var initialDate = start.format('YYYY-MM-DD');
 
     var finalDate = end.format('YYYY-MM-DD');
 
-    var captureRange = $("#daterange-btn span").html();
+    var captureRange = $("#daterange-btn-consult span").html();
    
    	localStorage.setItem("captureRange", captureRange);
    	console.log("localStorage", localStorage);
 
-   	window.location = "index.php?route=sales&initialDate="+initialDate+"&finalDate="+finalDate;
+   	window.location = "index.php?route=consultation&initialDate="+initialDate+"&finalDate="+finalDate;
 
   }
 
@@ -617,20 +618,21 @@ $('#daterange-btn').daterangepicker(
 /*=============================================
 CANCEL DATES RANGE
 =============================================*/
-
-$(".daterangepicker.opensleft .range_inputs .cancelBtn").on("click", function(){
-
+$('#daterange-btn-consult').on('cancel.daterangepicker', function(ev, picker) {
+	$(this).val('');
 	localStorage.removeItem("captureRange");
 	localStorage.clear();
-	window.location = "sales";
-})
+	window.location = "consultation";
+});
+
 
 /*=============================================
 CAPTURE TODAY'S BUTTON
 =============================================*/
+$("#daterange-btn-consult").on("click", function() {
+$(".daterangepicker.opensleft .ranges li").on("click", function() {
 
-$(".daterangepicker.opensleft .ranges li").on("click", function(){
-
+	//console.log("in");
 	var todayButton = $(this).attr("data-range-key");
 
 	if(todayButton == "Today"){
@@ -665,11 +667,13 @@ $(".daterangepicker.opensleft .ranges li").on("click", function(){
 
     	localStorage.setItem("captureRange", "Today");
 
-    	window.location = "index.php?route=sales&initialDate="+initialDate+"&finalDate="+finalDate;
+    	window.location = "index.php?route=consultation&initialDate="+initialDate+"&finalDate="+finalDate;
 
 	}
 
 })
+})
+
 
 /*=============================================
 OPEN XML FILE IN A NEW TAB

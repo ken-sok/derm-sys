@@ -33,7 +33,7 @@
           </button>
         </a>
 
-        <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+        <button type="button" class="btn btn-default pull-right" id="daterange-btn-sales">
            
             <span>
               <i class="fa fa-calendar"></i> Date Range

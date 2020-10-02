@@ -153,7 +153,7 @@
                           ?>
 
                       </select>
-
+                      
                       <span class="input-group-addon"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#addDiagnosis" data-dismiss="modal">Add Diagnosis</button></span>
 
                       </div>
@@ -472,7 +472,7 @@ MODAL ADD CUSTOMER
 
     <div class="modal-content">
 
-      <form role="form" method="POST" enctype="multipart/form-data">
+      <form role="form" method="POST">
 
         <!--=====================================
         HEADER
