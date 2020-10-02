@@ -131,7 +131,7 @@
                         
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                        
-                        <select class="form-control" name="newDiagnosis" id="newDiagnosis" required>
+                        <select class="form-control" name="selectDiagnosis" id="selectDiagnosis" required>
                           
                           <option value="">Select diagnosis</option>
 

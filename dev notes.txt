@@ -132,7 +132,7 @@ longer frequency of use column (15 mins) -> done in 30 mins
 
 2 pictures - how many? 4 (1hr)
 
-3 fix add diagnosis consult page -> link to diag page
+3 fix add diagnosis consult page -> link to diag page-> changed name of diag -> fixed
 
 4 fix date range for consult / sales -> done
 
@@ -144,8 +144,13 @@ longer frequency of use column (15 mins) -> done in 30 mins
 
 6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks
-7 lock my code from being copiedadd for the doc's desktop (1hr research)
+
+
+
 ----------later/skip
+
+7 lock my code from being copiedadd for the doc's desktop (1hr research)
+
 delete visits code (30mins)
 
 delete stocks code (30 mins)

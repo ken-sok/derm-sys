@@ -165,7 +165,7 @@ class ControllerSales{
 						   "receipt"=>$_POST["productsList"], 
 						   "totalPrice"=>$_POST["saleTotal"],
 						   "comment"=>$_POST["comment"],
-						   "diagnosis"=>$_POST["newDiagnosis"]	);
+						   "diagnosis"=>$_POST["selectDiagnosis"]	);
 
 			$answer = ModelSales::mdlAddSale($table, $data);
 
