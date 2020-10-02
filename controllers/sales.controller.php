@@ -668,7 +668,7 @@ class ControllerSales{
 
 				swal({
 					  type: "success",
-					  title: "The consultation has been deleted succesfully",	
+					  title: "The consultation and receipt has been deleted succesfully",	
 					  showConfirmButton: true,
 					  confirmButtonText: "Close",
 					  closeOnConfirm: false

@@ -131,11 +131,12 @@
 
                        
                          echo '<button class="btn btn-warning btnEditConsultation" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-
-                          <button class="btn btn-danger btnDeleteSale" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>
+                          <button class="btn btn-info btnCusHistory" cusName="'.$customerAnswer["name"].'"><i class="fa fa-search"></i></button>
+                          <button class="btn btn-danger btnDeleteConsultation" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>';
                           
-                          <button class="btn btn-info btnCusHistory" cusName="'.$customerAnswer["name"].'"><i class="fa fa-search"></i></button>';
+                         
                        
+
 
                    echo '</div>  
 

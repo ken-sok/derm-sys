@@ -465,14 +465,14 @@ $(".tables").on("click", ".btnDeleteSale", function () {
   var idSale = $(this).attr("idSale");
 
   swal({
-    title: "Are you sure you want to delete the sale?",
+    title: "Are you sure you want to delete the consultation and receipt?",
     text: "If you're not you can cancel!",
     type: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     cancelButtonText: "Cancel",
-    confirmButtonText: "Yes, delete sale!",
+    confirmButtonText: "Yes, delete all!",
   }).then(function (result) {
     if (result.value) {
       window.location = "index.php?route=sales&idSale=" + idSale;
@@ -487,7 +487,7 @@ PRINT BILL
 $(".tables").on("click", ".btnPrintBill", function () {
   var saleCode = $(this).attr("saleCode");
 
-  window.open("extensions/receipt/receipt.php?code=" + saleCode, "_blank");
+  //window.open("extensions/receipt/receipt.php?code=" + saleCode, "_blank");
 });
 
 /*=============================================

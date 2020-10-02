@@ -483,7 +483,7 @@ function listProducts(){
 
 
 /*=============================================
-EDIT SALE BUTTON
+EDIT CONSULT BUTTON
 =============================================*/
 $(".tables").on("click", ".btnEditConsultation", function(){
 
@@ -556,23 +556,23 @@ $(".tables").on("click", ".btnCusHistory", function(){
 /*=============================================
 DELETE SALE
 =============================================*/
-$(".tables").on("click", ".btnDeleteSale", function(){
+$(".tables").on("click", ".btnDeleteConsultation", function(){
 
   var idSale = $(this).attr("idSale");
 
   swal({
-        title: 'Are you sure you want to delete the consultation?',
+        title: 'Are you sure you want to delete the consultation and receipt?',
         text: "If you're not you can cancel!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancel',
-        confirmButtonText: 'Yes, delete consultation!'
+        confirmButtonText: 'Yes, delete all!'
       }).then(function(result){
         if (result.value) {
           
-            window.location = "index.php?route=sales&idSale="+idSale;
+            window.location = "index.php?route=consultation&idSale="+idSale;
         }
 
   })
@@ -586,7 +586,7 @@ PRINT BILL
 $(".tables").on("click", ".btnPrintConsult", function(){
 
 	var saleCode = $(this).attr("saleCode");
-
+	//should change this to consult.php
 	window.open("extensions/receipt/receipt.php?code="+saleCode, "_blank");
 	//window.open("extensions/tcpdf/examples/example_001.php", "_blank");
 

@@ -110,17 +110,17 @@
                         
                       <div class="btn-group">
 
-                      <!--
+                      
                       <button href = "#" class="btn btn-info btnPrintBill" saleCode="'.$value["code"].'">
 
                         <i class="fa fa-print"></i>
 
-                      </button>-->';
+                      </button>';
                       
 
                        
                          echo '<button class="btn btn-warning btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
-
+                          <button class="btn btn-info btnCusHistory" cusName="'.$customerAnswer["name"].'"><i class="fa fa-search"></i></button>
                           <button class="btn btn-danger btnDeleteSale" idSale="'.$value["id"].'"><i class="fa fa-times"></i></button>';
                        
 
