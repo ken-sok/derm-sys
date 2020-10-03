@@ -748,8 +748,9 @@ $(function () {
 /*=============================================
 UPLOAD CONSULTATION IMAGE
 =============================================*/
-
-$(".newPhoto").change(function () {
+//$numConsultPhotos = 0; 
+$(".newConsultPhoto").change(function () {
+	console.log($numConsultPhotos);
 	var newImage = this.files[0];
 
 	/*===============================================
@@ -783,9 +784,12 @@ $(".newPhoto").change(function () {
 		$(imgData).on("load", function (event) {
 			var routeImg = event.target.result;
 
-			$(".preview").attr("src", routeImg);
+			$("#preview1").attr("src", routeImg);
 		});
 	}
+
+	//new file 
+	$numConsultPhotos = $numConsultPhotos + 1; 
 
 	/*=====  End of validating image format  ======*/
 });

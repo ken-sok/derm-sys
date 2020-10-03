@@ -31,7 +31,8 @@
 
           <div class="box-header with-border"></div>
 
-          <form role="form" method="post" class="consultationForm">
+          <!--need multipart/form-data for file upload-->
+          <form role="form" method="post" class="consultationForm" enctype="multipart/form-data">
 
             <div class="box-body">
                 
@@ -195,8 +196,41 @@
                     ======================================-->
                     
                     <button type="button" class="btn btn-default hidden-lg btnAddProductConsult">Add Product</button>
-                    
-                   
+                    <hr>  
+
+
+                    <!--=====================================
+                    =            ADD IMAGE BUTTON          =
+                    ======================================-->
+                    <!-- input image -->
+                    <div class="form-group">
+                      <div class="input-group"> 
+
+                        <div class="panel">Upload image</div>
+                        <p class="help-block">Maximum size 2Mb</p>
+
+                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview1" alt="" width="100px">
+                        <input type="file" name="newConsultPhoto[]" class="newConsultPhoto" > 
+                        
+                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
+                        <input type="file" name="newConsultPhoto[]" class="newConsultPhoto" > 
+                        
+                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
+                        <input type="file" name="newConsultPhoto[]" class="newConsultPhoto" > 
+                        
+                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
+                        <input type="file" name="newConsultPhoto[]" class="newConsultPhoto"> 
+                        
+                        <!--
+                        <input id="newConsultPhoto" type="file" class="newImage" name="newConsultPhoto">
+
+                      
+                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
+                        -->
+
+                      </div>
+
+                    </div> 
 
                     <hr>
 
@@ -213,20 +247,7 @@
 
                     </div> 
 
-                    <!-- input image -->
-                    <div class="form-group">
 
-                    <div class="input-group">
-
-                      <div class="panel">Upload image</div>
-
-                      <input id="newConsultPhoto" type="file" class="newPhoto" name="newConsultPhoto">
-
-                      <p class="help-block">Maximum size 2Mb</p>
-
-                      <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
-                    </div>
-                    </div>
 
                     <div class="row" >
 

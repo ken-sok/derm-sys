@@ -89,8 +89,9 @@ class ControllerSales{
 				VALIDATE IMAGE
 			=============================================*/
 
-			$route = "views/img/products/default/anonymous.png";
-			printf($_FILES["newConsultPhoto"]["tmp_name"]);
+			$route = "views/img/consultations/default/anonymous.png";
+			
+			
 			if(isset($_FILES["newConsultPhoto"]["tmp_name"])){
 
 				list($width, $height) = getimagesize($_FILES["newConsultPhoto"]["tmp_name"]);
@@ -102,7 +103,7 @@ class ControllerSales{
 				we create the folder to save the picture
 				=============================================*/
 
-				$folder = "views/img/products/".$_POST["newSale"];
+				$folder = "views/img/consultations/".$_POST["newSale"];
 
 				mkdir($folder, 0755);
 
@@ -118,7 +119,7 @@ class ControllerSales{
 
 					$random = mt_rand(100,999);
 
-					$route = "views/img/products/".$_POST["newSale"]."/".$random.".jpg";
+					$route = "views/img/consultations/".$_POST["newSale"]."/".$random.".jpg";
 
 					$origin = imagecreatefromjpeg($_FILES["newConsultPhoto"]["tmp_name"]);						
 
@@ -138,7 +139,7 @@ class ControllerSales{
 
 					$random = mt_rand(100,999);
 
-					$route = "views/img/products/".$_POST["newSale"]."/".$random.".png";
+					$route = "views/img/consultations/".$_POST["newSale"]."/".$random.".png";
 
 					$origin = imagecreatefrompng($_FILES["newConsultPhoto"]["tmp_name"]);						
 
@@ -166,7 +167,7 @@ class ControllerSales{
 						   "totalPrice"=>$_POST["saleTotal"],
 						   "comment"=>$_POST["comment"],
 						   "diagnosis"=>$_POST["selectDiagnosis"], 
-						   "images" => $_FILES["newConsultPhoto"]["tmp_name"]);
+						   "images" => $route);
 
 			$answer = ModelSales::mdlAddSale($table, $data);
 
