@@ -41,6 +41,8 @@ class productsTableConsultation{
 					
 					$image = "<img src='".$products[$i]["image"]."' width='40px'>";
 
+					 
+
 
 		  			/*=============================================
 		 	 		ACTION BUTTONS

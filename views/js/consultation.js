@@ -554,6 +554,10 @@ $(".tables").on("click", ".btnEditConsultation", function () {
 	var idSale = $(this).attr("idSale");
 
 	window.location = "index.php?route=edit-consultation&idSale=" + idSale;
+
+	
+
+
 });
 
 /*=============================================

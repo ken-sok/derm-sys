@@ -132,23 +132,28 @@ longer frequency of use column (15 mins) -> done in 30 mins
 view one customer's history with range &/ diagnosis filter (2hrs) -> type in name and disease
 1 add consultation on phone (1hr) -> added for consult, not tested CRUD, sales next -> done 1hr
 
-2 pictures - how many? 4 (1hr)
-- create consult -> done
-- edit consult 
+2 pictures - how many? 
+- create consult -> done 1.5hr
+- edit consult -> 1hr
 - does it affect sales -> edit sales? 
 - delete consult
+
+
 5 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
 	- template design done -> done 1hr
-	- test print preview -> in 1.5hr -> done
+	- test print preview -> in 1 -> only cracked showing image
 	- tcpdf -> thurs on
 	- print pdf function -> pivot to adding to pdf on fri
 
 6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks
 
+
+7 test -> alll CRUD
+8 lock my code from being copiedadd for the doc's desktop (1hr research)
+
 ----------later
 
-7 lock my code from being copiedadd for the doc's desktop (1hr research)
 
 delete visits code (30mins)
 

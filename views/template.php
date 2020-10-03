@@ -53,7 +53,8 @@
   <!-- Appointment Picker -->
   <link rel="stylesheet" href = "views/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css">
          
-  
+  <!--image-consult-preview-->
+  <link rel="stylesheet" href = "views/bower_components/image-consult/hover-enlarge.css">
   
   <!--====  End of Plugins CSS  ====-->
   

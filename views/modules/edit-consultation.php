@@ -266,7 +266,63 @@
                     ======================================-->
                     
                     <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add Product</button>
+                    
+                    <hr>
 
+                    <!--=====================================
+                    =            ADD IMAGE BUTTON          =
+                    ======================================-->
+                    <!-- input image -->
+                    <?php
+                    $ConsultPhotos = json_decode($sale["images"], true);
+                    ?>
+
+                    
+                    <div class="form-group">
+                      <div class="input-group"> 
+
+                      <div class="panel">Upload image</div>
+                      <p class="help-block">Maximum size 2Mb</p>
+
+                      <div class="row" style="padding-left: 30%; padding-bottom: 10%;">
+                      
+                        <div class="col-xs-5" >
+
+                          <img src="<?php echo $ConsultPhotos[0]; ?>" class="img-thumbnail preview" id = "preview0" alt="" width="100px">
+                          <input type="file" name="editConsultPhoto[]" id = "newConsultPhoto0" style="display:none;"> 
+                          <label for="newConsultPhoto0">Select file</label>
+                        </div>
+                        
+                        <div class="col-xs-5">
+                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview1" alt="" width="100px">
+                          <input type="file" name="editConsultPhoto[]" id = "newConsultPhoto1" style="display:none;"> 
+                          <label for="newConsultPhoto1">Select file</label>
+                        </div>
+                      </div>
+                        
+                        <div class="row" style="padding-left: 30% ; padding-bottom: 10%;">
+                        <div class="col-xs-5">
+                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview"  id = "preview2" alt="" width="100px">
+                          <input type="file" name="editConsultPhoto[]" id = "newConsultPhoto2" style="display:none;"> 
+                          <label for="newConsultPhoto2">Select file</label>
+                        </div>
+                        
+                        <div class="col-xs-5">
+                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview3" alt="" width="100px">
+                          <input type="file" name="editConsultPhoto[]" id = "newConsultPhoto3" style="display:none;"> 
+                          <label for="newConsultPhoto3">Select file</label>
+                        </div>
+
+                      </div>
+
+                      <input type="hidden" name="currentConsultPhoto" id="currentConsultPhoto" value="<?php echo $sale["images"]; ?>">
+
+
+                      </div>
+
+                    </div> 
+
+                   
                     <hr>
 
                      <!-- product comment -->
