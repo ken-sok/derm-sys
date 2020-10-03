@@ -131,6 +131,115 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function () {
 });
 
 /*=============================================
+ADDING PRODUCT FROM A DEVICE
+=============================================*/
+
+var numProduct = 0;
+
+$(".btnAddProductSale").click(function () {
+	numProduct++;
+
+	var datum = new FormData();
+	datum.append("getProducts", "ok");
+
+	$.ajax({
+		url: "ajax/products.ajax.php",
+		method: "POST",
+		data: datum,
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType: "json",
+		success: function (answer) {
+			$(".newProduct").append(
+				'<div class="row" style="padding:5px 15px">'+
+
+			  '<!-- Product description -->'+
+	          
+	          '<div class="col-xs-6" style="padding-right:0px">'+
+	          
+	            '<div class="input-group">'+
+	              
+	              '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct><i class="fa fa-times"></i></button></span>'+
+
+	              '<select class="form-control newProductDescription" id="product'+numProduct+'" idProduct name="newProductDescription" required>'+
+
+	              '<option>Select product</option>'+
+
+	              '</select>'+  
+
+	            '</div>'+
+
+	          '</div>'+
+
+	          '<!-- Product quantity -->'+
+
+	          '<div class="col-xs-3 enterQuantity">'+
+	            
+	             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock newStock required>'+
+
+	          '</div>' +
+
+	          '<!-- Product price -->'+
+
+	          '<div class="col-xs-3 enterPrice">'+
+
+	            '<div class="input-group">'+
+
+	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	                 
+	              '<input type="text" class="form-control newProductPrice" realPrice="" name="newProductPrice" required>'+
+	 
+	            '</div>'+
+	             
+	          '</div>'+
+
+		
+			
+            "<!-- product usage -->" +
+            '<div class="col-xs-3 enterUsage" style="visibility:hidden;">' +
+            '<div class="input-group">' +
+            '<input type="hidden" class="form-control newProductUsage" id="product'+numProduct+'" idProduct' + 
+            '" name="addProductUsage" usage="" required>' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+
+					"</div>");
+
+
+			// ADDING PRODUCTS TO THE SELECT
+
+			answer.forEach(functionForEach);
+
+			function functionForEach(item, index) {
+				
+					$("#product" + numProduct).append(
+						'<option idProduct="' +
+						item.id +
+						'" value="' +
+						item.description +
+						'">' +
+						item.description +
+						"</option>"
+					);
+				
+			}
+
+			// ADDING TOTAL PRICES
+
+			addingTotalPrices();
+
+
+			// SET FORMAT TO THE PRODUCT PRICE
+
+			$(".newProductPrice").number(true, 2);
+		},
+	});
+});
+
+
+/*=============================================
 WHEN TABLE LOADS EVERYTIME THAT NAVIGATE IN IT
 =============================================*/
 
@@ -163,7 +272,9 @@ localStorage.removeItem("removeProduct");
 
 $(".saleForm").on("click", "button.removeProduct", function () {
   console.log("$(this)", $(this));
-  $(this).parent().parent().parent().parent().remove();
+  
+  //$(this).parent().parent().parent().parent().siblings(".row")[0].remove();
+	$(this).parent().parent().parent().parent().remove();
 
   var idProduct = $(this).attr("idProduct");
   console.log("idProduct", idProduct);

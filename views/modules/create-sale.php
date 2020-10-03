@@ -190,7 +190,7 @@
                     =            ADD PRODUCT BUTTON          =
                     ======================================-->
                     
-                    <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add Product</button>
+                    <button type="button" class="btn btn-default hidden-lg btnAddProductSale">Add Product</button>
                     
                    
 
@@ -264,7 +264,7 @@
             </div>
 
             <div class="box-footer">
-              <button type="submit" class="btn btn-primary pull-right">Save consultation</button>
+              <button type="submit" class="btn btn-primary pull-right">Save receipt</button>
             </div>
           </form>
 

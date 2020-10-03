@@ -25,10 +25,10 @@
 
       <div class="box-header with-border">
 
-        <a href="create-consultation">
+        <a href="create-sale">
           <button class="btn btn-primary" >
         
-            Add consultation
+            Add receipt
   
           </button>
         </a>
