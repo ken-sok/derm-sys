@@ -90,7 +90,7 @@ class ControllerSales{
 			=============================================*/
 
 			$route = "views/img/products/default/anonymous.png";
-
+			printf($_FILES["newConsultPhoto"]["tmp_name"]);
 			if(isset($_FILES["newConsultPhoto"]["tmp_name"])){
 
 				list($width, $height) = getimagesize($_FILES["newConsultPhoto"]["tmp_name"]);
@@ -165,7 +165,8 @@ class ControllerSales{
 						   "receipt"=>$_POST["productsList"], 
 						   "totalPrice"=>$_POST["saleTotal"],
 						   "comment"=>$_POST["comment"],
-						   "diagnosis"=>$_POST["selectDiagnosis"]	);
+						   "diagnosis"=>$_POST["selectDiagnosis"], 
+						   "images" => $_FILES["newConsultPhoto"]["tmp_name"]);
 
 			$answer = ModelSales::mdlAddSale($table, $data);
 

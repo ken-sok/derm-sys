@@ -213,8 +213,10 @@
 
                     </div> 
 
-            <!-- input image -->
+                    <!-- input image -->
                     <div class="form-group">
+
+                    <div class="input-group">
 
                       <div class="panel">Upload image</div>
 
@@ -223,6 +225,7 @@
                       <p class="help-block">Maximum size 2Mb</p>
 
                       <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
+                    </div>
                     </div>
 
                     <div class="row" >
