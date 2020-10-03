@@ -88,13 +88,16 @@ class ControllerSales{
 			/*=============================================
 				VALIDATE IMAGE
 			=============================================*/
-
-			$route = "views/img/consultations/default/anonymous.png";
 			
-			
-			if(isset($_FILES["newConsultPhoto"]["tmp_name"])){
+			if(isset($_FILES["newConsultPhoto"])){
+				$routeArray = array();
 
-				list($width, $height) = getimagesize($_FILES["newConsultPhoto"]["tmp_name"]);
+				for($i=0; $i < count($_FILES["newConsultPhoto"]); $i++){
+
+
+				$route = "views/img/consultations/default/anonymous.png";
+				
+				list($width, $height) = getimagesize($_FILES["newConsultPhoto"]["tmp_name"][$i]);
 
 				$newWidth = 500;
 				$newHeight = 500;
@@ -111,7 +114,7 @@ class ControllerSales{
 				WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
 				=============================================*/
 
-				if($_FILES["newConsultPhoto"]["type"] == "image/jpeg"){
+				if($_FILES["newConsultPhoto"]["type"][$i] == "image/jpeg"){
 
 					/*=============================================
 					WE SAVE THE IMAGE IN THE FOLDER
@@ -121,7 +124,7 @@ class ControllerSales{
 
 					$route = "views/img/consultations/".$_POST["newSale"]."/".$random.".jpg";
 
-					$origin = imagecreatefromjpeg($_FILES["newConsultPhoto"]["tmp_name"]);						
+					$origin = imagecreatefromjpeg($_FILES["newConsultPhoto"]["tmp_name"][$i]);						
 
 					$destiny = imagecreatetruecolor($newWidth, $newHeight);
 
@@ -131,7 +134,7 @@ class ControllerSales{
 
 				}
 
-				if($_FILES["newConsultPhoto"]["type"] == "image/png"){
+				if($_FILES["newConsultPhoto"]["type"][$i] == "image/png"){
 
 					/*=============================================
 					WE SAVE THE IMAGE IN THE FOLDER
@@ -141,7 +144,7 @@ class ControllerSales{
 
 					$route = "views/img/consultations/".$_POST["newSale"]."/".$random.".png";
 
-					$origin = imagecreatefrompng($_FILES["newConsultPhoto"]["tmp_name"]);						
+					$origin = imagecreatefrompng($_FILES["newConsultPhoto"]["tmp_name"][$i]);						
 
 					$destiny = imagecreatetruecolor($newWidth, $newHeight);
 
@@ -151,9 +154,12 @@ class ControllerSales{
 
 				}
 
+				array_push($routeArray, $route);
+
 			}
+		}
 
-
+			$routeArrayJSON = json_encode($routeArray);
 			/*=============================================
 			SAVE THE SALE
 			=============================================*/	
@@ -167,7 +173,7 @@ class ControllerSales{
 						   "totalPrice"=>$_POST["saleTotal"],
 						   "comment"=>$_POST["comment"],
 						   "diagnosis"=>$_POST["selectDiagnosis"], 
-						   "images" => $route);
+						   "images" => $routeArrayJSON);
 
 			$answer = ModelSales::mdlAddSale($table, $data);
 

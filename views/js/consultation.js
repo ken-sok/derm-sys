@@ -748,9 +748,9 @@ $(function () {
 /*=============================================
 UPLOAD CONSULTATION IMAGE
 =============================================*/
-//$numConsultPhotos = 0; 
-$(".newConsultPhoto").change(function () {
-	console.log($numConsultPhotos);
+
+$('#newConsultPhoto0') .change(function () {
+
 	var newImage = this.files[0];
 
 	/*===============================================
@@ -758,7 +758,7 @@ $(".newConsultPhoto").change(function () {
 	  ===============================================*/
 
 	if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png") {
-		$(".newPhoto").val("");
+		$(".newConsultPhoto").val("");
 
 		swal({
 			type: "error",
@@ -768,7 +768,7 @@ $(".newConsultPhoto").change(function () {
 			confirmButtonText: "Close",
 		});
 	} else if (newImage["size"] > 2000000) {
-		$(".newPhoto").val("");
+		$(".newConsultPhoto").val("");
 
 		swal({
 			type: "error",
@@ -783,13 +783,164 @@ $(".newConsultPhoto").change(function () {
 
 		$(imgData).on("load", function (event) {
 			var routeImg = event.target.result;
+			
+			var preview = '#preview0';
+			
+			console.log(preview);
+			$(preview).attr("src", routeImg);
 
-			$("#preview1").attr("src", routeImg);
+	
 		});
 	}
 
-	//new file 
-	$numConsultPhotos = $numConsultPhotos + 1; 
+
+
+	/*=====  End of validating image format  ======*/
+});
+
+$('#newConsultPhoto1') .change(function () {
+
+	var newImage = this.files[0];
+
+	/*===============================================
+	  =            validating image format            =
+	  ===============================================*/
+
+	if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png") {
+		$(".newConsultPhoto").val("");
+
+		swal({
+			type: "error",
+			title: "Error uploading image",
+			text: "Image has to be JPEG or PNG!",
+			showConfirmButton: true,
+			confirmButtonText: "Close",
+		});
+	} else if (newImage["size"] > 2000000) {
+		$(".newConsultPhoto").val("");
+
+		swal({
+			type: "error",
+			title: "Error uploading image",
+			text: "Image too big. It has to be less than 2Mb!",
+			showConfirmButton: true,
+			confirmButtonText: "Close",
+		});
+	} else {
+		var imgData = new FileReader();
+		imgData.readAsDataURL(newImage);
+
+		$(imgData).on("load", function (event) {
+			var routeImg = event.target.result;
+			
+			var preview = '#preview1';
+			
+			console.log(preview);
+			$(preview).attr("src", routeImg);
+
+	
+		});
+	}
+
+
+
+	/*=====  End of validating image format  ======*/
+});
+
+$('#newConsultPhoto2') .change(function () {
+
+	var newImage = this.files[0];
+
+	/*===============================================
+	  =            validating image format            =
+	  ===============================================*/
+
+	if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png") {
+		$(".newConsultPhoto").val("");
+
+		swal({
+			type: "error",
+			title: "Error uploading image",
+			text: "Image has to be JPEG or PNG!",
+			showConfirmButton: true,
+			confirmButtonText: "Close",
+		});
+	} else if (newImage["size"] > 2000000) {
+		$(".newConsultPhoto").val("");
+
+		swal({
+			type: "error",
+			title: "Error uploading image",
+			text: "Image too big. It has to be less than 2Mb!",
+			showConfirmButton: true,
+			confirmButtonText: "Close",
+		});
+	} else {
+		var imgData = new FileReader();
+		imgData.readAsDataURL(newImage);
+
+		$(imgData).on("load", function (event) {
+			var routeImg = event.target.result;
+			
+			var preview = '#preview2';
+			
+			console.log(preview);
+			$(preview).attr("src", routeImg);
+
+	
+		});
+	}
+
+
+
+	/*=====  End of validating image format  ======*/
+});
+
+$('#newConsultPhoto3') .change(function () {
+
+	var newImage = this.files[0];
+
+	/*===============================================
+	  =            validating image format            =
+	  ===============================================*/
+
+	if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png") {
+		$(".newConsultPhoto").val("");
+
+		swal({
+			type: "error",
+			title: "Error uploading image",
+			text: "Image has to be JPEG or PNG!",
+			showConfirmButton: true,
+			confirmButtonText: "Close",
+		});
+	} else if (newImage["size"] > 2000000) {
+		$(".newConsultPhoto").val("");
+
+		swal({
+			type: "error",
+			title: "Error uploading image",
+			text: "Image too big. It has to be less than 2Mb!",
+			showConfirmButton: true,
+			confirmButtonText: "Close",
+		});
+	} else {
+		var imgData = new FileReader();
+		imgData.readAsDataURL(newImage);
+
+		$(imgData).on("load", function (event) {
+			var routeImg = event.target.result;
+			
+			var preview = '#preview3';
+			
+			console.log(preview);
+			$(preview).attr("src", routeImg);
+
+	
+		});
+	}
+
+
 
 	/*=====  End of validating image format  ======*/
 });

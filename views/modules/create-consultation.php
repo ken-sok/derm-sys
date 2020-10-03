@@ -206,21 +206,35 @@
                     <div class="form-group">
                       <div class="input-group"> 
 
-                        <div class="panel">Upload image</div>
-                        <p class="help-block">Maximum size 2Mb</p>
+                      <div class="panel">Upload image</div>
+                      <p class="help-block">Maximum size 2Mb</p>
 
-                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview1" alt="" width="100px">
-                        <input type="file" name="newConsultPhoto[]" class="newConsultPhoto" > 
+                      <div class="row" style="padding:5px 15px">
+                      
+                        <div class="col-xs-5">
+
+                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview0" alt="" width="100px">
+                          <input type="file" name="newConsultPhoto[]" id = "newConsultPhoto0"> 
+                        </div>
                         
-                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
-                        <input type="file" name="newConsultPhoto[]" class="newConsultPhoto" > 
+                        <div class="col-xs-5">
+                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview1" alt="" width="100px">
+                          <input type="file" name="newConsultPhoto[]" id = "newConsultPhoto1"> 
+                        </div>
+                      </div>
                         
-                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
-                        <input type="file" name="newConsultPhoto[]" class="newConsultPhoto" > 
+                        <div class="row" style="padding:5px 15px">
+                        <div class="col-xs-5">
+                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview"  id = "preview2" alt="" width="100px">
+                          <input type="file" name="newConsultPhoto[]" id = "newConsultPhoto2" > 
+                        </div>
                         
-                        <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" alt="" width="100px">
-                        <input type="file" name="newConsultPhoto[]" class="newConsultPhoto"> 
-                        
+                        <div class="col-xs-5">
+                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview3" alt="" width="100px">
+                          <input type="file" name="newConsultPhoto[]" id = "newConsultPhoto3"> 
+                        </div>
+
+                      </div>
                         <!--
                         <input id="newConsultPhoto" type="file" class="newImage" name="newConsultPhoto">
 

@@ -133,9 +133,10 @@ view one customer's history with range &/ diagnosis filter (2hrs) -> type in nam
 1 add consultation on phone (1hr) -> added for consult, not tested CRUD, sales next -> done 1hr
 
 2 pictures - how many? 4 (1hr)
-- create consult
-- edit consult
-- does it affect sales
+- create consult -> done
+- edit consult 
+- does it affect sales -> edit sales? 
+- delete consult
 5 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
 	- template design done -> done 1hr
 	- test print preview -> in 1.5hr -> done
