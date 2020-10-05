@@ -636,8 +636,8 @@ PRINT BILL
 $(".tables").on("click", ".btnPrintConsult", function () {
 	var saleCode = $(this).attr("saleCode");
 	//should change this to consult.php
-	window.open("extensions/receipt/receipt.php?code=" + saleCode, "_blank");
-	//window.open("extensions/tcpdf/examples/example_001.php", "_blank");
+	//window.open("extensions/receipt/receipt.php?code=" + saleCode, "_blank");
+	window.open("extensions/tcpdf/examples/example_001.php", "_blank");
 });
 
 /*=============================================
@@ -753,7 +753,7 @@ $(function () {
 UPLOAD CONSULTATION IMAGE
 =============================================*/
 
-$('#newConsultPhoto0') .change(function () {
+$('#newConsultPhoto0').change(function () {
 
 	var newImage = this.files[0];
 
@@ -762,7 +762,7 @@ $('#newConsultPhoto0') .change(function () {
 	  ===============================================*/
 
 	if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png") {
-		$(".newConsultPhoto").val("");
+		$('#newConsultPhoto0').val("");
 
 		swal({
 			type: "error",
@@ -772,7 +772,7 @@ $('#newConsultPhoto0') .change(function () {
 			confirmButtonText: "Close",
 		});
 	} else if (newImage["size"] > 2000000) {
-		$(".newConsultPhoto").val("");
+		$('#newConsultPhoto0').val("");
 
 		swal({
 			type: "error",
@@ -802,7 +802,7 @@ $('#newConsultPhoto0') .change(function () {
 	/*=====  End of validating image format  ======*/
 });
 
-$('#newConsultPhoto1') .change(function () {
+$('#newConsultPhoto1').change(function () {
 
 	var newImage = this.files[0];
 
@@ -811,7 +811,7 @@ $('#newConsultPhoto1') .change(function () {
 	  ===============================================*/
 
 	if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png") {
-		$(".newConsultPhoto").val("");
+		$('#newConsultPhoto1').val("");
 
 		swal({
 			type: "error",
@@ -821,7 +821,7 @@ $('#newConsultPhoto1') .change(function () {
 			confirmButtonText: "Close",
 		});
 	} else if (newImage["size"] > 2000000) {
-		$(".newConsultPhoto").val("");
+		$('#newConsultPhoto1').val("");
 
 		swal({
 			type: "error",
@@ -851,7 +851,7 @@ $('#newConsultPhoto1') .change(function () {
 	/*=====  End of validating image format  ======*/
 });
 
-$('#newConsultPhoto2') .change(function () {
+$('#newConsultPhoto2').change(function () {
 
 	var newImage = this.files[0];
 
@@ -860,7 +860,7 @@ $('#newConsultPhoto2') .change(function () {
 	  ===============================================*/
 
 	if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png") {
-		$(".newConsultPhoto").val("");
+		$('#newConsultPhoto2').val("");
 
 		swal({
 			type: "error",
@@ -870,7 +870,7 @@ $('#newConsultPhoto2') .change(function () {
 			confirmButtonText: "Close",
 		});
 	} else if (newImage["size"] > 2000000) {
-		$(".newConsultPhoto").val("");
+		$('#newConsultPhoto2').val("");
 
 		swal({
 			type: "error",
@@ -900,7 +900,7 @@ $('#newConsultPhoto2') .change(function () {
 	/*=====  End of validating image format  ======*/
 });
 
-$('#newConsultPhoto3') .change(function () {
+$('#newConsultPhoto3').change(function () {
 
 	var newImage = this.files[0];
 
@@ -909,7 +909,7 @@ $('#newConsultPhoto3') .change(function () {
 	  ===============================================*/
 
 	if (newImage["type"] != "image/jpeg" && newImage["type"] != "image/png") {
-		$(".newConsultPhoto").val("");
+		$('#newConsultPhoto3').val("");
 
 		swal({
 			type: "error",
@@ -919,7 +919,7 @@ $('#newConsultPhoto3') .change(function () {
 			confirmButtonText: "Close",
 		});
 	} else if (newImage["size"] > 2000000) {
-		$(".newConsultPhoto").val("");
+		$('#newConsultPhoto3').val("");
 
 		swal({
 			type: "error",

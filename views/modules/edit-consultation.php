@@ -31,7 +31,7 @@
 
           <div class="box-header with-border"></div>
 
-          <form role="form" method="post" class="consultationForm">
+          <form role="form" method="post" class="consultationForm" enctype="multipart/form-data">
 
             <div class="box-body">
                 
@@ -274,7 +274,7 @@
                     ======================================-->
                     <!-- input image -->
                     <?php
-                    $ConsultPhotos = json_decode($sale["images"], true);
+                    $ConsultPhotos = json_decode($sale["images"]);
                     ?>
 
                     
@@ -284,7 +284,7 @@
                       <div class="panel">Upload image</div>
                       <p class="help-block">Maximum size 2Mb</p>
 
-                      <div class="row" style="padding-left: 30%; padding-bottom: 10%;">
+                      <div class="row" style="padding-left: 20%;">
                       
                         <div class="col-xs-5" >
 
@@ -294,28 +294,28 @@
                         </div>
                         
                         <div class="col-xs-5">
-                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview1" alt="" width="100px">
+                          <img src="<?php echo $ConsultPhotos[1]; ?>" class="img-thumbnail preview" id = "preview1" alt="" width="100px">
                           <input type="file" name="editConsultPhoto[]" id = "newConsultPhoto1" style="display:none;"> 
                           <label for="newConsultPhoto1">Select file</label>
                         </div>
-                      </div>
+                      
                         
-                        <div class="row" style="padding-left: 30% ; padding-bottom: 10%;">
+                        
                         <div class="col-xs-5">
-                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview"  id = "preview2" alt="" width="100px">
+                          <img src="<?php echo $ConsultPhotos[2]; ?>" class="img-thumbnail preview"  id = "preview2" alt="" width="100px">
                           <input type="file" name="editConsultPhoto[]" id = "newConsultPhoto2" style="display:none;"> 
                           <label for="newConsultPhoto2">Select file</label>
                         </div>
                         
                         <div class="col-xs-5">
-                          <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview" id = "preview3" alt="" width="100px">
+                          <img src="<?php echo $ConsultPhotos[3]; ?>" class="img-thumbnail preview" id = "preview3" alt="" width="100px">
                           <input type="file" name="editConsultPhoto[]" id = "newConsultPhoto3" style="display:none;"> 
                           <label for="newConsultPhoto3">Select file</label>
                         </div>
+                      </div>   
+                      
 
-                      </div>
-
-                      <input type="hidden" name="currentConsultPhoto" id="currentConsultPhoto" value="<?php echo $sale["images"]; ?>">
+                      <input type="hidden" name="currentConsultPhoto" id="currentConsultPhoto" value='<?php echo $sale["images"]; ?>'>
 
 
                       </div>

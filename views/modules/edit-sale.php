@@ -259,6 +259,8 @@
 
                     </div> 
 
+                    <input type="hidden" name="currentConsultPhoto" id="currentConsultPhoto" value='<?php echo $sale["images"]; ?>'>
+
                     <div class="row">
 
                       <!--=====================================

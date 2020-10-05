@@ -134,21 +134,21 @@ view one customer's history with range &/ diagnosis filter (2hrs) -> type in nam
 
 2 pictures - how many? 
 - create consult -> done 1.5hr
-- edit consult -> 1hr
-- does it affect sales -> edit sales? 
-- delete consult
-
+- edit consult -> 1hr -> only cracked showing image -> 3 hours finished edit
+- does it affect sales -> edit sales? -> all good 5 mins
+- delete consult -> just enough
+-------------------------------------------------------------------------
 
 5 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
 	- template design done -> done 1hr
-	- test print preview -> in 1 -> only cracked showing image
+	- test print preview -> 
 	- tcpdf -> thurs on
 	- print pdf function -> pivot to adding to pdf on fri
 
 6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks
 
-
+7 option to print after add new sale/consult
 7 test -> alll CRUD
 8 lock my code from being copiedadd for the doc's desktop (1hr research)
 

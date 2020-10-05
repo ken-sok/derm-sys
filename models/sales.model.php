@@ -77,7 +77,7 @@ class ModelSales{
 
 	static public function mdlEditSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("UPDATE $table SET  idCustomer = :idCustomer, products = :products, receipt =:receipt, totalPrice= :totalPrice, comment = :comment, diagnosis = :diagnosis WHERE code = :code");
+		$stmt = Connection::connect()->prepare("UPDATE $table SET  idCustomer = :idCustomer, products = :products, receipt =:receipt, totalPrice= :totalPrice, comment = :comment, diagnosis = :diagnosis, images = :images WHERE code = :code");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
@@ -86,6 +86,7 @@ class ModelSales{
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":comment", $data["comment"], PDO::PARAM_STR);
 		$stmt->bindParam(":diagnosis", $data["diagnosis"], PDO::PARAM_STR);
+		$stmt->bindParam(":images", $data["images"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

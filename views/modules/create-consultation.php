@@ -210,7 +210,7 @@
                       <p class="help-block">Maximum size 2Mb</p>
                     
                       
-                      <div class="row" style="padding-left: 30%; padding-bottom: 10%;">
+                      <div class="row" style="padding-left: 20%;">
                       
                         <div class="col-xs-5" >
 
@@ -224,9 +224,9 @@
                           <input type="file" name="newConsultPhoto[]" id = "newConsultPhoto1" style="display:none;"> 
                           <label for="newConsultPhoto1">Select file</label>
                         </div>
-                      </div>
+                      
                         
-                        <div class="row">
+                        
                         <div class="col-xs-5">
                           <img src="views/img/products/default/anonymous.png" class="img-thumbnail preview"  id = "preview2" alt="" width="100px">
                           <input type="file" name="newConsultPhoto[]" id = "newConsultPhoto2" style="display:none;"> 
