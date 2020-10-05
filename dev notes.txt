@@ -148,6 +148,19 @@ view one customer's history with range &/ diagnosis filter (2hrs) -> type in nam
 6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks
 
+feedback consult
+- remove next app
+- add quantity value box
+
+feedback receipt 
+- hide diagno
+- remove next app
+- add quantitu value box
+- exchange rate
+
+product:
+buying and selling optional 
+
 7 option to print after add new sale/consult
 7 test -> alll CRUD
 8 lock my code from being copiedadd for the doc's desktop (1hr research)
