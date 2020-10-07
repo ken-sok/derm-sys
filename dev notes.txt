@@ -143,7 +143,7 @@ view one customer's history with range &/ diagnosis filter (2hrs) -> type in nam
 	- template design done -> done 1hr
 	- test print preview -> 
 	- tcpdf -> thurs on
-	- print pdf function -> pivot to adding to pdf on fri
+	- print pdf function -> pivot to adding to pdf on fri -> 2.5hr only 20% -> 2.5hr -> can't use tcpdf -> kh not supported
 
 6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks
@@ -157,7 +157,9 @@ feedback receipt
 - remove next app
 - add quantitu value box
 - exchange rate
+- price box format 2 dp
 
+- change print pages -> note to them can only use english input
 product:
 buying and selling optional 
 
