@@ -59,33 +59,7 @@ class ControllerSales
 				$newStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $valueProductId);
 			}
 
-			$tableCustomers = "customers";
-
-			$item = "id";
-			$valueCustomer = $_POST["selectCustomer"];
-
-			$getCustomer = ModelCustomers::mdlShowCustomers($tableCustomers, $item, $valueCustomer);
-
-			$item1a = "visits";
-			$value1a = array_sum($totalPurchasedProducts) + $getCustomer["visits"];
-
-			$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1a, $value1a, $valueCustomer);
-
-			$item1b = "lastVisit";
-
-			date_default_timezone_set('Asia/Bangkok');
-
-			$date = date('Y-m-d');
-			$hour = date('H:i:s');
-			$value1b = $date . ' ' . $hour;
-
-			$dateCustomer = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1b, $value1b, $valueCustomer);
-
-			$item1c = "nextVisit";
-			$value1c = $_POST["newAppDate"];
-
-			$customerNextVisit = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1c, $value1c, $valueCustomer);
-
+			
 			/*=============================================
 				VALIDATE IMAGE
 			=============================================*/

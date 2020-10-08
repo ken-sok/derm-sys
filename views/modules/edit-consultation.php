@@ -154,28 +154,6 @@
 
                     </div>
 
-                    <!--=====================================
-                    =            DATE INPUT           =
-                    ======================================-->
-
-                    <div class="form-group">
-
-                      <div class="input-group">
-                        
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        
-                        <?php
-                        $itemCustomers = "id";
-                        $valueCustomers = $sale["idCustomer"];
-
-                        $customers = ControllerCustomers::ctrShowCustomers($itemCustomers, $valueCustomers);
-                        ?>
-                       
-                        <input type="text" class="form-control" name="newAppDate" id="datepicker-1" value = "<?php echo $customers["nextVisit"]; ?>"required>
-
-                      </div>
-
-                    </div>
 
                     <!--=====================================
                     =            PRODUCT INPUT           =

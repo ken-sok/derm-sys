@@ -156,21 +156,6 @@
 
                     </div>
 
-                    <!--=====================================
-                    =            DATE INPUT           =
-                    ======================================-->
-
-                    <div class="form-group">
-
-                      <div class="input-group">
-                        
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                       
-                        <input type="text" class="form-control" name="newAppDate" id="datepicker-1" placeholder="Select next appointment date"​ autocomplete = off required>
-
-                      </div>
-
-                    </div>
 
                     
 
