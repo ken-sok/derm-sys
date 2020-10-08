@@ -41,12 +41,11 @@ class ProductsModel{
 	=============================================*/
 	static public function mdlAddProduct($table, $data){
 
-		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, description, image, stock, buyingPrice, sellingPrice) VALUES (:code, :description, :image, :stock, :buyingPrice, :sellingPrice)");
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, description, image, buyingPrice, sellingPrice) VALUES (:code, :description, :image, :buyingPrice, :sellingPrice)");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);
 		$stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
 		$stmt->bindParam(":image", $data["image"], PDO::PARAM_STR);
-		$stmt->bindParam(":stock", $data["stock"], PDO::PARAM_STR);
 		$stmt->bindParam(":buyingPrice", $data["buyingPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":sellingPrice", $data["sellingPrice"], PDO::PARAM_STR);
 
@@ -70,13 +69,12 @@ class ProductsModel{
 	=============================================*/
 	static public function mdlEditProduct($table, $data){
 
-		$stmt = Connection::connect()->prepare("UPDATE $table SET description = :description, image = :image, stock = :stock, buyingPrice = :buyingPrice, sellingPrice = :sellingPrice WHERE code = :code");
+		$stmt = Connection::connect()->prepare("UPDATE $table SET description = :description, image = :image, buyingPrice = :buyingPrice, sellingPrice = :sellingPrice WHERE code = :code");
 
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);
 		$stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
 		$stmt->bindParam(":image", $data["image"], PDO::PARAM_STR);
-		$stmt->bindParam(":stock", $data["stock"], PDO::PARAM_STR);
 		$stmt->bindParam(":buyingPrice", $data["buyingPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":sellingPrice", $data["sellingPrice"], PDO::PARAM_STR);
 

@@ -119,18 +119,6 @@
 
             </div>
 
-             <!-- input Stock -->
-            <div class="form-group" style = " visibility:hidden;">
-
-              <div class="input-group" style = " visibility:hidden;">
-
-                <!--<span class="input-group-addon"><i class="fa fa-check"></i></span>-->
-
-                <input style = " visibility:hidden;" class="form-control input-lg" type="number" id="newStock" name="newStock" placeholder="Add Stock" min="0" value = "0" required>
-
-              </div>
-
-            </div>
 
             <!-- INPUT BUYING PRICE -->
             <div class="form-group row">
@@ -141,7 +129,7 @@
 
                   <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                  <input type="number" class="form-control input-lg" id="newBuyingPrice" name="newBuyingPrice" step="any" min="0" placeholder="Buying price" required>
+                  <input type="number" class="form-control input-lg" id="newBuyingPrice" name="newBuyingPrice" step="any" min="0" placeholder="Buying price" value="0">
 
                 </div>
 
@@ -154,7 +142,7 @@
 
                   <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                  <input type="number" class="form-control input-lg" id="newSellingPrice" name="newSellingPrice" step="any" min="0" placeholder="Selling price" required>
+                  <input type="number" class="form-control input-lg" id="newSellingPrice" name="newSellingPrice" step="any" min="0" placeholder="Selling price" value="0">
 
                 </div> 
 
@@ -298,18 +286,6 @@ EDIT PRODUCT
 
             </div>
 
-             <!-- INPUT FOR THE STOCK -->
-             <div class="form-group" style = " visibility:hidden;">
-              
-              <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-check"></i></span> 
-
-                <input type="number" class="form-control input-lg" id="editStock" name="editStock" min="0" required>
-
-              </div>
-
-            </div>
 
              <!-- INPUT FOR BUYING PRICE -->
              <div class="form-group row">
@@ -320,7 +296,7 @@ EDIT PRODUCT
                   
                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="editBuyingPrice" name="editBuyingPrice" step="any" min="0" required>
+                    <input type="number" class="form-control input-lg" id="editBuyingPrice" name="editBuyingPrice" step="any" min="0">
 
                   </div>
 
@@ -333,7 +309,7 @@ EDIT PRODUCT
                   
                     <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="editSellingPrice" name="editSellingPrice" step="any" min="0" readonly required>
+                    <input type="number" class="form-control input-lg" id="editSellingPrice" name="editSellingPrice" step="any" min="0" readonly>
 
                   </div>
                 

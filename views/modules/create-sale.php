@@ -25,7 +25,7 @@
       <!--=============================================
       THE FORM
       =============================================-->
-      <div class="col-lg-5 col-xs-12">
+      <div class="col-lg-7 col-xs-12">
         
         <div class="box box-success">
 
@@ -125,13 +125,13 @@
                     =            DIAGNOSIS INPUT           =
                     ======================================-->
 
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
 
                       <div class="input-group">
                         
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
                        
-                        <select class="form-control" name="selectDiagnosis" id="selectDiagnosis" required>
+                        <select class="form-control" name="selectDiagnosis" id="selectDiagnosis">
                           
                           <option value="">Select diagnosis</option>
 
@@ -270,7 +270,7 @@
       =============================================-->
 
 
-      <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
+      <div class="col-lg-5 hidden-md hidden-sm hidden-xs">
         
           <div class="box box-warning">
             

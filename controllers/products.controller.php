@@ -25,7 +25,6 @@ class controllerProducts{
 		if(isset($_POST["newDescription"])){
 
 			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["newDescription"]) &&
-			   preg_match('/^[0-9]+$/', $_POST["newStock"]) &&	
 			   preg_match('/^[0-9.]+$/', $_POST["newBuyingPrice"]) &&
 			   preg_match('/^[0-9.]+$/', $_POST["newSellingPrice"])){
 
@@ -100,7 +99,6 @@ class controllerProducts{
 
 				$data = array( "code" => $_POST["newCode"],
 							   "description" => $_POST["newDescription"],
-							   "stock" => $_POST["newStock"],
 							   "buyingPrice" => $_POST["newBuyingPrice"],
 							   "sellingPrice" => $_POST["newSellingPrice"],
 							   "image" => $route);
@@ -162,7 +160,6 @@ class controllerProducts{
 		if(isset($_POST["editDescription"])){
 
 			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editDescription"]) &&
-			   preg_match('/^[0-9]+$/', $_POST["editStock"]) &&	
 			   preg_match('/^[0-9.]+$/', $_POST["editBuyingPrice"]) &&
 			   preg_match('/^[0-9.]+$/', $_POST["editSellingPrice"])){
 
@@ -249,7 +246,6 @@ class controllerProducts{
 
 				$data = array( "code" => $_POST["editCode"],
 							   "description" => $_POST["editDescription"],
-							   "stock" => $_POST["editStock"],
 							   "buyingPrice" => $_POST["editBuyingPrice"],
 							   "sellingPrice" => $_POST["editSellingPrice"],
 							   "image" => $route);

@@ -45,7 +45,6 @@
              <th>Age</th>
              <th>Sex</th>
              <th>Last Visit</th>
-             <th>Next Visit</th>
              <th>Medical History</th>
              <th>Actions</th>
 
@@ -80,8 +79,6 @@
                       <td>'.$value["sex"].'</td>             
 
                       <td>'.$value["lastVisit"].'</td>
-
-                      <td>'.$value["nextVisit"].'</td>
 
                       <td>'.$value["medicalHis"].'</td>
 

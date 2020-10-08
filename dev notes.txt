@@ -141,19 +141,20 @@ view one customer's history with range &/ diagnosis filter (2hrs) -> type in nam
 
 
 feedback consult
-- remove next app
+- remove next app -> done
+
 - add quantity value box
 
 feedback receipt 
-- hide diagno
-- remove next app
+- hide diagno -> don
+- remove next app -> done
+
 - add quantitu value box
-- exchange rate
+- exchange rate 
 - price box format 2 dp
 
-- change print pages -> note to them can only use english input
 product:
-buying and selling optional 
+buying and selling optional -> done
 
 5 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
 	- template design done -> done 1hr
@@ -169,9 +170,10 @@ buying and selling optional
 7 test -> alll CRUD
 8 lock my code from being copiedadd for the doc's desktop (1hr research)
 
+note to tell : 
+- do not delete receipt -> just remove products to keep consultation data
+- no diag in sales -> diag name -> id = 1
 ----------later
-
-
 delete visits code (30mins)
 
 delete stocks code (30 mins)

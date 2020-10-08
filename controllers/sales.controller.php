@@ -29,38 +29,6 @@ class ControllerSales
 		if (isset($_POST["newSale"])) {
 
 			/*=============================================
-			UPDATE CUSTOMER'S PURCHASES AND REDUCE THE STOCK AND INCREASE SALES OF THE PRODUCT
-			=============================================*/
-
-			$productsList = json_decode($_POST["productsList"], true);
-
-			$totalPurchasedProducts = array();
-
-			foreach ($productsList as $key => $value) {
-
-				array_push($totalPurchasedProducts, $value["quantity"]);
-
-				$tableProducts = "products";
-
-				$item = "id";
-				$valueProductId = $value["id"];
-				$order = "id";
-
-				$getProduct = ProductsModel::mdlShowProducts($tableProducts, $item, $valueProductId, $order);
-
-				$item1a = "sales";
-				$value1a = $value["quantity"] + $getProduct["sales"];
-
-				$newSales = ProductsModel::mdlUpdateProduct($tableProducts, $item1a, $value1a, $valueProductId);
-
-				$item1b = "stock";
-				$value1b = $value["stock"] - $value["quantity"] + 1;
-
-				$newStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $valueProductId);
-			}
-
-			
-			/*=============================================
 				VALIDATE IMAGE
 			=============================================*/
 
@@ -77,7 +45,7 @@ class ControllerSales
 					//$newWidth = 500;
 					//$newHeight = 500;
 
-					/*=============================================
+				/*=============================================
 				we create the folder to save the picture
 				=============================================*/
 
@@ -85,13 +53,13 @@ class ControllerSales
 
 					mkdir($folder, 0755);
 
-					/*=============================================
+				/*=============================================
 				WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
 				=============================================*/
 
 					if ($_FILES["newConsultPhoto"]["type"][$i] == "image/jpeg") {
 
-						/*=============================================
+					/*=============================================
 					WE SAVE THE IMAGE IN THE FOLDER
 					=============================================*/
 
@@ -110,7 +78,7 @@ class ControllerSales
 
 					if ($_FILES["newConsultPhoto"]["type"][$i] == "image/png") {
 
-						/*=============================================
+					/*=============================================
 					WE SAVE THE IMAGE IN THE FOLDER
 					=============================================*/
 
@@ -131,113 +99,46 @@ class ControllerSales
 				}
 			}
 
-			$routeArrayJSON = json_encode($routeArray);
+			
 			/*=============================================
 			SAVE THE SALE
 			=============================================*/
 
 			$table = "sales";
 
-			$data = array(
-				"idCustomer" => $_POST["selectCustomer"],
-				"code" => $_POST["newSale"],
-				"products" => $_POST["productsList"],
-				"receipt" => $_POST["productsList"],
-				"totalPrice" => $_POST["saleTotal"],
-				"comment" => $_POST["comment"],
-				"diagnosis" => $_POST["selectDiagnosis"],
-				"images" => $routeArrayJSON
-			);
+			if ($_POST["process"] == "consult") {
+				//pictures array
+				$routeArrayJSON = json_encode($routeArray);
+
+				$data = array(
+					"idCustomer" => $_POST["selectCustomer"],
+					"code" => $_POST["newSale"],
+					"products" => $_POST["productsList"],
+					"receipt" => $_POST["productsList"],
+					"totalPrice" => $_POST["saleTotal"],
+					"comment" => $_POST["comment"],
+					"diagnosis" => $_POST["selectDiagnosis"],
+					"images" => $routeArrayJSON
+				);
+			} else {
+
+				$data = array(
+					"idCustomer" => $_POST["selectCustomer"],
+					"code" => $_POST["newSale"],
+					"products" => $_POST["productsList"],
+					"receipt" => $_POST["productsList"],
+					"totalPrice" => $_POST["saleTotal"],
+					"comment" => $_POST["comment"],
+					"diagnosis" => 1,
+					"images" => ''
+				);
+
+			}
 
 			$answer = ModelSales::mdlAddSale($table, $data);
 
 			if ($answer == "ok") {
 
-				// $printer = "epson20";
-
-				// $connector = new WindowsPrintConnector($printer);
-
-				// $print = new Printer($connector);
-
-				// $print -> text("Hello world"."\n");
-
-				// $print -> cut();
-
-				// $print -> close();
-
-				/*
-
-				$printer = "epson20";
-
-				$connector = new WindowsPrintConnector($printer);
-
-				$printer = new Printer($connector);
-
-				$printer -> setJustification(Printer::JUSTIFY_CENTER);
-
-				$printer -> text(date("Y-m-d H:i:s")."\n");//Invoice date
-
-				$printer -> feed(1); //We feed paper 1 time
-
-				$printer -> text("Inventory System"."\n");//Company name
-
-				$printer -> text("ID: 71.759.963-9"."\n");//Company's ID
-
-				$printer -> text("Address: 5th Ave. Miami Fl"."\n");//Company address
-
-				$printer -> text("Phone: 300 786 52 49"."\n");//Company's phone
-
-				$printer -> text("Invoice N.".$_POST["newSale"]."\n");//Invoice number
-
-				$printer -> feed(1); //We feed paper 1 time
-
-				$printer -> text("Customer: ".$getCustomer["name"]."\n");//Customer's name
-
-				$tableSeller = "users";
-				$item = "id";
-				$seller = $_POST["idSeller"];
-
-				$getSeller = UsersModel::MdlShowUsers($tableSeller, $item, $seller);
-
-				$printer -> text("Seller: ".$getSeller["name"]."\n");//Seller's name
-
-				$printer -> feed(1); //We feed paper 1 time
-
-				foreach ($productsList as $key => $value) {
-
-					$printer->setJustification(Printer::JUSTIFY_LEFT);
-
-					$printer->text($value["description"]."\n");//Product's name
-
-					$printer->setJustification(Printer::JUSTIFY_RIGHT);
-
-					$printer->text("$ ".number_format($value["price"],2)." Und x ".$value["quantity"]." = $ ".number_format($value["totalPrice"],2)."\n");
-
-				}
-
-				$printer -> feed(1); //We feed paper 1 time		
-				
-				$printer->text("NET: $ ".number_format($_POST["newNetPrice"],2)."\n"); //net price
-
-				$printer->text("TAX: $ ".number_format($_POST["newTaxPrice"],2)."\n"); //tax value
-
-				$printer->text("--------\n");
-
-				$printer->text("TOTAL: $ ".number_format($_POST["saleTotal"],2)."\n"); //ahora va el total
-
-				$printer -> feed(1); //We feed paper 1 time
-
-				$printer->text("Thanks for your purchase"); //We can add a footer
-
-				$printer -> feed(3); //We feed paper 3 times
-
-				$printer -> cut(); //We cut the paper, if the printer has the option
-
-				$printer -> pulse(); //Through the printer we send a pulse to open the cash drawer.
-
-				$printer -> close();
-
-				*/
 
 				if ($_POST["process"] == "consult") {
 					echo '<script>
@@ -258,6 +159,7 @@ class ControllerSales
 								})
 
 					</script>';
+					
 				} else {
 
 					echo '<script>
@@ -304,133 +206,9 @@ class ControllerSales
 
 			$getSale = ModelSales::mdlShowSales($table, $item, $value);
 
-			//comment out because we cannot delete all products
-			/*=============================================
-			CHECK IF THERE'S ANY EDITED SALE
-			
-
-			if($_POST["productsList"] == ""){
-
-				$productsList = $getSale["products"];
-				$productChange = false;
-
-
-			}else{
-
-				$productsList = $_POST["productsList"];
-				$productChange = true;
-			}
-			=============================================*/
-
-
 			$productsList = $_POST["productsList"];
-			$productChange = true;
-
-			if ($productChange) {
-
-				$products = json_decode($getSale["products"], true);
-
-				//var_dump($products);
-
-				$totalPurchasedProducts = array();
-
-				foreach ($products as $key => $value) {
-
-					array_push($totalPurchasedProducts, $value["quantity"]);
-					$quantity = (int) $value["quantity"];
-
-					$tableProducts = "products";
-
-					$item = "id";
-					$value = $value["id"];
-					$order = "id";
-
-					$getProduct = ProductsModel::mdlShowProducts($tableProducts, $item, $value, $order);
-
-					$item1a = "sales";
-
-					$value1a = $getProduct["sales"] - $quantity;
-
-					$newSales = ProductsModel::mdlUpdateProduct($tableProducts, $item1a, $value1a, $value);
-
-					$item1b = "stock";
-					$value1b = $quantity + $getProduct["stock"];
-
-					$nuevoStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $value);
-				}
-
-				$tableCustomers = "customers";
-
-				$itemCustomer = "id";
-				$valueCustomer = $_POST["selectCustomer"];
-
-				$getCustomer = ModelCustomers::mdlShowCustomers($tableCustomers, $itemCustomer, $valueCustomer);
-
-				$item1a = "visits";
-				$value1a = $getCustomer["visits"] - array_sum($totalPurchasedProducts);
-
-				$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1a, $value1a, $valueCustomer);
-
-				/*=============================================
-				UPDATE THE CUSTOMER'S PURCHASES AND REDUCE THE STOCK AND INCREMENT PRODUCT SALES
-				=============================================*/
-
-				$productsList_2 = json_decode($productsList, true);
-
-				$totalPurchasedProducts_2 = array();
-
-				foreach ($productsList_2 as $key => $value) {
-
-					array_push($totalPurchasedProducts_2, $value["quantity"]);
-
-					$tableProducts_2 = "products";
-
-					$item_2 = "id";
-					$value_2 = $value["id"];
-					$order = "id";
-
-					$getProduct_2 = ProductsModel::mdlShowProducts($tableProducts_2, $item_2, $value_2, $order);
-
-					$item1a_2 = "sales";
-					$value1a_2 = (int)$value["quantity"] + $getProduct_2["sales"];
-
-					$newSales_2 = ProductsModel::mdlUpdateProduct($tableProducts_2, $item1a_2, $value1a_2, $value_2);
-
-					$item1b_2 = "stock";
-					$value1b_2 = $value["stock"];
-
-					$newStock_2 = ProductsModel::mdlUpdateProduct($tableProducts_2, $item1b_2, $value1b_2, $value_2);
-				}
-
-				$tableCustomers_2 = "customers";
-
-				$item_2 = "id";
-				$value_2 = $_POST["selectCustomer"];
-
-				$getCustomer_2 = ModelCustomers::mdlShowCustomers($tableCustomers_2, $item_2, $value_2);
-
-				$item1a_2 = "visits";
-				$value1a_2 = array_sum($totalPurchasedProducts_2) + $getCustomer_2["visits"];
-
-				$customerPurchases_2 = ModelCustomers::mdlUpdateCustomer($tableCustomers_2, $item1a_2, $value1a_2, $value_2);
-
-				$item1b_2 = "lastVisit";
-
-				date_default_timezone_set('Asia/Bangkok');
-
-				$date = date('Y-m-d');
-				$hour = date('H:i:s');
-				$value1b_2 = $date . ' ' . $hour;
-
-				$dateCustomer_2 = ModelCustomers::mdlUpdateCustomer($tableCustomers_2, $item1b_2, $value1b_2, $value_2);
-
-				$item1c_2 = "nextVisit";
-
-				$value1c_2 = $_POST["newAppDate"];
-
-				$customerNextVisit_2 = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1c_2, $value1c_2, $valueCustomer);
-			}
-
+			
+			//all old photos
 			$routeArrayJSON = $_POST["currentConsultPhoto"];
 
 			/*=============================================
@@ -448,26 +226,25 @@ class ControllerSales
 
 					list($width, $height) = getimagesize($_FILES["editConsultPhoto"]["tmp_name"][$i]);
 
-					//$newWidth = 500;
-					//$newHeight = 500;
+
 
 					/*=============================================
-				we create the folder to save the picture
-				=============================================*/
+					we create the folder to save the picture
+					=============================================*/
 
 					$folder = "views/img/consultations/" . $_POST["newSale"];
 
 					mkdir($folder, 0755);
 
 					/*=============================================
-				WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
-				=============================================*/
+					WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
+					=============================================*/
 
 					if ($_FILES["editConsultPhoto"]["type"][$i] == "image/jpeg") {
 
 						/*=============================================
-					WE SAVE THE IMAGE IN THE FOLDER
-					=============================================*/
+						WE SAVE THE IMAGE IN THE FOLDER
+						=============================================*/
 
 						$random = mt_rand(100, 999);
 
@@ -485,8 +262,8 @@ class ControllerSales
 					if ($_FILES["editConsultPhoto"]["type"][$i] == "image/png") {
 
 						/*=============================================
-					WE SAVE THE IMAGE IN THE FOLDER
-					=============================================*/
+						WE SAVE THE IMAGE IN THE FOLDER
+						=============================================*/
 
 						$random = mt_rand(100, 999);
 
@@ -511,11 +288,7 @@ class ControllerSales
 				$routeArrayJSON = json_encode($routeArray);
 			}
 
-			
-
-			//$getSale["receipt"];
-
-
+		
 			$table = "sales";
 
 			if ($_POST["process"] == "consult") {
@@ -531,6 +304,7 @@ class ControllerSales
 					"diagnosis" => $_POST["editDiagnosis"], 
 					"images" =>$routeArrayJSON
 				);
+				
 			} else {
 
 				$data = array(
@@ -611,105 +385,15 @@ class ControllerSales
 
 			$getSale = ModelSales::mdlShowSales($table, $item, $value);
 
-			/*=============================================
-			Update last Purchase date
-			=============================================*/
-
-			$tableCustomers = "customers";
-
-			$itemsales = null;
-			$valuesales = null;
-
-			$getSales = ModelSales::mdlShowSales($table, $itemsales, $valuesales);
-
-			$saveDates = array();
-
-			foreach ($getSales as $key => $value) {
-
-				if ($value["idCustomer"] == $getSale["idCustomer"]) {
-
-					array_push($saveDates, $value["saledate"]);
-				}
-			}
-
-			if (count($saveDates) > 1) {
-
-				if ($getSale["saledate"] > $saveDates[count($saveDates) - 2]) {
-
-					$item = "lastVisit";
-					$value = $saveDates[count($saveDates) - 2];
-					$valueIdCustomer = $getSale["idCustomer"];
-
-					$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item, $value, $valueIdCustomer);
-				} else {
-
-					$item = "lastVisit";
-					$value = $saveDates[count($saveDates) - 1];
-					$valueIdCustomer = $getSale["idCustomer"];
-
-					$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item, $value, $valueIdCustomer);
-				}
-			} else {
-
-				$item = "lastVisit";
-				$value = "0000-00-00 00:00:00";
-				$valueIdCustomer = $getSale["idCustomer"];
-
-				$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item, $value, $valueIdCustomer);
-			}
-
-			/*=============================================
-			FORMAT PRODUCTS AND CUSTOMERS TABLE
-			=============================================*/
-
-			$products =  json_decode($getSale["products"], true);
-
-			$totalPurchasedProducts = array();
-
-			foreach ($products as $key => $value) {
-
-				array_push($totalPurchasedProducts, $value["quantity"]);
-
-				$tableProducts = "products";
-
-				$item = "id";
-				$valueProductId = $value["id"];
-				$order = "id";
-
-				$getProduct = ProductsModel::mdlShowProducts($tableProducts, $item, $valueProductId, $order);
-
-				$item1a = "sales";
-				$value1a = $getProduct["sales"] - $value["quantity"];
-
-				$newSales = ProductsModel::mdlUpdateProduct($tableProducts, $item1a, $value1a, $valueProductId);
-
-				$item1b = "stock";
-				$value1b = $value["quantity"] + $getProduct["stock"];
-
-				$nuevoStock = ProductsModel::mdlUpdateProduct($tableProducts, $item1b, $value1b, $valueProductId);
-			}
-
-			$tableCustomers = "customers";
-
-			$itemCustomer = "id";
-			$valueCustomer = $getSale["idCustomer"];
-
-			$getCustomer = ModelCustomers::mdlShowCustomers($tableCustomers, $itemCustomer, $valueCustomer);
-
-			$item1a = "visits";
-			$value1a = $getCustomer["visits"] - 1;
-
-			$customerPurchases = ModelCustomers::mdlUpdateCustomer($tableCustomers, $item1a, $value1a, $valueCustomer);
-
-            
+			
 			if($getSale["images"] != ""){
 
 				$photos = json_decode($getSale["images"]);
 
 				for ($i = 0; $i < count(array($photos)); $i++) {
 
-				unlink($photos[$i]);
-				rmdir('views/img/consultations/'.$getSale["code"]);
+					unlink($photos[$i]);
+					rmdir('views/img/consultations/'.$getSale["code"]);
 			    }
 			}
 
