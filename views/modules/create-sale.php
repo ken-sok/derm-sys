@@ -212,6 +212,37 @@
 
 
                           <tbody>
+
+                          <tr>
+                              
+                              <td style="width: 50%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">អត្រាប្តូរប្រាក់</span>
+                                  
+                                  <input type="number" class="form-control" name="moneyRate" id="moneyRate" placeholder="4100" moneyRate="" value="4100" required>
+
+                                </div>
+
+                              </td>
+
+                              <td style="width: 50%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">រ</span>
+                                  
+                                  <input type="number" step="0.01" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSale="" readonly required>
+
+                                  <input type="hidden" name="saleTotal" id="saleTotal" required>
+
+                                </div>
+
+                                </td>
+                              
+
+                            </tr> 
                             
                             <tr>
                               
@@ -228,8 +259,11 @@
                                 </div>
 
                               </td>
+                              
 
                             </tr>
+
+
 
                           </tbody>
 

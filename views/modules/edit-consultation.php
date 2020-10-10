@@ -177,7 +177,7 @@
                           
                           echo '<div class="row" style="padding:5px 15px">
                     
-                                <div class="col-xs-8" style="padding-right:0px">
+                                <div class="col-xs-5" style="padding-right:0px">
                     
                                   <div class="input-group">
                         
@@ -189,9 +189,16 @@
 
                                 </div>
 
-                                <div class="col-xs-4">
+                                <div class="col-xs-2">
                       
-                                  <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" stock="'.$lastStock.'" newStock="'.$value["stock"].'" required>
+                                  <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" required>
+
+                                </div>
+
+                                
+                                <div class="col-xs-5">
+                      
+                                  <input type="text" class="form-control newProductScale" idProduct="'.$value["id"].'" value="'.$value["scale"].'"​​ scale="'.$value["scale"].'"  required>
 
                                 </div>
 
@@ -243,7 +250,7 @@
                     =            ADD PRODUCT BUTTON          =
                     ======================================-->
                     
-                    <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add Product</button>
+                    <button type="button" class="btn btn-default hidden-lg btnAddProductConsult">Add Product</button>
                     
                     <hr>
 

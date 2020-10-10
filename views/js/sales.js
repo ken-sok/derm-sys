@@ -48,32 +48,14 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function () {
     dataType: "json",
     success: function (answer) {
       var description = answer["description"];
-      var stock = answer["stock"];
       var price = answer["sellingPrice"];
 
-      /*=============================================
-          	AVOID ADDING THE PRODUCT WHEN ITS STOCK IS ZERO
-          	=============================================*/
-      /*
-          	if(stock == 0){
 
-      			swal({
-			      title: "There's no stock available",
-			      type: "error",
-			      confirmButtonText: "Close"
-			    });
-
-			    
-			    $("button[idProduct='"+idProduct+"']").addClass("btn-primary addProductSale");
-
-			    return;
-
-          	}*/
 
       $(".newProduct").append(
         '<div class="row" style="padding:5px 15px">' +
           "<!-- Product description -->" +
-          '<div class="col-xs-6" style="padding-right:0px">' +
+          '<div class="col-xs-5" style="padding-right:0px">' +
           '<div class="input-group">' +
           '<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct="' +
           idProduct +
@@ -85,14 +67,19 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function () {
           '" readonly required>' +
           "</div>" +
           "</div>" +
-          "<!-- Product quantity -->" +
-          '<div class="col-xs-3 enterQuantity">' +
-          '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="' +
-          stock +
-          '" newStock="' +
-          Number(stock - 1) +
-          '" required>' +
-          "</div>" +
+
+					"<!-- Product quantity -->" +
+					'<div class="col-xs-1 enterQuantity">' +
+					'<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" required>' +
+					"</div>" +
+
+					"<!-- Product scale -->" +
+					'<div class="col-xs-3 enterScale">' +
+						'<input type="text" class="form-control newProductScale" name="newProductScale" idProduct="' +
+						idProduct +
+						'" scale="" required>' +
+					"</div>" +
+          
           "<!-- product price -->" +
           '<div class="col-xs-3 enterPrice " style="padding-left:0px">' +
           '<div class="input-group">' +
@@ -156,7 +143,7 @@ $(".btnAddProductSale").click(function () {
 
 			  '<!-- Product description -->'+
 	          
-	          '<div class="col-xs-6" style="padding-right:0px">'+
+	          '<div class="col-xs-5" style="padding-right:0px">'+
 	          
 	            '<div class="input-group">'+
 	              
@@ -174,15 +161,22 @@ $(".btnAddProductSale").click(function () {
 
 	          '<!-- Product quantity -->'+
 
-	          '<div class="col-xs-3 enterQuantity">'+
+	          '<div class="col-xs-1 enterQuantity">'+
 	            
 	             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock newStock required>'+
 
-	          '</div>' +
+            '</div>' +
+            
+            "<!-- Product scale -->" +
+            '<div class="col-xs-3 enterScale">' +
+              '<input type="text" class="form-control newProductScale" name="newProductScale" scale="" id="product'+numProduct+'" idProduct' +
+              '" required>' +
+    
+            "</div>" +
 
 	          '<!-- Product price -->'+
 
-	          '<div class="col-xs-3 enterPrice">'+
+	          '<div class="col-xs-3 enterPrice" style="padding-left:0px">'+
 
 	            '<div class="input-group">'+
 
@@ -238,6 +232,17 @@ $(".btnAddProductSale").click(function () {
 	});
 });
 
+/*=============================================
+MODIFY SCALE OF MEDS
+=============================================*/
+
+$(".saleForm").on("change", "input.newProductScale", function () {
+	//var scale = $(this).val();
+
+	$(this).attr("scale", $(this).val());
+
+	listProducts();
+});
 
 /*=============================================
 WHEN TABLE LOADS EVERYTIME THAT NAVIGATE IN IT
@@ -505,9 +510,9 @@ function listProducts() {
 
   var price = $(".newProductPrice");
 
-  var note = $(".newNotes");
 
   var usage = $(".newProductUsage");
+  var scale = $(".newProductScale"); 
 
   for (var i = 0; i < description.length; i++) {
     productsList.push({
@@ -515,7 +520,7 @@ function listProducts() {
       description: $(description[i]).val(),
       quantity: $(quantity[i]).val(),
       usage: $(usage[i]).attr("usage"),
-      stock: $(quantity[i]).attr("newStock"),
+      scale: $(scale[i]).attr("scale"),
       price: $(price[i]).attr("realPrice"),
       totalPrice: $(price[i]).val(),
     });

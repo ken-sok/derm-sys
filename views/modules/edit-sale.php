@@ -25,7 +25,7 @@
       <!--=============================================
       THE FORM
       =============================================-->
-      <div class="col-lg-5 col-xs-12">
+      <div class="col-lg-7 col-xs-12">
         
         <div class="box box-success">
 
@@ -176,7 +176,7 @@
                           
                           echo '<div class="row" style="padding:5px 15px">
                     
-                                <div class="col-xs-6" style="padding-right:0px">
+                                <div class="col-xs-5" style="padding-right:0px">
                     
                                   <div class="input-group">
                         
@@ -188,9 +188,15 @@
 
                                 </div>
 
-                                <div class="col-xs-3 enterQuantity">
+                                <div class="col-xs-1 enterQuantity">
                       
-                                  <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" stock="'.$lastStock.'" newStock="'.$value["stock"].'" required>
+                                  <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" required>
+
+                                </div>
+
+                                <div class="col-xs-3 enterScale">
+                      
+                                  <input type="text" class="form-control newProductScale" name="newProductScale" value="'.$value["scale"].'" scale="'.$value["scale"].'"​​ required>
 
                                 </div>
 
@@ -200,7 +206,7 @@
 
                                     <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                            
-                                    <input type="text" class="form-control newProductPrice" realPrice="'.$answer["sellingPrice"].'" name="newProductPrice" value="'.$value["totalPrice"].'" required>
+                                    <input type="number" class="form-control newProductPrice" realPrice="'.$answer["sellingPrice"].'" name="newProductPrice" value="'.$value["totalPrice"].'" required>
            
                                   </div>
                        
@@ -220,7 +226,7 @@
                     =            ADD PRODUCT BUTTON          =
                     ======================================-->
                     
-                    <button type="button" class="btn btn-default hidden-lg btnAddProduct">Add Product</button>
+                    <button type="button" class="btn btn-default hidden-lg btnAddProductSale">Add Product</button>
 
                     <hr>
 
@@ -319,7 +325,7 @@
       =============================================-->
 
 
-      <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
+      <div class="col-lg-5 hidden-md hidden-sm hidden-xs">
         
           <div class="box box-warning">
             

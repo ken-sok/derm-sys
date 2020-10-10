@@ -55,6 +55,9 @@
          
   <!--image-consult-preview-->
   <link rel="stylesheet" href = "views/bower_components/image-consult/overlay.css">
+
+  <!--riel-icon-->
+  <link rel="stylesheet" href = "views/bower_components/custom-icon/riel-icon.css">
   
   <!--====  End of Plugins CSS  ====-->
   

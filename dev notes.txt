@@ -143,24 +143,28 @@ view one customer's history with range &/ diagnosis filter (2hrs) -> type in nam
 feedback consult
 - remove next app -> done
 
-- add quantity value box
+- add quantity value box -> done
 
 feedback receipt 
 - hide diagno -> don
 - remove next app -> done
-
-- add quantitu value box
+- add quantitu value box -> done
 - exchange rate 
-- price box format 2 dp
-
 product:
 buying and selling optional -> done
+
+10/10/20
+ER and quantity value
+Receipt
+
+
 
 5 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
 	- template design done -> done 1hr
 	- test print preview -> 
-	- tcpdf -> thurs on
+	- tcpdf -> thurs on 
 	- print pdf function -> pivot to adding to pdf on fri -> 2.5hr only 20% -> 2.5hr -> can't use tcpdf -> kh not supported
+	- why did excel not work? why will word work?
 
 6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks

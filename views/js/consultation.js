@@ -51,7 +51,7 @@ $(".consultationTable tbody ").on(
 			dataType: "json",
 			success: function (answer) {
 				var description = answer["description"];
-				var stock = answer["stock"];
+
 				var price = answer["sellingPrice"];
 
 				/*=============================================
@@ -77,27 +77,36 @@ $(".consultationTable tbody ").on(
 
 				$(".newProduct").append(
 					'<div class="row" style="padding:5px 15px">' +
+
 					"<!-- Product description -->" +
-					'<div class="col-xs-8" style="padding-right:0px">' +
-					'<div class="input-group">' +
-					'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct="' +
-					idProduct +
-					'"><i class="fa fa-times"></i></button></span>' +
-					'<input type="text" class="form-control newProductDescription" idProduct="' +
-					idProduct +
-					'" name="addProductSale" value="' +
-					description +
-					'" readonly required>' +
+					'<div class="col-xs-5" style="padding-right:0px">' +
+						'<div class="input-group">' +
+							'<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct="' +
+							idProduct +
+							'"><i class="fa fa-times"></i></button></span>' +
+							'<input type="text" class="form-control newProductDescription" idProduct="' +
+							idProduct +
+							'" name="addProductSale" value="' +
+							description +
+							'" readonly required>' +
+						"</div>" +
 					"</div>" +
-					"</div>" +
+
+
 					"<!-- Product quantity -->" +
-					'<div class="col-xs-4 enterQuantity">' +
-					'<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock="' +
-					stock +
-					'" newStock="' +
-					Number(stock - 1) +
-					'" required>' +
+					'<div class="col-xs-2 enterQuantity">' +
+					'<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" required>' +
 					"</div>" +
+
+
+					"<!-- Product scale -->" +
+					'<div class="col-xs-5 enterScale">' +
+						'<input type="text" class="form-control newProductScale" name="newProductScale" idProduct="' +
+						idProduct +
+						'" scale="" required>' +
+					"</div>" +
+
+					
 					"<!-- product price -->" +
 					'<div class="col-xs-3 enterPrice" style="visibility: hidden;">' +
 					'<div class="input-group">' +
@@ -108,6 +117,7 @@ $(".consultationTable tbody ").on(
 					'" readonly required>' +
 					"</div>" +
 					"</div>" +
+
 					"</div>" +
 					"<!-- product usage -->" +
 					'<div class="row" style="padding:5px 15px">' +
@@ -164,7 +174,7 @@ $(".btnAddProductConsult").click(function () {
 
 			  '<!-- Product description -->'+
 	          
-	          '<div class="col-xs-6" style="padding-right:0px">'+
+	          '<div class="col-xs-5" style="padding-right:0px">'+
 	          
 	            '<div class="input-group">'+
 	              
@@ -182,15 +192,23 @@ $(".btnAddProductConsult").click(function () {
 
 	          '<!-- Product quantity -->'+
 
-	          '<div class="col-xs-3 enterQuantity">'+
+	          '<div class="col-xs-2 enterQuantity">'+
 	            
 	             '<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" stock newStock required>'+
 
-	          '</div>' +
+			  '</div>' +
+			  
+			  
+			  "<!-- Product scale -->" +
+			  '<div class="col-xs-5 enterScale">' +
+				  '<input type="text" class="form-control newProductScale" name="newProductScale" scale="" id="product'+numProduct+'" idProduct' +
+				  '" required>' +
+
+			  "</div>" +
 
 	          '<!-- Product price -->'+
 
-	          '<div class="col-xs-3 enterPrice" style="visibility: hidden;">'+
+	          '<div class="col-xs-3 enterPrice" style="display: none;">'+
 
 	            '<div class="input-group">'+
 
@@ -207,7 +225,7 @@ $(".btnAddProductConsult").click(function () {
 			
 			"<!-- product usage -->" +
 					'<div class="row" style="padding:5px 15px">' +
-					'<div class="col-xs-6 enterUsage" style="padding-right:0px">' +
+					'<div class="col-xs-8 enterUsage" style="padding-right:0px">' +
 					'<div class="input-group">' +
 					'<span class="input-group-addon"><i class="fa fa-repeat"></i></span>' +
 					'<input type="text" class="form-control newProductUsage" id="product'+numProduct+'" idProduct' +
@@ -446,13 +464,25 @@ MODIFY FREQUENCY OF USE
 =============================================*/
 
 $(".consultationForm").on("change", "input.newProductUsage", function () {
-	var usage = $(this).val();
+	//var usage = $(this).val();
 
 	$(this).attr("usage", $(this).val());
 
 	listProducts();
 });
 
+
+/*=============================================
+MODIFY SCALE OF MEDS
+=============================================*/
+
+$(".consultationForm").on("change", "input.newProductScale", function () {
+	//var scale = $(this).val();
+
+	$(this).attr("scale", $(this).val());
+
+	listProducts();
+});
 /*============================================
 PRICES ADDITION
 =============================================*/
@@ -530,13 +560,15 @@ function listProducts() {
 
 	var usage = $(".newProductUsage");
 
+	var scale = $(".newProductScale"); 
+
 	for (var i = 0; i < description.length; i++) {
 		productsList.push({
 			id: $(description[i]).attr("idProduct"),
 			description: $(description[i]).val(),
 			usage: $(usage[i]).attr("usage"),
 			quantity: $(quantity[i]).val(),
-			stock: $(quantity[i]).attr("newStock"),
+			scale: $(scale[i]).attr("scale"),
 			price: $(price[i]).attr("realPrice"),
 			totalPrice: $(price[i]).val(),
 		});
@@ -554,9 +586,6 @@ $(".tables").on("click", ".btnEditConsultation", function () {
 	var idSale = $(this).attr("idSale");
 
 	window.location = "index.php?route=edit-consultation&idSale=" + idSale;
-
-	
-
 
 });
 
