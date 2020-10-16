@@ -671,14 +671,14 @@ $(".tables").on("click", ".btnDeleteConsultation", function () {
 });
 
 /*=============================================
-PRINT BILL
+PRINT CONSULT
 =============================================*/
 
 $(".tables").on("click", ".btnPrintConsult", function () {
 	var saleCode = $(this).attr("saleCode");
 	//should change this to consult.php
 	//window.open("extensions/receipt/receipt.php?code=" + saleCode, "_blank");
-	window.open("extensions/tcpdf/examples/example_001.php", "_blank");
+	window.open("extensions/mpdf/consultation-page.php?code=" + saleCode, "_blank");
 });
 
 /*=============================================

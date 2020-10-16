@@ -149,7 +149,7 @@ feedback receipt
 - hide diagno -> done
 - remove next app -> done
 - add quantitu value box -> done
-- exchange rate 
+- exchange rate -> done
 
 
 product:
@@ -157,10 +157,14 @@ buying and selling optional -> done
 
 10/10/20
 quantity value-> done
-ER -> tested create consult, not yet edit & sales
+ER -> tested create consult, not yet edit & sales -> done about 2hrs
 2hrs 20 mins
 Receipt & consult
 
+16/10
+ER done
+tested pic done
+printing now
 make quanityt box bigger receipt
 medium screen visible
 
