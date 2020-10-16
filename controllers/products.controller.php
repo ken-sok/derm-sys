@@ -24,7 +24,7 @@ class controllerProducts{
 
 		if(isset($_POST["newDescription"])){
 
-			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["newDescription"]) &&
+			if(preg_match('/^[a-zA-Z0-9.% ]+$/', $_POST["newDescription"]) &&
 			   preg_match('/^[0-9.]+$/', $_POST["newBuyingPrice"]) &&
 			   preg_match('/^[0-9.]+$/', $_POST["newSellingPrice"])){
 
@@ -159,7 +159,7 @@ class controllerProducts{
 
 		if(isset($_POST["editDescription"])){
 
-			if(preg_match('/^[a-zA-Z0-9 ]+$/', $_POST["editDescription"]) &&
+			if(preg_match('/^[a-zA-Z0-9.% ]+$/', $_POST["editDescription"]) &&
 			   preg_match('/^[0-9.]+$/', $_POST["editBuyingPrice"]) &&
 			   preg_match('/^[0-9.]+$/', $_POST["editSellingPrice"])){
 

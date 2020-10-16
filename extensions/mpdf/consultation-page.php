@@ -24,7 +24,8 @@ class printConsult{
 
         $answerSale = ControllerSales::ctrShowSales($itemSale, $valueSale);
 
-        $saledate = substr($answerSale["saledate"],0,-8);
+        $saledateDB = date_create($answerSale["saledate"]);
+        $saledate = date_format($saledateDB, 'd-m-Y');
         $products = json_decode($answerSale["products"], true);
 
         //Customer
@@ -46,12 +47,12 @@ class printConsult{
             'default_font_size'=> 20, 
             'default_font' => 'khmeros', 
             'format' => 'A5', 
-            'margin_left' => 0,
-            'margin_right' => 0,
-            'margin_top' => 0,
-            'margin_bottom' => 0,
-            'margin_header' => 0,
-            'margin_footer' => 0,
+            'margin_left' => 5,
+            'margin_right' => 5,
+            'margin_top' => 5,
+            'margin_bottom' => 5,
+            'margin_header' => 5,
+            'margin_footer' => 5,
         ]);
         
 //---------------------------------------------------------MUST NOT USE TAB
@@ -71,28 +72,43 @@ $mpdf->writeHTML($block1);
 //---------------------------------------------------------
 $block2 = <<<EOF
 
-<table border="0">
+
+<table>
+            
+<tr>
+    
+    <td><img src="images/_blank.png" width = "1"></td>
+
+</tr>
+
+</table>
+
+
+<table cellpadding="5px" autosize="1" border="0" width="100%" style="overflow: wrap">
 
 
 	<tr>
-    ​​​​    <td width = "10%" style="font-size: 20;">ឈ្មោះ</td>
-        <td width = "60%" style="font-size: 18;">$answerCustomer[name]</td>
+    ​​​​    <td width = "15%" style="font-size: 15;">ឈ្មោះ</td>
+        <td width = "25%" style="font-size: 15;">$answerCustomer[name]</td>
         
         
-        <td width = "10%" style="font-size: 20;">ភេទ</td>
-        <td width="15%" style="font-size: 18;">$answerCustomer[sex]</td>
+        <td width = "15%" style="font-size: 15;">ភេទ</td>
+        <td width = "15%" style="font-size: 15;">$answerCustomer[sex]</td>
         
-        <td width = "10%" style="font-size: 20;">អាយុ</td>
-        <td width="15%" style="font-size: 18;">$answerCustomer[age]​ ឆ្នាំ</td>
+        <td width = "15%" style="font-size: 15;">អាយុ</td>
+        <td width = "15%" style="font-size: 15;">$answerCustomer[age]​ ឆ្នាំ</td>
         
 	</tr>
     
-    
-    <tr>
-        <td width="30%" style="font-size: 20;">រោគវិនិច្ឆ័យ</td>
-        <td width="70%" style="font-size: 18;">$diagnosis[name]</td>
 
-    </tr>
+
+</table>
+
+<table cellpadding="5px" autosize="1" border="0" width="100%" style="overflow: wrap">
+<tr>
+<td width="30%" style="font-size: 15;">រោគវិនិច្ឆ័យ</td>
+<td width="70%" style="font-size: 15;">$diagnosis[name]</td>
+</tr>
 </table>
 
 EOF;
@@ -154,7 +170,7 @@ foreach ($products as $key => $item) {
     
             <tr>
                 <td width="10%" style="font-size: 15;" align="center">$i</td>
-                <$nameProduct width="30%" style="font-size: 15;" align="left">$nameProduct</td>
+                <td width="30%" style="font-size: 15;" align="center">$nameProduct</td>
                 <td width="20%" style="font-size: 15;" align="center">$valueUnit $valueScale</td>
                 <td width="40%" style="font-size: 15;" align="center">$productUsage</td>
             </tr>
@@ -163,8 +179,7 @@ foreach ($products as $key => $item) {
     
     
     EOF;
-    
-
+    $i++;
 
     
     $mpdf->writeHTML($block4);
@@ -172,6 +187,38 @@ foreach ($products as $key => $item) {
 }
     
 // ---------------------------------------------------------     
+
+// ---------------------------------------------------------
+
+$block5 = <<<EOF
+
+
+    <table>
+                
+    <tr>
+        
+        <td><img src="images/_blank.png" width = "1"></td>
+
+    </tr>
+
+    </table>
+
+ 
+    <table cellpadding="5px" autosize="1" border="0" width="100%" style="overflow: wrap">
+
+
+		<tr>
+	
+        <td width="10%" style="font-size: 15;" align="right"><p>កាលបរិច្ឆេទ $saledate</p></td>
+
+
+		</tr>
+
+	</table>
+
+EOF;
+
+$mpdf->writeHTML($block5);
     
 // ---------------------------------------------------------    
 $mpdf->Output();
