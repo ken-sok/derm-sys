@@ -150,13 +150,19 @@ feedback receipt
 - remove next app -> done
 - add quantitu value box -> done
 - exchange rate 
+
+
 product:
 buying and selling optional -> done
 
 10/10/20
-ER and quantity value
-Receipt
+quantity value-> done
+ER -> tested create consult, not yet edit & sales
+2hrs 20 mins
+Receipt & consult
 
+make quanityt box bigger receipt
+medium screen visible
 
 
 5 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
@@ -169,7 +175,7 @@ Receipt
 6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks
 
-
+Html hidden
 7 option to print after add new sale/consult
 7 test -> alll CRUD
 8 lock my code from being copiedadd for the doc's desktop (1hr research)

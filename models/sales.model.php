@@ -43,13 +43,14 @@ class ModelSales{
 
 	static public function mdlAddSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, products, receipt, totalPrice, comment, diagnosis, images) VALUES (:code, :idCustomer, :products, :receipt, :totalPrice, :comment, :diagnosis, :images)");
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, products, receipt, totalPrice, comment, diagnosis, images, totalPriceKH) VALUES (:code, :idCustomer, :products, :receipt, :totalPrice, :comment, :diagnosis, :images, :totalPriceKH)");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
 		$stmt->bindParam(":products", $data["products"], PDO::PARAM_STR);
 		$stmt->bindParam(":receipt", $data["receipt"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
+		$stmt->bindParam(":totalPriceKH", $data["totalPriceKH"], PDO::PARAM_STR);
 		$stmt->bindParam(":comment", $data["comment"], PDO::PARAM_STR);
 		$stmt->bindParam(":diagnosis", $data["diagnosis"], PDO::PARAM_STR);
 		$stmt->bindParam(":images", $data["images"], PDO::PARAM_STR);

@@ -138,6 +138,10 @@ $(".btnAddProductSale").click(function () {
 		processData: false,
 		dataType: "json",
 		success: function (answer) {
+
+      
+
+
 			$(".newProduct").append(
 				'<div class="row" style="padding:5px 15px">'+
 
@@ -220,14 +224,17 @@ $(".btnAddProductSale").click(function () {
 				
 			}
 
-			// ADDING TOTAL PRICES
+      // ADDING TOTAL PRICES
 
-			addingTotalPrices();
+      addingTotalPrices();
 
+      // GROUP PRODUCTS IN JSON FORMAT
 
-			// SET FORMAT TO THE PRODUCT PRICE
+      listProducts();
 
-			$(".newProductPrice").number(true, 2);
+      // FORMAT PRODUCT PRICE
+
+      $(".newProductPrice").number(true, 2);
 		},
 	});
 });
@@ -310,6 +317,10 @@ $(".saleForm").on("click", "button.removeProduct", function () {
     $("#newSaleTotal").val(0);
     $("#saleTotal").val(0);
     $("#newSaleTotal").attr("totalSale", 0);
+
+    $("#newSaleTotalKH").val(0);
+    $("#saleTotalKH").val(0);
+    $("#newSaleTotalKH").attr("totalSaleKH", 0);
 
     // GROUP PRODUCTS IN JSON FORMAT
 
@@ -437,6 +448,31 @@ $(".saleForm").on("change", "input.newProductPrice", function () {
   listProducts();
 });
 
+/*=============================================
+MODIFY RATE
+=============================================*/
+
+$(".saleForm").on("change", "input.moneyRate", function () {
+  
+  //console.log("changed price", price.attr("realPrice"))
+
+  var rate = $(this).val();
+
+  
+  var totalSale = $("#newSaleTotal").val();
+
+  var converted = rate*totalSale;
+
+  console.log('converted', converted);
+  $("#newSaleTotalKH").val(converted);
+  $("#saleTotalKH").val(converted);
+  $("#newSaleTotalKH").attr("totalSaleKH", converted);
+
+
+});
+
+
+
 /*============================================
 PRICES ADDITION
 =============================================*/
@@ -460,6 +496,19 @@ function addingTotalPrices() {
   $("#newSaleTotal").val(addingTotalPrice);
   $("#saleTotal").val(addingTotalPrice);
   $("#newSaleTotal").attr("totalSale", addingTotalPrice);
+
+  console.log("here");
+  var rate = $("#moneyRate").val();
+
+  var totalSale = $("#newSaleTotal").val();
+
+  var converted = rate*totalSale;
+
+  console.log('converted', converted);
+  $("#newSaleTotalKH").val(converted);
+  $("#saleTotalKH").val(converted);
+  $("#newSaleTotalKH").attr("totalSaleKH", converted);
+
 }
 
 /*=============================================

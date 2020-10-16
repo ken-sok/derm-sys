@@ -106,9 +106,12 @@ class ControllerSales
 
 			$table = "sales";
 
+			
+
 			if ($_POST["process"] == "consult") {
 				//pictures array
 				$routeArrayJSON = json_encode($routeArray);
+				$priceKH = $_POST["saleTotal"]*4100; 
 
 				$data = array(
 					"idCustomer" => $_POST["selectCustomer"],
@@ -116,6 +119,7 @@ class ControllerSales
 					"products" => $_POST["productsList"],
 					"receipt" => $_POST["productsList"],
 					"totalPrice" => $_POST["saleTotal"],
+					"totalPriceKH" => $priceKH,
 					"comment" => $_POST["comment"],
 					"diagnosis" => $_POST["selectDiagnosis"],
 					"images" => $routeArrayJSON
@@ -128,6 +132,7 @@ class ControllerSales
 					"products" => $_POST["productsList"],
 					"receipt" => $_POST["productsList"],
 					"totalPrice" => $_POST["saleTotal"],
+					"totalPriceKH" => $_POST["saleTotalKH"],
 					"comment" => $_POST["comment"],
 					"diagnosis" => 1,
 					"images" => ''

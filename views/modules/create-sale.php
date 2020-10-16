@@ -221,7 +221,7 @@
                                   
                                   <span class="input-group-addon">អត្រាប្តូរប្រាក់</span>
                                   
-                                  <input type="number" class="form-control" name="moneyRate" id="moneyRate" placeholder="4100" moneyRate="" value="4100" required>
+                                  <input type="number" class="form-control moneyRate" name="moneyRate" id="moneyRate" placeholder="4100" moneyRate="" value="4100" required>
 
                                 </div>
 
@@ -233,9 +233,9 @@
                                   
                                   <span class="input-group-addon">រ</span>
                                   
-                                  <input type="number" step="0.01" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSale="" readonly required>
+                                  <input type="number" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSaleKH="" readonly required>
 
-                                  <input type="hidden" name="saleTotal" id="saleTotal" required>
+                                  <input type="hidden" name="saleTotalKH" id="saleTotalKH" required>
 
                                 </div>
 
@@ -252,7 +252,7 @@
                                   
                                   <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                   
-                                  <input type="number" step="0.01" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" readonly required>
+                                  <input type="number" step="0.01" class="form-control newSaleTotal" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" readonly required>
 
                                   <input type="hidden" name="saleTotal" id="saleTotal" required>
 
