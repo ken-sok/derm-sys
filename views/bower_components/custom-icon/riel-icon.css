@@ -1,0 +1,7 @@
+.rielIcon {
+    background: url('../../img/template/riel-small.png');
+    /* Other styles here */
+    height: 10px;
+    width: 10px;
+    display: block;
+}

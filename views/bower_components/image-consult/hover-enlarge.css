@@ -1,0 +1,13 @@
+/*
+img {
+    transition:transform 0.10s ease;
+    z-index: 3; /* Specify a stack order in case you're using a different order for other elements */
+}
+
+img:hover {
+    -webkit-transform:scale(2); /* or some other value */
+    transform:scale(2);
+    
+}
+*/
+
