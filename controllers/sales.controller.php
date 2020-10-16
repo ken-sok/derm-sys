@@ -32,8 +32,13 @@ class ControllerSales
 				VALIDATE IMAGE
 			=============================================*/
 
+
 			if (isset($_FILES["newConsultPhoto"])) {
 				$routeArray = array();
+				
+				$folder = "views/img/consultations/" . $_POST["newSale"];
+
+				mkdir($folder, 0755);
 
 				for ($i = 0; $i < count($_FILES["newConsultPhoto"]); $i++) {
 
@@ -41,17 +46,8 @@ class ControllerSales
 					$route = "views/img/consultations/default/anonymous.png";
 
 					list($width, $height) = getimagesize($_FILES["newConsultPhoto"]["tmp_name"][$i]);
-
-					//$newWidth = 500;
-					//$newHeight = 500;
-
-				/*=============================================
-				we create the folder to save the picture
-				=============================================*/
-
-					$folder = "views/img/consultations/" . $_POST["newSale"];
-
-					mkdir($folder, 0755);
+					
+					
 
 				/*=============================================
 				WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
@@ -140,7 +136,7 @@ class ControllerSales
 
 			}
 
-			$answer = ModelSales::mdlAddSale($table, $data);
+			/*$answer = ModelSales::mdlAddSale($table, $data);*/
 
 			if ($answer == "ok") {
 
@@ -222,24 +218,28 @@ class ControllerSales
 			
 			if (isset($_FILES["editConsultPhoto"])) {
 				$routeOldArray = explode(',', $routeArrayJSON);
-
+				var_dump($routeOldArray); 
 				$routeArray = array();
+
+				$folder = "views/img/consultations/" . $_POST["editSale"];
+
+				mkdir($folder, 0755);
 
 				for ($i = 0; $i < count($_FILES["editConsultPhoto"]); $i++) {
 
 					$route = "views/img/consultations/default/anonymous.png";
 
 					list($width, $height) = getimagesize($_FILES["editConsultPhoto"]["tmp_name"][$i]);
-
+					
+					//$newWidth = 500;
+					//$newHeight = 500;
 
 
 					/*=============================================
 					we create the folder to save the picture
 					=============================================*/
 
-					$folder = "views/img/consultations/" . $_POST["newSale"];
-
-					mkdir($folder, 0755);
+					
 
 					/*=============================================
 					WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
@@ -253,7 +253,7 @@ class ControllerSales
 
 						$random = mt_rand(100, 999);
 
-						$route = "views/img/consultations/" . $_POST["newSale"] . "/" . $random . ".jpg";
+						$route = "views/img/consultations/" . $_POST["editSale"] . "/" . $random . ".jpg";
 
 						$origin = imagecreatefromjpeg($_FILES["editConsultPhoto"]["tmp_name"][$i]);
 
@@ -272,7 +272,7 @@ class ControllerSales
 
 						$random = mt_rand(100, 999);
 
-						$route = "views/img/consultations/" . $_POST["newSale"] . "/" . $random . ".png";
+						$route = "views/img/consultations/" . $_POST["editSale"] . "/" . $random . ".png";
 
 						$origin = imagecreatefrompng($_FILES["editConsultPhoto"]["tmp_name"][$i]);
 
@@ -288,6 +288,7 @@ class ControllerSales
 					}
 
 					array_push($routeArray, $route);
+					var_dump('route', $route); 
 				}
 				//put inside because to avoid re-encoding json of exisiting images array
 				$routeArrayJSON = json_encode($routeArray);
@@ -326,7 +327,7 @@ class ControllerSales
 				);
 			}
 
-			$answer = ModelSales::mdleditSale($table, $data);
+			/*$answer = ModelSales::mdleditSale($table, $data);*/
 
 			if ($answer == "ok") {
 
