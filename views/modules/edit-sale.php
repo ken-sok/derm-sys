@@ -284,7 +284,7 @@
 
                                 <div class="input-group">
                                   
-                                  <span class="input-group-addon">រ</span>
+                                  <span class="input-group-addon">៛</span>
                                   <!--set to text because need to add , -->
                                   <input type="text" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSale="<?php echo $sale["totalPrice"]*$sale["exchangeRate"]; ?>" value="<?php echo number_format($sale["totalPrice"]*$sale["exchangeRate"]); ?>" readonly required>
 

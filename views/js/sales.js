@@ -652,7 +652,7 @@ PRINT BILL
 $(".tables").on("click", ".btnPrintBill", function () {
   var saleCode = $(this).attr("saleCode");
 
-  //window.open("extensions/receipt/receipt.php?code=" + saleCode, "_blank");
+  window.open("extensions/mpdf/receipt-page.php?code=" + saleCode, "_blank");
 });
 
 /*=============================================
