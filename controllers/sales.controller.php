@@ -44,8 +44,13 @@ class ControllerSales
 
 
 					$route = "views/img/consultations/default/anonymous.png";
-
+					
 					list($width, $height) = getimagesize($_FILES["newConsultPhoto"]["tmp_name"][$i]);
+					
+					//$newWidth = 500;
+					//$newHeight = 500;
+
+					
 					
 					
 
@@ -136,7 +141,7 @@ class ControllerSales
 
 			}
 
-			/*$answer = ModelSales::mdlAddSale($table, $data);*/
+			$answer = ModelSales::mdlAddSale($table, $data);
 
 			if ($answer == "ok") {
 
@@ -212,88 +217,7 @@ class ControllerSales
 			//all old photos
 			$routeArrayJSON = $_POST["currentConsultPhoto"];
 
-			/*=============================================
-				VALIDATE IMAGE
-			=============================================*/
 			
-			if (isset($_FILES["editConsultPhoto"])) {
-				$routeOldArray = explode(',', $routeArrayJSON);
-				var_dump($routeOldArray); 
-				$routeArray = array();
-
-				$folder = "views/img/consultations/" . $_POST["editSale"];
-
-				mkdir($folder, 0755);
-
-				for ($i = 0; $i < count($_FILES["editConsultPhoto"]); $i++) {
-
-					$route = "views/img/consultations/default/anonymous.png";
-
-					list($width, $height) = getimagesize($_FILES["editConsultPhoto"]["tmp_name"][$i]);
-					
-					//$newWidth = 500;
-					//$newHeight = 500;
-
-
-					/*=============================================
-					we create the folder to save the picture
-					=============================================*/
-
-					
-
-					/*=============================================
-					WE APPLY DEFAULT PHP FUNCTIONS ACCORDING TO THE IMAGE FORMAT
-					=============================================*/
-
-					if ($_FILES["editConsultPhoto"]["type"][$i] == "image/jpeg") {
-
-						/*=============================================
-						WE SAVE THE IMAGE IN THE FOLDER
-						=============================================*/
-
-						$random = mt_rand(100, 999);
-
-						$route = "views/img/consultations/" . $_POST["editSale"] . "/" . $random . ".jpg";
-
-						$origin = imagecreatefromjpeg($_FILES["editConsultPhoto"]["tmp_name"][$i]);
-
-						$destiny = imagecreatetruecolor($width, $height);
-
-						imagecopyresized($destiny, $origin, 0, 0, 0, 0, $width, $height, $width, $height);
-
-						imagejpeg($destiny, $route);
-					}
-
-					if ($_FILES["editConsultPhoto"]["type"][$i] == "image/png") {
-
-						/*=============================================
-						WE SAVE THE IMAGE IN THE FOLDER
-						=============================================*/
-
-						$random = mt_rand(100, 999);
-
-						$route = "views/img/consultations/" . $_POST["editSale"] . "/" . $random . ".png";
-
-						$origin = imagecreatefrompng($_FILES["editConsultPhoto"]["tmp_name"][$i]);
-
-						$destiny = imagecreatetruecolor($width, $height);
-
-						imagecopyresized($destiny, $origin, 0, 0, 0, 0, $width, $height, $width, $height);
-
-						imagepng($destiny, $route);
-					}
-
-					if (($route == "views/img/consultations/default/anonymous.png") && isset($routeOldArray[$i])){
-						$route = json_decode($routeOldArray[$i]);
-					}
-
-					array_push($routeArray, $route);
-					var_dump('route', $route); 
-				}
-				//put inside because to avoid re-encoding json of exisiting images array
-				$routeArrayJSON = json_encode($routeArray);
-			}
-
 		
 			$table = "sales";
 
@@ -327,7 +251,7 @@ class ControllerSales
 				);
 			}
 
-			/*$answer = ModelSales::mdleditSale($table, $data);*/
+			$answer = ModelSales::mdleditSale($table, $data);
 
 			if ($answer == "ok") {
 
