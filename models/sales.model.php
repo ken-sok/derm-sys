@@ -43,14 +43,14 @@ class ModelSales{
 
 	static public function mdlAddSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, products, receipt, totalPrice, comment, diagnosis, images, totalPriceKH) VALUES (:code, :idCustomer, :products, :receipt, :totalPrice, :comment, :diagnosis, :images, :totalPriceKH)");
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, products, receipt, totalPrice, comment, diagnosis, images, exchangeRate) VALUES (:code, :idCustomer, :products, :receipt, :totalPrice, :comment, :diagnosis, :images, :exchangeRate)");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
 		$stmt->bindParam(":products", $data["products"], PDO::PARAM_STR);
 		$stmt->bindParam(":receipt", $data["receipt"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
-		$stmt->bindParam(":totalPriceKH", $data["totalPriceKH"], PDO::PARAM_STR);
+		$stmt->bindParam(":exchangeRate", $data["exchangeRate"], PDO::PARAM_INT);
 		$stmt->bindParam(":comment", $data["comment"], PDO::PARAM_STR);
 		$stmt->bindParam(":diagnosis", $data["diagnosis"], PDO::PARAM_STR);
 		$stmt->bindParam(":images", $data["images"], PDO::PARAM_STR);
@@ -78,13 +78,14 @@ class ModelSales{
 
 	static public function mdlEditSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("UPDATE $table SET  idCustomer = :idCustomer, products = :products, receipt =:receipt, totalPrice= :totalPrice, totalPriceKH= :totalPrice, comment = :comment, diagnosis = :diagnosis, images = :images WHERE code = :code");
+		$stmt = Connection::connect()->prepare("UPDATE $table SET  idCustomer = :idCustomer, products = :products, receipt =:receipt, totalPrice= :totalPrice, exchangeRate= :exchangeRate, comment = :comment, diagnosis = :diagnosis, images = :images WHERE code = :code");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
 		$stmt->bindParam(":products", $data["products"], PDO::PARAM_STR);
 		$stmt->bindParam(":receipt", $data["receipt"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
+		$stmt->bindParam(":exchangeRate", $data["exchangeRate"], PDO::PARAM_INT);
 		$stmt->bindParam(":comment", $data["comment"], PDO::PARAM_STR);
 		$stmt->bindParam(":diagnosis", $data["diagnosis"], PDO::PARAM_STR);
 		$stmt->bindParam(":images", $data["images"], PDO::PARAM_STR);
@@ -191,7 +192,7 @@ class ModelSales{
 
 	static public function mdlAddingTotalSales($table){	
 
-		$stmt = Connection::connect()->prepare("SELECT SUM(netPrice) as total FROM $table");
+		$stmt = Connection::connect()->prepare("SELECT SUM(totalPrice) as total FROM $table");
 
 		$stmt -> execute();
 

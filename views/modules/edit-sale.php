@@ -274,7 +274,7 @@
                                   
                                   <span class="input-group-addon">អត្រាប្តូរប្រាក់</span>
                                   
-                                  <input type="number" class="form-control moneyRate" name="moneyRate" id="moneyRate" moneyRate="" value="<?php echo $sale["totalPriceKH"]/$sale["totalPrice"] ; ?>" required>
+                                  <input type="number" class="form-control moneyRate" name="moneyRate" id="moneyRate" moneyRate="" value="<?php echo $sale["exchangeRate"] ; ?>" required>
 
                                 </div>
 
@@ -286,9 +286,9 @@
                                   
                                   <span class="input-group-addon">រ</span>
                                   <!--set to text because need to add , -->
-                                  <input type="text" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSale="<?php echo $sale["totalPriceKh"]; ?>" value="<?php echo number_format($sale["totalPriceKh"]); ?>" readonly required>
+                                  <input type="text" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSale="<?php echo $sale["totalPrice"]*$sale["exchangeRate"]; ?>" value="<?php echo number_format($sale["totalPrice"]*$sale["exchangeRate"]); ?>" readonly required>
 
-                                  <input type="hidden" name="saleTotalKH" id="saleTotalKH" value="<?php echo $sale["totalPriceKH"]; ?>"required>
+                                  
 
                                 </div>
 

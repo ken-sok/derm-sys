@@ -345,14 +345,14 @@
                             
                             <tr>
                             
-
+                            <input type="hidden" class="form-control moneyRate" name="moneyRate" id="moneyRate" moneyRate="" value="<?php echo $sale["exchangeRate"] ; ?>" required>
                               <td style="width: 50%">
 
                                 <div class="input-group">
                                   
                                   <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                   
-                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="<?php echo $sale["netPrice"]; ?>" value="<?php echo $sale["totalPrice"]; ?>" readonly required>
+                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="<?php echo $sale["totalPrice"]; ?>" value="<?php echo $sale["totalPrice"]; ?>" readonly required>
 
                                   <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $sale["totalPrice"]; ?>" required>
 

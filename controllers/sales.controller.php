@@ -111,7 +111,7 @@ class ControllerSales
 			if ($_POST["process"] == "consult") {
 				//pictures array
 				$routeArrayJSON = json_encode($routeArray);
-				$priceKH = $_POST["saleTotal"]*4100; 
+				//$priceKH = $_POST["saleTotal"]*4100; 
 
 				$data = array(
 					"idCustomer" => $_POST["selectCustomer"],
@@ -119,7 +119,7 @@ class ControllerSales
 					"products" => $_POST["productsList"],
 					"receipt" => $_POST["productsList"],
 					"totalPrice" => $_POST["saleTotal"],
-					"totalPriceKH" => $priceKH,
+					"exchangeRate" => 4100, 
 					"comment" => $_POST["comment"],
 					"diagnosis" => $_POST["selectDiagnosis"],
 					"images" => $routeArrayJSON
@@ -132,7 +132,7 @@ class ControllerSales
 					"products" => $_POST["productsList"],
 					"receipt" => $_POST["productsList"],
 					"totalPrice" => $_POST["saleTotal"],
-					"totalPriceKH" => $_POST["saleTotalKH"],
+					"exchangeRate" => $_POST["moneyRate"],
 					"comment" => $_POST["comment"],
 					"diagnosis" => 1,
 					"images" => ''
@@ -305,7 +305,7 @@ class ControllerSales
 					"products" => $productsList,
 					"receipt" => $getSale["receipt"],
 					"totalPrice" => $_POST["saleTotal"],
-					//"totalPriceKH" => $getSale["totalPriceKh"],
+					"exchangeRate" => $_POST["moneyRate"], 
 					"comment" => $_POST["comment"],
 					"diagnosis" => $_POST["editDiagnosis"],
 					"images" =>$routeArrayJSON
@@ -319,7 +319,7 @@ class ControllerSales
 					"products" => $getSale["products"],
 					"receipt" => $productsList,
 					"totalPrice" => $_POST["saleTotal"],
-					"totalPriceKH" => $_POST["saleTotalKH"],
+					"exchangeRate" => $_POST["moneyRate"],
 					"comment" => $_POST["comment"],
 					"diagnosis" => $_POST["editDiagnosis"], 
 					"images" =>$routeArrayJSON
