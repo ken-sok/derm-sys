@@ -146,7 +146,7 @@ feedback consult
 - add quantity value box -> done
 
 feedback receipt 
-- hide diagno -> don
+- hide diagno -> done
 - remove next app -> done
 - add quantitu value box -> done
 - exchange rate 
@@ -175,7 +175,6 @@ medium screen visible
 6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
 	- repeat consult template with few tweaks
 
-Html hidden
 7 option to print after add new sale/consult
 7 test -> alll CRUD
 8 lock my code from being copiedadd for the doc's desktop (1hr research)

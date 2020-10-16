@@ -232,8 +232,8 @@
                                 <div class="input-group">
                                   
                                   <span class="input-group-addon">រ</span>
-                                  
-                                  <input type="number" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSaleKH="" readonly required>
+                                  <!--set to text because need to add , -->
+                                  <input type="text" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSaleKH="" readonly required>
 
                                   <input type="hidden" name="saleTotalKH" id="saleTotalKH" required>
 

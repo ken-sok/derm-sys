@@ -264,6 +264,37 @@
 
 
                           <tbody>
+
+
+                          <tr>
+
+                              <td style="width: 50%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">អត្រាប្តូរប្រាក់</span>
+                                  
+                                  <input type="number" class="form-control moneyRate" name="moneyRate" id="moneyRate" moneyRate="" value="<?php echo $sale["totalPriceKH"]/$sale["totalPrice"] ; ?>" required>
+
+                                </div>
+
+                              </td>
+                            
+                            <td style="width: 50%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">រ</span>
+                                  <!--set to text because need to add , -->
+                                  <input type="text" class="form-control" name="newSaleTotalKH" id="newSaleTotalKH" placeholder="00000" totalSale="<?php echo $sale["totalPriceKh"]; ?>" value="<?php echo number_format($sale["totalPriceKh"]); ?>" readonly required>
+
+                                  <input type="hidden" name="saleTotalKH" id="saleTotalKH" value="<?php echo $sale["totalPriceKH"]; ?>"required>
+
+                                </div>
+
+                            </td>
+
+                          </tr>
                             
                             <tr>
                             
@@ -274,7 +305,7 @@
                                   
                                   <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                   
-                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="<?php echo $sale["netPrice"]; ?>" value="<?php echo $sale["totalPrice"]; ?>" readonly required>
+                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="<?php echo $sale["totalPrice"]; ?>" value="<?php echo $sale["totalPrice"]; ?>" readonly required>
 
                                   <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $sale["totalPrice"]; ?>" required>
 

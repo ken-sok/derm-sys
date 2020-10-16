@@ -464,7 +464,7 @@ $(".saleForm").on("change", "input.moneyRate", function () {
   var converted = rate*totalSale;
 
   console.log('converted', converted);
-  $("#newSaleTotalKH").val(converted);
+  $("#newSaleTotalKH").val(thousands_separators(converted));
   $("#saleTotalKH").val(converted);
   $("#newSaleTotalKH").attr("totalSaleKH", converted);
 
@@ -497,14 +497,14 @@ function addingTotalPrices() {
   $("#saleTotal").val(addingTotalPrice);
   $("#newSaleTotal").attr("totalSale", addingTotalPrice);
 
-  console.log("here");
+  
   var rate = $("#moneyRate").val();
 
   var totalSale = $("#newSaleTotal").val();
 
   var converted = rate*totalSale;
 
-  console.log('converted', converted);
+  
   $("#newSaleTotalKH").val(converted);
   $("#saleTotalKH").val(converted);
   $("#newSaleTotalKH").attr("totalSaleKH", converted);
@@ -763,3 +763,12 @@ select appointment date
 $(function () {
   $("#datepicker-1").datepicker({ dateFormat: "yy-mm-dd" });
 });
+/*=============================================
+format riels
+=============================================*/
+function thousands_separators(num)
+  {
+    var num_parts = num.toString().split(".");
+    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return num_parts.join(".");
+  }

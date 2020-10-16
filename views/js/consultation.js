@@ -507,15 +507,15 @@ function addingTotalPrices() {
 	$("#saleTotal").val(addingTotalPrice);
 	$("#newSaleTotal").attr("totalSale", addingTotalPrice);
 
-	console.log("here");
+	console.log("here in consult");
 	var rate = $("#moneyRate").val();
   
 	var totalSale = $("#newSaleTotal").val();
   
 	var converted = rate*totalSale;
   
-	console.log('converted', converted);
-	$("#newSaleTotalKH").val(converted);
+	//console.log('converted separtor', thousands_separators(converted));
+	$("#newSaleTotalKH").val(thousands_separators(converted));
 	$("#saleTotalKH").val(converted);
 	$("#newSaleTotalKH").attr("totalSaleKH", converted);
 }

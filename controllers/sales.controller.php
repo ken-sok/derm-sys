@@ -305,8 +305,9 @@ class ControllerSales
 					"products" => $productsList,
 					"receipt" => $getSale["receipt"],
 					"totalPrice" => $_POST["saleTotal"],
+					//"totalPriceKH" => $getSale["totalPriceKh"],
 					"comment" => $_POST["comment"],
-					"diagnosis" => $_POST["editDiagnosis"], 
+					"diagnosis" => $_POST["editDiagnosis"],
 					"images" =>$routeArrayJSON
 				);
 				
@@ -318,6 +319,7 @@ class ControllerSales
 					"products" => $getSale["products"],
 					"receipt" => $productsList,
 					"totalPrice" => $_POST["saleTotal"],
+					"totalPriceKH" => $_POST["saleTotalKH"],
 					"comment" => $_POST["comment"],
 					"diagnosis" => $_POST["editDiagnosis"], 
 					"images" =>$routeArrayJSON
