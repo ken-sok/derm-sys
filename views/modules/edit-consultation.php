@@ -266,8 +266,8 @@
                     <div class="form-group">
                       <div class="input-group"> 
 
-                      <div class="panel">Upload image</div>
-                      <p class="help-block">Maximum size 2Mb</p>
+                      <div class="panel">View image</div>
+                      
 
                       <div class="row">
                       

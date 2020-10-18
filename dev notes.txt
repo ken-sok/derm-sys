@@ -164,31 +164,15 @@ Receipt & consult
 16/10
 ER done
 tested pic done
-printing now
-make quanityt box bigger receipt
-medium screen visible
+printing now done 
 
+17/10 
+make quantity box bigger receipt
+medium screen visible -> doc screen
+final test -> install, sql, delete useless folders/code-> no need -> copyright xD, basic description, test
 
-5 consult template - add headers for tnam; design better -> in pdf; Comment in print page (1hr)
-	- template design done -> done 1hr
-	- test print preview -> 
-	- tcpdf -> thurs on 
-	- print pdf function -> pivot to adding to pdf on fri -> 2.5hr only 20% -> 2.5hr -> can't use tcpdf -> kh not supported
-	- why did excel not work? why will word work?
-
-6 Receipt template - add headers for tnam; design better -> in pdf (30mins-1hr)
-	- repeat consult template with few tweaks
-
-7 option to print after add new sale/consult
-7 test -> alll CRUD
-8 lock my code from being copiedadd for the doc's desktop (1hr research)
-
-note to tell : 
+*****note to tell : 
 - do not delete receipt -> just remove products to keep consultation data
 - no diag in sales -> diag name -> id = 1
-----------later
-delete visits code (30mins)
 
-delete stocks code (30 mins)
----------------
-total: 12hrs + 2hr buffer
+total hours taken on whole proj: 30-40 hours
