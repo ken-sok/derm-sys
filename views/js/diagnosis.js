@@ -5,7 +5,7 @@ EDIT Diagnosis
 $(".DiagnosisTables").on("click", ".btnEditDiagnosis", function(){
 
   var diagnosisId = $(this).attr("diagnosisId");
-  console.log(diagnosisId);
+  
 
 	var datum = new FormData();
 	datum.append("diagnosisId", diagnosisId);
@@ -19,7 +19,7 @@ $(".DiagnosisTables").on("click", ".btnEditDiagnosis", function(){
     processData: false,
     dataType:"json",
     success: function(answer){
-     		//console.log(answer);
+     		
 
      		$("#editDiagnosis").val(answer["name"]);
      		$("#diagnosisId").val(answer["id"]);

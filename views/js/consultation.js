@@ -1,20 +1,5 @@
-/*=============================================
-LOAD DYNAMIC PRODUCTS TABLE
-=============================================*/
-
-// $.ajax({
-
-// 	url: "ajax/datatable-products.ajax.php",
-// 	success:function(answer){
-
-// 		console.log("answer", answer);
-
-// 	}
-
-// })
-
 //list products for edit
-//test for delete all products
+
 listProducts();
 
 $(".consultationTable").DataTable({
@@ -297,12 +282,12 @@ var idRemoveProduct = [];
 localStorage.removeItem("removeProduct");
 
 $(".consultationForm").on("click", "button.removeProduct", function () {
-	//console.log("$(this)", $(this));
+	
 	$(this).parent().parent().parent().parent().next().remove();
 	$(this).parent().parent().parent().parent().remove();
 
 	var idProduct = $(this).attr("idProduct");
-	console.log("idProduct", idProduct);
+	
 
 	/*=============================================
 	  STORE IN LOCALSTORAGE THE ID OF THE PRODUCT WE WANT TO DELETE
@@ -424,31 +409,6 @@ $(".consultationForm").on("change", "input.newProductQuantity", function () {
 
 	$(this).attr("newStock", newStock);
 
-	console.log('$(this).attr("stock")', $(this).attr("stock"));
-	if (Number($(this).val()) > Number($(this).attr("stock"))) {
-		/*=============================================
-			IF QUANTITY IS MORE THAN THE STOCK VALUE SET INITIAL VALUES
-			
-	
-			$(this).val(1);
-	
-			var finalPrice = $(this).val() * price.attr("realPrice");
-	
-			price.val(finalPrice);
-	
-			addingTotalPrices();
-	
-			swal({
-			  title: "The quantity is more than your stock",
-			  text: "There's only"+$(this).attr("stock")+" units!",
-			  type: "error",
-			  confirmButtonText: "Close!"
-			});
-			
-	
-			return;
-			*/
-	}
 
 	// ADDING TOTAL PRICES
 
@@ -507,14 +467,14 @@ function addingTotalPrices() {
 	$("#saleTotal").val(addingTotalPrice);
 	$("#newSaleTotal").attr("totalSale", addingTotalPrice);
 
-	console.log("here in consult");
+	
 	var rate = $("#moneyRate").val();
   
 	var totalSale = $("#newSaleTotal").val();
   
 	var converted = rate*totalSale;
   
-	//console.log('converted separtor', thousands_separators(converted));
+	
 	$("#newSaleTotalKH").val(thousands_separators(converted));
 	$("#saleTotalKH").val(converted);
 	$("#newSaleTotalKH").attr("totalSaleKH", converted);
@@ -531,10 +491,10 @@ CASH CHANGE
 =============================================*/
 $(".consultationForm").on("change", "input#newCashValue", function () {
 	var cash = $(this).val();
-	console.log("cash", cash);
+	
 
 	var change = Number(cash) - Number($("#saleTotal").val());
-	console.log("change", change);
+	
 
 	var newCashChange = $(this)
 		.parent()
@@ -588,7 +548,7 @@ function listProducts() {
 
 	$("#productsList").val(JSON.stringify(productsList));
 
-	console.log("products list", productsList);
+	
 }
 
 /*=============================================
@@ -641,7 +601,7 @@ SEARCH CUSTOMER HISTORY SALE
 
 $(".tables").on("click", ".btnCusHistory", function () {
 	var cusName = $(this).attr("cusName");
-	console.log(cusName);
+	
 
 	//put into search bar
 	document.getElementsByTagName("input")[0].value = cusName[0];
@@ -738,7 +698,7 @@ CAPTURE TODAY'S BUTTON
 =============================================*/
 $("#daterange-btn-consult").on("click", function () {
 	$(".daterangepicker.opensleft .ranges li").on("click", function () {
-		//console.log("in");
+		
 		var todayButton = $(this).attr("data-range-key");
 
 		if (todayButton == "Today") {
@@ -831,7 +791,7 @@ $('#newConsultPhoto0').change(function () {
 			
 			var preview = '#preview0';
 			
-			console.log(preview);
+			
 			$(preview).attr("src", routeImg);
 
 	
@@ -880,7 +840,7 @@ $('#newConsultPhoto1').change(function () {
 			
 			var preview = '#preview1';
 			
-			console.log(preview);
+			
 			$(preview).attr("src", routeImg);
 
 	
@@ -929,7 +889,7 @@ $('#newConsultPhoto2').change(function () {
 			
 			var preview = '#preview2';
 			
-			console.log(preview);
+			
 			$(preview).attr("src", routeImg);
 
 	
@@ -978,7 +938,7 @@ $('#newConsultPhoto3').change(function () {
 			
 			var preview = '#preview3';
 			
-			console.log(preview);
+			
 			$(preview).attr("src", routeImg);
 
 	

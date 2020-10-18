@@ -1,20 +1,5 @@
-/*=============================================
-LOAD DYNAMIC PRODUCTS TABLE
-=============================================*/
-
-// $.ajax({
-
-// 	url: "ajax/datatable-products.ajax.php",
-// 	success:function(answer){
-
-// 		console.log("answer", answer);
-
-// 	}
-
-// })
 
 //list products for edit
-//test for delete all products
 listProducts();
 
 $(".salesTable").DataTable({
@@ -283,13 +268,13 @@ var idRemoveProduct = [];
 localStorage.removeItem("removeProduct");
 
 $(".saleForm").on("click", "button.removeProduct", function () {
-  console.log("$(this)", $(this));
   
-  //$(this).parent().parent().parent().parent().siblings(".row")[0].remove();
+  
+  
 	$(this).parent().parent().parent().parent().remove();
 
   var idProduct = $(this).attr("idProduct");
-  console.log("idProduct", idProduct);
+  
 
   /*=============================================
 	STORE IN LOCALSTORAGE THE ID OF THE PRODUCT WE WANT TO DELETE
@@ -407,7 +392,7 @@ $(".saleForm").on("change", "input.newProductQuantity", function () {
     price.prop("readonly", false);
     price.val(price.attr("realPrice"));
   } else {
-    console.log("changed quanity", price.attr("realPrice"));
+    
     price.prop("readonly", true);
     var finalPrice = $(this).val() * price.attr("realPrice");
     price.val(finalPrice);
@@ -433,13 +418,13 @@ $(".saleForm").on("change", "input.newProductPrice", function () {
     .children(".enterQuantity")
     .children(".newProductQuantity");
   var price = $(this);
-  console.log("quanity changed in price", newProductQuantity.val());
+  
   if (newProductQuantity.val() == 1) {
     price.prop("readonly", false);
     var enteredPrice = $(this).val();
     price.attr("realPrice", enteredPrice);
   }
-  //console.log("changed price", price.attr("realPrice"))
+  
 
   // ADDING TOTAL PRICES
 
@@ -454,7 +439,7 @@ MODIFY RATE
 
 $(".saleForm").on("change", "input.moneyRate", function () {
   
-  //console.log("changed price", price.attr("realPrice"))
+  
 
   var rate = $(this).val();
 
@@ -463,7 +448,7 @@ $(".saleForm").on("change", "input.moneyRate", function () {
 
   var converted = rate*totalSale;
 
-  console.log('converted', converted);
+  
   $("#newSaleTotalKH").val(thousands_separators(converted));
   $("#saleTotalKH").val(converted);
   $("#newSaleTotalKH").attr("totalSaleKH", converted);
@@ -522,10 +507,10 @@ CASH CHANGE
 =============================================*/
 $(".saleForm").on("change", "input#newCashValue", function () {
   var cash = $(this).val();
-  console.log("cash", cash);
+  
 
   var change = Number(cash) - Number($("#saleTotal").val());
-  console.log("change", change);
+  
 
   var newCashChange = $(this)
     .parent()
@@ -577,7 +562,7 @@ function listProducts() {
 
   $("#productsList").val(JSON.stringify(productsList));
 
-  console.log("products list", productsList);
+  
 }
 
 /*=============================================
@@ -712,7 +697,7 @@ $("#daterange-btn-sales").on("cancel.daterangepicker", function (ev, picker) {
   =============================================*/
 $("#daterange-btn-sales").on("click", function () {
   $(".daterangepicker.opensleft .ranges li").on("click", function () {
-    //console.log("in");
+    
     var todayButton = $(this).attr("data-range-key");
 
     if (todayButton == "Today") {

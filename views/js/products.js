@@ -1,17 +1,3 @@
-/*=============================================
-LOAD DYNAMIC PRODUCTS TABLE
-=============================================*/
-
-// $.ajax({
-
-// 	url: "ajax/datatable-products.ajax.php",
-// 	success:function(answer){
-		
-// 		console.log("answer", answer);
-
-// 	}
-
-// })
 
 $('.productsTable').DataTable({
 	"ajax": "ajax/datatable-products.ajax.php", 
@@ -20,47 +6,6 @@ $('.productsTable').DataTable({
 	"processing": true
 });
 
-
-/*=============================================
-GETTING CATEGORY TO ASSIGN A CODE
-=============================================*/
-// $("#newCategory").change(function(){
-
-// 	var idCategory = $(this).val();
-
-// 	var datum = new FormData();
-//   	datum.append("idCategory", idCategory);
-
-//   	$.ajax({
-
-//       url:"ajax/products.ajax.php",
-//       method: "POST",
-//       data: datum,
-//       cache: false,
-//       contentType: false,
-//       processData: false,
-//       dataType:"json",
-//       success:function(answer){
-      
-//       // console.log("answer", answer);
-
-//       	if(!answer){
-
-//       		var newCode = idCategory+"01";
-//       		$("#newCode").val(newCode);
-
-//       	}else{
-
-//       		var newCode = Number(answer["code"]) + 1;
-//           $("#newCode").val(newCode);
-
-//       	}
-                
-//       }
-
-//   	})
-
-// })
 
 
 /*=============================================
