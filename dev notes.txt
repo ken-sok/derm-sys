@@ -173,6 +173,7 @@ final test -> install, sql, delete useless folders/code-> no need -> copyright x
 
 *****note to tell : 
 - do not delete receipt -> just remove products to keep consultation data
-- no diag in sales -> diag name -> id = 1
+- no diag in sales -> diag name -> id = 1 -> DO NOT DELETE
+- change product price default = change at products
 
 total hours taken on whole proj: 30-40 hours

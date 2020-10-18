@@ -69,12 +69,12 @@ $(".salesTable tbody ").on("click", "button.addProductSale", function () {
           "</div>" +
 
 					"<!-- Product quantity -->" +
-					'<div class="col-xs-1 enterQuantity">' +
+					'<div class="col-xs-2 enterQuantity">' +
 					'<input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="1" required>' +
 					"</div>" +
 
 					"<!-- Product scale -->" +
-					'<div class="col-xs-3 enterScale">' +
+					'<div class="col-xs-2 enterScale">' +
 						'<input type="text" class="form-control newProductScale" name="newProductScale" idProduct="' +
 						idProduct +
 						'" scale="" required>' +
