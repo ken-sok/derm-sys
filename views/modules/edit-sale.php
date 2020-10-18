@@ -188,13 +188,13 @@
 
                                 </div>
 
-                                <div class="col-xs-1 enterQuantity">
+                                <div class="col-xs-2 enterQuantity">
                       
                                   <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" required>
 
                                 </div>
 
-                                <div class="col-xs-3 enterScale">
+                                <div class="col-xs-2 enterScale">
                       
                                   <input type="text" class="form-control newProductScale" name="newProductScale" value="'.$value["scale"].'" scale="'.$value["scale"].'"​​ required>
 
